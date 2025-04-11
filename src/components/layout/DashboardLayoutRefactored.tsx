@@ -1,6 +1,5 @@
 
 import React from "react";
-import NavigationBar from "./NavigationBar";
 import { 
   SidebarProvider,
   Sidebar, 
@@ -10,7 +9,9 @@ import {
   SidebarGroupContent,
   SidebarMenu,
   SidebarMenuItem,
-  SidebarMenuButton
+  SidebarMenuButton,
+  SidebarRail,
+  SidebarTrigger
 } from "@/components/ui/sidebar";
 import UserSwitcher from "../common/UserSwitcher";
 import {
@@ -30,7 +31,8 @@ import {
   Building2,
   BarChartHorizontal,
   CircleDot,
-  File
+  Bell,
+  User
 } from "lucide-react";
 
 interface DashboardLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -94,32 +96,6 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     }
   };
 
-  const getRoleIcon = () => {
-    switch (activeRole) {
-      case "investor":
-        return <PiggyBank className="h-5 w-5 mr-2" />;
-      case "startup":
-        return <Briefcase className="h-5 w-5 mr-2" />;
-      case "company":
-        return <Building2 className="h-5 w-5 mr-2" />;
-      default:
-        return <PiggyBank className="h-5 w-5 mr-2" />;
-    }
-  };
-  
-  const getRoleLabel = () => {
-    switch (activeRole) {
-      case "investor":
-        return "Investor View";
-      case "startup":
-        return "Startup View";
-      case "company":
-        return "Company View";
-      default:
-        return "Investor View";
-    }
-  };
-
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full">
@@ -134,7 +110,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                 <SidebarMenu>
                   {getNavItems().map((item) => (
                     <SidebarMenuItem key={item.title}>
-                      <SidebarMenuButton asChild>
+                      <SidebarMenuButton asChild tooltip={item.title}>
                         <a href={item.href} className="relative flex items-center">
                           <item.icon className="h-5 w-5 mr-2 text-gray-600" />
                           <span>{item.title}</span>
@@ -155,11 +131,47 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                 </SidebarMenu>
               </SidebarGroupContent>
             </SidebarGroup>
+            
+            {/* User actions */}
+            <div className="mt-auto p-4 flex flex-col gap-2">
+              <div className="flex items-center space-x-3 mb-4">
+                <button className="relative rounded-full p-2 hover:bg-gray-100">
+                  <MessageSquare className="h-5 w-5 text-gray-500" />
+                  <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                    2
+                  </span>
+                </button>
+                <button className="relative rounded-full p-2 hover:bg-gray-100">
+                  <Bell className="h-5 w-5 text-gray-500" />
+                  <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                    3
+                  </span>
+                </button>
+                <button className="rounded-full p-2 hover:bg-gray-100">
+                  <User className="h-5 w-5 text-gray-500" />
+                </button>
+              </div>
+            </div>
           </SidebarContent>
+          <SidebarRail />
         </Sidebar>
 
         <div className="flex flex-col flex-1">
-          <NavigationBar activeRole={activeRole} />
+          <header className="h-16 border-b border-gray-200 bg-white flex items-center px-6">
+            <div className="flex items-center mr-4">
+              <SidebarTrigger />
+            </div>
+            <div className="flex-1 ml-4 hidden md:block">
+              <h1 className="text-xl font-semibold">
+                {activeRole === "investor" ? "Investor Dashboard" : 
+                 activeRole === "startup" ? "Startup Dashboard" : "Company Dashboard"}
+              </h1>
+            </div>
+            <div className="flex items-center space-x-4 md:hidden">
+              <span className="text-sm font-medium">{activeRole.charAt(0).toUpperCase() + activeRole.slice(1)}</span>
+            </div>
+          </header>
+          
           <main className={`flex-1 p-6 ${className}`} {...props}>
             {children}
           </main>

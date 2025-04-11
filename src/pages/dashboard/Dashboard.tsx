@@ -20,22 +20,22 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
     if (initialRole !== activeRole) {
       setActiveRole(initialRole);
     }
-  }, [initialRole]);
+  }, [initialRole, activeRole]);
 
   const renderDashboardContent = () => {
     // Check if we're on the learning journey route
     if (location.pathname === "/learning-journey") {
-      return <LearningJourney />;
+      return <LearningJourney activeRole={activeRole} onRoleChange={setActiveRole} />;
     }
     
     switch (activeRole) {
       case "company":
-        return <CompanyDashboard />;
+        return <CompanyDashboard activeRole={activeRole} onRoleChange={setActiveRole} />;
       case "startup":
-        return <StartupDashboard />;
+        return <StartupDashboard activeRole={activeRole} onRoleChange={setActiveRole} />;
       case "investor":
       default:
-        return <InvestorDashboard />;
+        return <InvestorDashboard activeRole={activeRole} onRoleChange={setActiveRole} />;
     }
   };
 

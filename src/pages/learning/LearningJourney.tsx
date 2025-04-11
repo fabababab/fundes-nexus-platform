@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Book, CheckCircle, Circle, Clock } from "lucide-react";
 import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
@@ -58,7 +59,12 @@ const LearningJourney: React.FC<LearningJourneyProps> = ({ activeRole, onRoleCha
   ];
 
   return (
-    <DashboardLayout menuItems={menuItems} activeRole={activeRole} onRoleChange={onRoleChange}>
+    <DashboardLayout 
+      menuItems={menuItems} 
+      activeRole={activeRole} 
+      onRoleChange={onRoleChange}
+      pageTitle="Learning Journey"
+    >
       <div className="container mx-auto py-8">
         <h1 className="text-2xl font-bold mb-4">Your Learning Journey</h1>
         <p className="text-gray-600 mb-8">

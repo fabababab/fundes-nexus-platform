@@ -85,6 +85,7 @@ const Events = ({ activeRole = "investor" }: EventsProps) => {
       menuItems={menuItems} 
       activeRole={selectedRole} 
       onRoleChange={setSelectedRole}
+      pageTitle="Events"
     >
       <div className="space-y-6">
         <div className="flex items-center justify-between">

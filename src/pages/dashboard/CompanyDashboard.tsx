@@ -1,8 +1,7 @@
 
 import React from "react";
-import { BarChart4, Building2, Calendar, CircleDot, Settings, Users } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
+import { BarChart4, Building2, CircleDot, Users } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface CompanyDashboardProps {
   activeRole: "company" | "startup" | "investor";
@@ -10,57 +9,41 @@ interface CompanyDashboardProps {
 }
 
 const CompanyDashboard: React.FC<CompanyDashboardProps> = ({ activeRole, onRoleChange }) => {
-  const menuItems = [
-    { title: "Dashboard", icon: Building2, url: "/dashboard" },
-    { title: "Impact Analytics", icon: BarChart4, url: "#", notifications: "2" },
-    { title: "Partnerships", icon: Users, url: "#" },
-    { title: "CSR Goals", icon: CircleDot, url: "#" },
-    { title: "Events", icon: Calendar, url: "/events", notifications: "1" },
-    { title: "Settings", icon: Settings, url: "#" },
-  ];
-
   return (
-    <DashboardLayout 
-      menuItems={menuItems} 
-      activeRole={activeRole} 
-      onRoleChange={onRoleChange}
-      pageTitle="Company Dashboard"
-    >
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Impact Score</CardTitle>
-            <BarChart4 className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">85/100</div>
-            <p className="text-xs text-muted-foreground">+2 from last month</p>
-          </CardContent>
-        </Card>
-        
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Partnerships</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">12</div>
-            <p className="text-xs text-muted-foreground">+3 partnerships this quarter</p>
-          </CardContent>
-        </Card>
-        
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Goal Completion</CardTitle>
-            <CircleDot className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">72%</div>
-            <p className="text-xs text-muted-foreground">+4% from last month</p>
-          </CardContent>
-        </Card>
-      </div>
-    </DashboardLayout>
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardTitle className="text-sm font-medium">Impact Score</CardTitle>
+          <BarChart4 className="h-4 w-4 text-muted-foreground" />
+        </CardHeader>
+        <CardContent>
+          <div className="text-2xl font-bold">85/100</div>
+          <p className="text-xs text-muted-foreground">+2 from last month</p>
+        </CardContent>
+      </Card>
+      
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardTitle className="text-sm font-medium">Active Partnerships</CardTitle>
+          <Users className="h-4 w-4 text-muted-foreground" />
+        </CardHeader>
+        <CardContent>
+          <div className="text-2xl font-bold">12</div>
+          <p className="text-xs text-muted-foreground">+3 partnerships this quarter</p>
+        </CardContent>
+      </Card>
+      
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardTitle className="text-sm font-medium">Goal Completion</CardTitle>
+          <CircleDot className="h-4 w-4 text-muted-foreground" />
+        </CardHeader>
+        <CardContent>
+          <div className="text-2xl font-bold">72%</div>
+          <p className="text-xs text-muted-foreground">+4% from last month</p>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 

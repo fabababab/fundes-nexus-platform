@@ -8,7 +8,6 @@ import Index from "./pages/Index";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Events from "./pages/events/Events";
 import NotFound from "./pages/NotFound";
-import LearningJourney from "./pages/learning/LearningJourney";
 import DiscoverStartups from "./pages/startups/DiscoverStartups";
 import Portfolio from "./pages/portfolio/Portfolio";
 import Messages from "./pages/messages/Messages";

@@ -25,7 +25,7 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
   const renderDashboardContent = () => {
     // Check if we're on the learning journey route
     if (location.pathname === "/learning-journey") {
-      return <LearningJourney activeRole={activeRole} onRoleChange={setActiveRole} />;
+      return <LearningJourney />;
     }
     
     switch (activeRole) {

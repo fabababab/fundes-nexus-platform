@@ -1,14 +1,14 @@
 
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Calendar } from "@/components/ui/calendar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CalendarRange, Filter, Plus } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Users, Video, MapPin, Clock, Filter, Calendar as CalendarIcon, Home, BarChart3, MessageSquare, FileText, Briefcase, Database } from "lucide-react";
-import EventCard from "@/components/events/EventCard";
-import { Calendar as CalendarComponent } from "@/components/ui/calendar";
+import { EventCard } from "@/components/events/EventCard";
+import { useNavigate } from "react-router-dom";
 
 interface EventsProps {
   activeRole?: "company" | "startup" | "investor";
@@ -20,80 +20,64 @@ const Events = ({ activeRole = "investor" }: EventsProps) => {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
 
   const menuItems = [
-    { title: "Dashboard", icon: Home, url: "/dashboard" },
-    { title: "Events", icon: Calendar, url: "/events", notifications: 3 },
-    { title: "Analytics", icon: BarChart3, url: "/analytics" },
-    { title: "Network", icon: Users, url: "/network", notifications: 2 },
-    { title: "Messages", icon: MessageSquare, url: "/messages", notifications: 5 },
-    { title: "Documents", icon: FileText, url: "/documents" },
-    { title: "Investments", icon: Briefcase, url: "/investments" },
-    { title: "Database", icon: Database, url: "/database" },
+    { title: "All Events", icon: CalendarRange, url: "/events" },
+    { title: "Upcoming", icon: CalendarRange, url: "/events/upcoming", notifications: 2 },
+    { title: "Past", icon: CalendarRange, url: "/events/past" },
+    { title: "My Events", icon: CalendarRange, url: "/events/mine", notifications: 1 },
   ];
 
-  const upcomingEvents = [
+  type EventType = "In Person" | "Virtual";
+  
+  interface Event {
+    id: string;
+    title: string;
+    date: string;
+    time: string;
+    location: string;
+    type: EventType;
+    category: string;
+    description: string;
+    attendees: number;
+    isRegistered: boolean;
+  }
+
+  const upcomingEvents: Event[] = [
     {
       id: "1",
-      title: "Sustainability Innovation Summit",
-      date: "April 25, 2025",
-      time: "10:00 AM - 5:00 PM",
-      location: "San Francisco, CA",
+      title: "Impact Investment Summit",
+      date: "April 15, 2025",
+      time: "9:00 AM - 5:00 PM",
+      location: "San Francisco Convention Center",
       type: "In Person" as const,
       category: "Conference",
-      description: "Connect with leaders in sustainable innovation and explore partnership opportunities.",
-      attendees: 120,
+      description: "Join the largest gathering of impact investors and sustainable startups.",
+      attendees: 342,
       isRegistered: true,
     },
     {
       id: "2",
-      title: "CleanTech Pitch Competition",
-      date: "May 10, 2025",
-      time: "2:00 PM - 6:00 PM",
+      title: "Sustainable Tech Pitch Night",
+      date: "April 20, 2025",
+      time: "6:00 PM - 9:00 PM",
       location: "Online",
       type: "Virtual" as const,
-      category: "Competition",
-      description: "Watch innovative startups pitch their cleantech solutions to a panel of investors.",
-      attendees: 85,
+      category: "Pitch Event",
+      description: "Watch innovative startups pitch their sustainable technology solutions.",
+      attendees: 156,
       isRegistered: false,
     },
     {
       id: "3",
-      title: "Impact Investor Networking",
-      date: "May 18, 2025",
-      time: "6:00 PM - 9:00 PM",
-      location: "New York, NY",
-      type: "In Person" as const,
-      category: "Networking",
-      description: "Exclusive networking event for impact investors and sustainability-focused startups.",
-      attendees: 50,
-      isRegistered: true,
-    }
-  ];
-
-  const recommendedEvents = [
-    {
-      id: "4",
-      title: "Circular Economy Workshop",
-      date: "June 5, 2025",
-      time: "9:00 AM - 12:00 PM",
-      location: "Boston, MA",
-      type: "In Person" as const,
-      category: "Workshop",
-      description: "Learn practical strategies for implementing circular economy principles in your business.",
-      attendees: 30,
-      isRegistered: false,
-    },
-    {
-      id: "5",
-      title: "Renewable Energy Funding Forum",
-      date: "June 15, 2025",
-      time: "11:00 AM - 3:00 PM",
+      title: "ESG Metrics Workshop",
+      date: "April 22, 2025",
+      time: "1:00 PM - 4:00 PM",
       location: "Online",
       type: "Virtual" as const,
-      category: "Forum",
-      description: "Discover funding opportunities for renewable energy projects and connect with potential investors.",
-      attendees: 200,
+      category: "Workshop",
+      description: "Learn how to measure and report on environmental, social, and governance metrics.",
+      attendees: 89,
       isRegistered: false,
-    }
+    },
   ];
 
   return (
@@ -105,95 +89,93 @@ const Events = ({ activeRole = "investor" }: EventsProps) => {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <h1 className="text-3xl font-bold">Events</h1>
-          <Button>
-            <Calendar className="mr-2 h-4 w-4" />
-            Create Event
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button variant="outline" size="icon">
+              <Filter className="h-4 w-4" />
+            </Button>
+            <Button>
+              <Plus className="h-4 w-4 mr-2" />
+              Create Event
+            </Button>
+          </div>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-6">
-          <div className="flex-1 space-y-6">
+        <div className="grid gap-6 md:grid-cols-[1fr_300px]">
+          <div className="space-y-6">
             <Tabs defaultValue="upcoming">
-              <div className="flex items-center justify-between mb-4">
-                <TabsList>
-                  <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
-                  <TabsTrigger value="recommended">Recommended</TabsTrigger>
-                  <TabsTrigger value="past">Past</TabsTrigger>
-                </TabsList>
-                <Button variant="outline" size="sm">
-                  <Filter className="mr-2 h-4 w-4" />
-                  Filter
-                </Button>
-              </div>
-              
-              <TabsContent value="upcoming" className="space-y-4">
+              <TabsList>
+                <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
+                <TabsTrigger value="trending">Trending</TabsTrigger>
+                <TabsTrigger value="recommended">Recommended</TabsTrigger>
+                <TabsTrigger value="mine">My Events</TabsTrigger>
+              </TabsList>
+              <TabsContent value="upcoming" className="space-y-4 mt-4">
                 {upcomingEvents.map((event) => (
                   <EventCard key={event.id} event={event} />
                 ))}
               </TabsContent>
-              
-              <TabsContent value="recommended" className="space-y-4">
-                {recommendedEvents.map((event) => (
-                  <EventCard key={event.id} event={event} />
-                ))}
+              <TabsContent value="trending" className="space-y-4 mt-4">
+                <div className="flex items-center justify-center h-40 border border-dashed rounded-lg">
+                  <p className="text-sm text-muted-foreground">Trending events will appear here</p>
+                </div>
               </TabsContent>
-              
-              <TabsContent value="past" className="space-y-4">
-                <div className="flex items-center justify-center p-12 border rounded-md">
-                  <p className="text-muted-foreground">No past events to display</p>
+              <TabsContent value="recommended" className="space-y-4 mt-4">
+                <div className="flex items-center justify-center h-40 border border-dashed rounded-lg">
+                  <p className="text-sm text-muted-foreground">Recommended events will appear here</p>
+                </div>
+              </TabsContent>
+              <TabsContent value="mine" className="space-y-4 mt-4">
+                <div className="flex items-center justify-center h-40 border border-dashed rounded-lg">
+                  <p className="text-sm text-muted-foreground">Your registered events will appear here</p>
                 </div>
               </TabsContent>
             </Tabs>
           </div>
-          
-          <div className="md:w-80 space-y-6">
+
+          <div className="space-y-6">
             <Card>
               <CardHeader>
                 <CardTitle>Calendar</CardTitle>
-                <CardDescription>View and select event dates</CardDescription>
+                <CardDescription>
+                  Browse events by date
+                </CardDescription>
               </CardHeader>
-              <CardContent className="pb-2">
-                <CalendarComponent
+              <CardContent>
+                <Calendar
                   mode="single"
                   selected={selectedDate}
                   onSelect={setSelectedDate}
                   className="rounded-md border"
                 />
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardHeader>
-                <CardTitle>Your Events</CardTitle>
-                <CardDescription>Events you're registered for</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="bg-primary/10 p-2 rounded-full">
-                      <CalendarIcon className="h-4 w-4 text-primary" />
+                <div className="mt-4">
+                  <h3 className="font-medium">{selectedDate?.toDateString()}</h3>
+                  <div className="mt-2">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Badge variant="outline" className="bg-primary/10">Impact Investment Summit</Badge>
                     </div>
-                    <div>
-                      <p className="text-sm font-medium">Sustainability Summit</p>
-                      <p className="text-xs text-muted-foreground">Apr 25, 2025</p>
-                    </div>
-                    <Badge className="ml-auto">Registered</Badge>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="bg-primary/10 p-2 rounded-full">
-                      <CalendarIcon className="h-4 w-4 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium">Investor Networking</p>
-                      <p className="text-xs text-muted-foreground">May 18, 2025</p>
-                    </div>
-                    <Badge className="ml-auto">Registered</Badge>
+                    <p className="text-sm text-muted-foreground">1 event on this date</p>
                   </div>
                 </div>
               </CardContent>
-              <CardFooter>
-                <Button variant="outline" className="w-full">View All</Button>
-              </CardFooter>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Categories</CardTitle>
+                <CardDescription>
+                  Filter events by type
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Conference</Badge>
+                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Workshop</Badge>
+                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Pitch Event</Badge>
+                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Networking</Badge>
+                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Webinar</Badge>
+                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Hackathon</Badge>
+                </div>
+              </CardContent>
             </Card>
           </div>
         </div>

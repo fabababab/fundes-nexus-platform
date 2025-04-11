@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, HTMLAttributes } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   SidebarProvider,
@@ -13,9 +13,9 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarRail,
   SidebarTrigger,
   SidebarSeparator,
+  SidebarRail,
 } from "@/components/ui/sidebar";
 import { UserCircle, Bell, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -23,7 +23,7 @@ import { Badge } from "@/components/ui/badge";
 import UserSwitcher from "../common/UserSwitcher";
 import { useNavigate } from "react-router-dom";
 
-interface DashboardLayoutProps {
+interface DashboardLayoutProps extends HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   menuItems: {
     title: string;
@@ -39,7 +39,9 @@ export function DashboardLayout({
   children, 
   menuItems, 
   activeRole,
-  onRoleChange 
+  onRoleChange,
+  className,
+  ...props
 }: DashboardLayoutProps) {
   const [notifications] = useState(5);
   const navigate = useNavigate();
@@ -120,7 +122,7 @@ export function DashboardLayout({
         </Sidebar>
         
         {/* Main content area */}
-        <div className="relative flex min-h-svh flex-1 flex-col bg-background peer-data-[variant=inset]:min-h-[calc(100svh-theme(spacing.4))] md:peer-data-[variant=inset]:m-2 md:peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow p-4">
+        <div className={`relative flex min-h-svh flex-1 flex-col bg-background peer-data-[variant=inset]:min-h-[calc(100svh-theme(spacing.4))] md:peer-data-[variant=inset]:m-2 md:peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow p-4 ${className || ''}`} {...props}>
           {children}
         </div>
       </div>

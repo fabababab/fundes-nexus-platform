@@ -1,11 +1,9 @@
 
 import React, { useState, useEffect } from "react";
-import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
 import CompanyDashboard from "./CompanyDashboard";
 import StartupDashboard from "./StartupDashboard";
 import InvestorDashboard from "./InvestorDashboard";
 import LearningJourney from "../learning/LearningJourney";
-import { Home, Calendar, BarChart3, Users, FileText, Briefcase, Database } from "lucide-react";
 import { useLocation } from "react-router-dom";
 
 interface DashboardProps {
@@ -22,17 +20,6 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
       setActiveRole(initialRole);
     }
   }, [initialRole]);
-
-  const menuItems = [
-    { title: "Dashboard", icon: Home, url: "/dashboard" },
-    { title: "Events", icon: Calendar, url: "/events", notifications: 3 },
-    { title: "Analytics", icon: BarChart3, url: "/analytics" },
-    { title: "Network", icon: Users, url: "/network", notifications: 2 },
-    // Removed Messages from sidebar
-    { title: "Documents", icon: FileText, url: "/documents" },
-    { title: "Investments", icon: Briefcase, url: "/investments" },
-    { title: "Database", icon: Database, url: "/database" },
-  ];
 
   const renderContent = () => {
     // Check if we're on the learning journey route
@@ -52,14 +39,9 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
   };
 
   return (
-    <DashboardLayout 
-      menuItems={menuItems} 
-      activeRole={activeRole} 
-      onRoleChange={setActiveRole}
-      className="flex-1 p-4"
-    >
+    <div className="flex-1 min-h-screen bg-background">
       {renderContent()}
-    </DashboardLayout>
+    </div>
   );
 };
 

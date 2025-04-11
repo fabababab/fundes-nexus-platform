@@ -22,6 +22,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import UserSwitcher from "../common/UserSwitcher";
 import { useNavigate } from "react-router-dom";
+import NavigationBar from "./NavigationBar";
 
 interface DashboardLayoutProps extends HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;

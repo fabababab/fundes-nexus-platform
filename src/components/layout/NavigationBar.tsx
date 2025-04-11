@@ -100,11 +100,13 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeRole }) => {
         
         <div className="flex flex-1 items-center justify-end space-x-4">
           <div className="hidden md:flex">
-            <Input 
-              className="w-64 rounded-full bg-muted px-3 py-2 text-sm"
-              placeholder="Search..." 
-              startIcon={<Search className="h-4 w-4 opacity-50" />}
-            />
+            <div className="relative w-64">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 opacity-50" />
+              <Input 
+                className="w-full rounded-full bg-muted px-9 py-2 text-sm"
+                placeholder="Search..." 
+              />
+            </div>
           </div>
           
           {/* Messenger Button */}

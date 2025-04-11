@@ -41,7 +41,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   menuItems, 
   activeRole,
   onRoleChange,
-  className,
+  className = '',
   ...props
 }: DashboardLayoutProps) => {
   const [notifications] = useState(5);
@@ -147,7 +147,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
           </Sidebar>
           
           {/* Main content area with className and props applied correctly */}
-          <div className={`relative flex min-h-svh flex-1 flex-col bg-background peer-data-[variant=inset]:min-h-[calc(100svh-theme(spacing.4))] md:peer-data-[variant=inset]:m-2 md:peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow p-4 ${className || ''}`} {...props}>
+          <div className={`relative flex min-h-svh flex-1 flex-col bg-background peer-data-[variant=inset]:min-h-[calc(100svh-theme(spacing.4))] md:peer-data-[variant=inset]:m-2 md:peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow p-4 ${className}`} {...props}>
             {children}
           </div>
         </div>
@@ -155,3 +155,5 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     </SidebarProvider>
   );
 };
+
+export default DashboardLayout;

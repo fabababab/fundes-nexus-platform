@@ -1,13 +1,13 @@
 
 import React, { useState } from "react";
-import { DashboardLayout } from "@/components/layout/DashboardLayout";
+import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar } from "@/components/ui/calendar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CalendarRange, Filter, Plus } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import EventCard from "@/components/events/EventCard"; // Changed from named to default import
+import EventCard from "@/components/events/EventCard";
 import { useNavigate } from "react-router-dom";
 
 interface EventsProps {

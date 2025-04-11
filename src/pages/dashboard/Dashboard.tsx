@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { DashboardLayout } from "@/components/layout/DashboardLayout";
+import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
 import CompanyDashboard from "./CompanyDashboard";
 import StartupDashboard from "./StartupDashboard";
 import InvestorDashboard from "./InvestorDashboard";

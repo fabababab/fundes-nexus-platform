@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import {
   SidebarProvider,
   Sidebar,
@@ -16,7 +17,7 @@ import {
   SidebarTrigger,
   SidebarSeparator,
 } from "@/components/ui/sidebar";
-import { UserCircle, Bell, LogOut, Home, BarChart3, Users, MessageSquare, FileText, Settings, Briefcase, Database } from "lucide-react";
+import { UserCircle, Bell, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import UserSwitcher from "../common/UserSwitcher";
@@ -42,6 +43,7 @@ export function DashboardLayout({
 }: DashboardLayoutProps) {
   const [notifications] = useState(5);
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <SidebarProvider defaultOpen={true}>
@@ -65,7 +67,10 @@ export function DashboardLayout({
                   {menuItems.map((item) => (
                     <SidebarMenuItem key={item.title}>
                       <SidebarMenuButton asChild tooltip={item.title}>
-                        <a href={item.url} className="flex justify-between w-full">
+                        <Link 
+                          to={item.url} 
+                          className={`flex justify-between w-full ${location.pathname === item.url ? 'font-medium' : ''}`}
+                        >
                           <div className="flex items-center gap-2">
                             <item.icon className="h-5 w-5" />
                             <span>{item.title}</span>
@@ -75,7 +80,7 @@ export function DashboardLayout({
                               {item.notifications}
                             </Badge>
                           )}
-                        </a>
+                        </Link>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   ))}

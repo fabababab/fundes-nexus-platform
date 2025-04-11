@@ -12,11 +12,11 @@ import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 
 interface EventsProps {
   activeRole?: "company" | "startup" | "investor";
-  onRoleChange?: (role: "company" | "startup" | "investor") => void;
 }
 
-const Events = ({ activeRole = "investor", onRoleChange }: EventsProps) => {
+const Events = ({ activeRole = "investor" }: EventsProps) => {
   const navigate = useNavigate();
+  const [selectedRole, setSelectedRole] = useState<"company" | "startup" | "investor">(activeRole);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
 
   const menuItems = [
@@ -99,8 +99,8 @@ const Events = ({ activeRole = "investor", onRoleChange }: EventsProps) => {
   return (
     <DashboardLayout 
       menuItems={menuItems} 
-      activeRole={activeRole} 
-      onRoleChange={onRoleChange ? onRoleChange : () => {}}
+      activeRole={selectedRole} 
+      onRoleChange={setSelectedRole}
     >
       <div className="space-y-6">
         <div className="flex items-center justify-between">

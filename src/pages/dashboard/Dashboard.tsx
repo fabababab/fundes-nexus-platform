@@ -27,12 +27,12 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
   const renderDashboard = () => {
     switch (activeRole) {
       case "company":
-        return <CompanyDashboard />;
+        return <CompanyDashboard activeRole={activeRole} onRoleChange={setActiveRole} />;
       case "startup":
-        return <StartupDashboard />;
+        return <StartupDashboard activeRole={activeRole} onRoleChange={setActiveRole} />;
       case "investor":
       default:
-        return <InvestorDashboard />;
+        return <InvestorDashboard activeRole={activeRole} onRoleChange={setActiveRole} />;
     }
   };
 

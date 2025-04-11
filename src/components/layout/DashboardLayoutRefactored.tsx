@@ -133,32 +133,38 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                 </SidebarMenu>
               </SidebarGroupContent>
             </SidebarGroup>
-            
-            {/* User actions */}
-            <div className="mt-auto p-4 flex flex-col gap-2">
-              <div className="flex items-center space-x-3 mb-4">
-                <button className="relative rounded-full p-2 hover:bg-gray-100">
-                  <MessageSquare className="h-5 w-5 text-gray-500" />
-                  <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
-                    2
-                  </span>
-                </button>
-                <button className="relative rounded-full p-2 hover:bg-gray-100">
-                  <Bell className="h-5 w-5 text-gray-500" />
-                  <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
-                    3
-                  </span>
-                </button>
-                <button className="rounded-full p-2 hover:bg-gray-100">
-                  <User className="h-5 w-5 text-gray-500" />
-                </button>
-              </div>
-            </div>
           </SidebarContent>
           <SidebarRail />
         </Sidebar>
 
         <div className="flex flex-col flex-1">
+          <header className="h-16 border-b border-gray-200 bg-white flex items-center px-6">
+            <div className="flex items-center mr-4">
+              <SidebarTrigger />
+            </div>
+            <div className="flex-1 ml-4">
+              <h1 className="text-xl font-semibold">{pageTitle}</h1>
+            </div>
+            {/* User action buttons moved from sidebar bottom to header right */}
+            <div className="flex items-center space-x-3">
+              <button className="relative rounded-full p-2 hover:bg-gray-100">
+                <MessageSquare className="h-5 w-5 text-gray-500" />
+                <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                  2
+                </span>
+              </button>
+              <button className="relative rounded-full p-2 hover:bg-gray-100">
+                <Bell className="h-5 w-5 text-gray-500" />
+                <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                  3
+                </span>
+              </button>
+              <button className="rounded-full p-2 hover:bg-gray-100">
+                <User className="h-5 w-5 text-gray-500" />
+              </button>
+            </div>
+          </header>
+          
           <main className={`flex-1 p-6 ${className}`} {...props}>
             {children}
           </main>

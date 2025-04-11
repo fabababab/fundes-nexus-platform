@@ -5,7 +5,7 @@ import CompanyDashboard from "./CompanyDashboard";
 import StartupDashboard from "./StartupDashboard";
 import InvestorDashboard from "./InvestorDashboard";
 import LearningJourney from "../learning/LearningJourney";
-import { Home, Calendar, BarChart3, Users, MessageSquare, FileText, Briefcase, Database, GraduationCap } from "lucide-react";
+import { Home, Calendar, BarChart3, Users, FileText, Briefcase, Database } from "lucide-react";
 import { useLocation } from "react-router-dom";
 
 interface DashboardProps {
@@ -21,7 +21,7 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
     { title: "Events", icon: Calendar, url: "/events", notifications: 3 },
     { title: "Analytics", icon: BarChart3, url: "/analytics" },
     { title: "Network", icon: Users, url: "/network", notifications: 2 },
-    { title: "Messages", icon: MessageSquare, url: "/messages", notifications: 5 },
+    // Removed Messages from sidebar
     { title: "Documents", icon: FileText, url: "/documents" },
     { title: "Investments", icon: Briefcase, url: "/investments" },
     { title: "Database", icon: Database, url: "/database" },

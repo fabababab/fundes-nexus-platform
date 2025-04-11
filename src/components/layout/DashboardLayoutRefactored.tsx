@@ -49,7 +49,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   return (
     <SidebarProvider defaultOpen={true}>
       <div className="flex flex-col min-h-screen w-full">
-        {/* Navigation Bar */}
+        {/* Navigation Bar - removed the className prop */}
         <NavigationBar activeRole={activeRole} />
         
         <div className="flex flex-1 w-full">

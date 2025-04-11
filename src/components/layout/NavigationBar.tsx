@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Bell, MessageSquare, User, X, Send, Search } from "lucide-react";
+import { Bell, MessageSquare, User, Send, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";

@@ -1,7 +1,7 @@
 
 import React from "react";
 import { PiggyBank, Search, BarChart, Briefcase, Star, Calendar, MessageSquare, Settings } from "lucide-react";
-import { DashboardLayout } from "@/components/layout/DashboardLayout";
+import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";

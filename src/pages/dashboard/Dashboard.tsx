@@ -5,6 +5,7 @@ import StartupDashboard from "./StartupDashboard";
 import InvestorDashboard from "./InvestorDashboard";
 import LearningJourney from "../learning/LearningJourney";
 import { useLocation } from "react-router-dom";
+import DashboardLayout from "../../components/layout/DashboardLayoutRefactored";
 
 interface DashboardProps {
   activeRole?: "company" | "startup" | "investor";
@@ -21,27 +22,27 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
     }
   }, [initialRole]);
 
-  const renderContent = () => {
+  const renderDashboardContent = () => {
     // Check if we're on the learning journey route
     if (location.pathname === "/learning-journey") {
-      return <LearningJourney activeRole={activeRole} onRoleChange={setActiveRole} />;
+      return <LearningJourney />;
     }
     
     switch (activeRole) {
       case "company":
-        return <CompanyDashboard activeRole={activeRole} onRoleChange={setActiveRole} />;
+        return <CompanyDashboard />;
       case "startup":
-        return <StartupDashboard activeRole={activeRole} onRoleChange={setActiveRole} />;
+        return <StartupDashboard />;
       case "investor":
       default:
-        return <InvestorDashboard activeRole={activeRole} onRoleChange={setActiveRole} />;
+        return <InvestorDashboard />;
     }
   };
 
   return (
-    <div className="flex-1 min-h-screen bg-background">
-      {renderContent()}
-    </div>
+    <DashboardLayout activeRole={activeRole} onRoleChange={setActiveRole}>
+      {renderDashboardContent()}
+    </DashboardLayout>
   );
 };
 

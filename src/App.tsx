@@ -9,6 +9,9 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Events from "./pages/events/Events";
 import NotFound from "./pages/NotFound";
 import LearningJourney from "./pages/learning/LearningJourney";
+import DiscoverStartups from "./pages/startups/DiscoverStartups";
+import Portfolio from "./pages/portfolio/Portfolio";
+import Messages from "./pages/messages/Messages";
 
 const queryClient = new QueryClient();
 
@@ -21,10 +24,12 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/discover-startups" element={<DiscoverStartups />} />
+          <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/events" element={<Events />} />
+          <Route path="/messages" element={<Messages />} />
           <Route path="/analytics" element={<Dashboard />} />
           <Route path="/network" element={<Dashboard />} />
-          <Route path="/messages" element={<Dashboard />} />
           <Route path="/documents" element={<Dashboard />} />
           <Route path="/investments" element={<Dashboard />} />
           <Route path="/database" element={<Dashboard />} />

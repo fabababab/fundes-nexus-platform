@@ -34,6 +34,7 @@ import {
   Bell,
   User
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface DashboardLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -55,8 +56,8 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   // Role-specific navigation items
   const investorNavItems = [
     { title: "Dashboard", icon: PiggyBank, href: "/dashboard", badge: "" },
-    { title: "Discover Startups", icon: Search, href: "#", badge: "" },
-    { title: "Portfolio", icon: Briefcase, href: "#", badge: "1" },
+    { title: "Discover Startups", icon: Search, href: "/discover-startups", badge: "" },
+    { title: "Portfolio", icon: Briefcase, href: "/portfolio", badge: "1" },
     { title: "Performance", icon: BarChart4, href: "#", badge: "" },
     { title: "Watchlist", icon: Star, href: "#", badge: "" },
     { title: "Events", icon: Calendar, href: "/events", badge: "2" },
@@ -113,7 +114,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                   {getNavItems().map((item) => (
                     <SidebarMenuItem key={item.title}>
                       <SidebarMenuButton asChild tooltip={item.title}>
-                        <a href={item.href} className="relative flex items-center">
+                        <Link to={item.href} className="relative flex items-center">
                           <item.icon className="h-5 w-5 mr-2 text-gray-600" />
                           <span>{item.title}</span>
                           {item.badge && (
@@ -126,7 +127,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                               New
                             </span>
                           )}
-                        </a>
+                        </Link>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   ))}
@@ -147,12 +148,12 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
             </div>
             {/* User action buttons moved from sidebar bottom to header right */}
             <div className="flex items-center space-x-3">
-              <button className="relative rounded-full p-2 hover:bg-gray-100">
+              <Link to="/messages" className="relative rounded-full p-2 hover:bg-gray-100">
                 <MessageSquare className="h-5 w-5 text-gray-500" />
                 <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
                   2
                 </span>
-              </button>
+              </Link>
               <button className="relative rounded-full p-2 hover:bg-gray-100">
                 <Bell className="h-5 w-5 text-gray-500" />
                 <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">

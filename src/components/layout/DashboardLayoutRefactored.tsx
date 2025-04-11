@@ -48,103 +48,103 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 
   return (
     <SidebarProvider defaultOpen={true}>
-      <div className="flex flex-col min-h-screen w-full">
-        {/* Navigation Bar - removed the className prop */}
-        <NavigationBar activeRole={activeRole} />
-        
-        <div className="flex flex-1 w-full">
-          <Sidebar>
-            <SidebarHeader>
-              <div className="flex items-center justify-between px-4 py-2">
-                <div className="flex items-center gap-2">
-                  <h1 className="text-xl font-bold text-primary">Fundes</h1>
-                </div>
-                <SidebarTrigger />
+      <div className="flex min-h-screen w-full overflow-hidden">
+        <Sidebar>
+          <SidebarHeader>
+            <div className="flex items-center justify-between px-4 py-2">
+              <div className="flex items-center gap-2">
+                <h1 className="text-xl font-bold text-primary">Fundes</h1>
               </div>
-              <UserSwitcher activeRole={activeRole} onRoleChange={onRoleChange} />
-            </SidebarHeader>
-            
-            <SidebarContent>
-              <SidebarGroup>
-                <SidebarGroupLabel>Navigation</SidebarGroupLabel>
-                <SidebarGroupContent>
-                  <SidebarMenu>
-                    {menuItems
-                      .filter(item => item.title !== "Messages") // Remove Messages from sidebar
-                      .map((item) => (
-                      <SidebarMenuItem key={item.title}>
-                        <SidebarMenuButton asChild tooltip={item.title}>
-                          <Link 
-                            to={item.url} 
-                            className={`flex justify-between w-full ${location.pathname === item.url ? 'font-medium' : ''}`}
-                          >
-                            <div className="flex items-center gap-2">
-                              <item.icon className="h-5 w-5" />
-                              <span>{item.title}</span>
-                            </div>
-                            {item.notifications && item.notifications > 0 && (
-                              <Badge variant="destructive" className="ml-auto">
-                                {item.notifications}
-                              </Badge>
-                            )}
-                          </Link>
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    ))}
-                    
-                    {/* Add Learning Journey link if startup role is selected */}
-                    {activeRole === "startup" && (
-                      <SidebarMenuItem>
-                        <SidebarMenuButton asChild tooltip="Learning Journey">
-                          <Link 
-                            to="/learning-journey" 
-                            className={`flex justify-between w-full ${location.pathname === '/learning-journey' ? 'font-medium' : ''}`}
-                          >
-                            <div className="flex items-center gap-2">
-                              <GraduationCap className="h-5 w-5" />
-                              <span>Learning Journey</span>
-                            </div>
-                            <Badge variant="secondary" className="ml-auto">New</Badge>
-                          </Link>
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    )}
-                  </SidebarMenu>
-                </SidebarGroupContent>
-              </SidebarGroup>
-            </SidebarContent>
-            
-            <SidebarSeparator />
-            
-            <SidebarFooter>
-              <div className="px-4 py-2">
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-3">
-                    <Button variant="ghost" size="icon">
-                      <UserCircle className="h-5 w-5" />
-                    </Button>
-                    <div className="hidden group-data-[state=expanded]/sidebar-wrapper:block">
-                      <p className="text-sm font-medium">User Profile</p>
-                    </div>
-                  </div>
+              <SidebarTrigger />
+            </div>
+            <UserSwitcher activeRole={activeRole} onRoleChange={onRoleChange} />
+          </SidebarHeader>
+          
+          <SidebarContent>
+            <SidebarGroup>
+              <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {menuItems
+                    .filter(item => item.title !== "Messages") // Remove Messages from sidebar
+                    .map((item) => (
+                    <SidebarMenuItem key={item.title}>
+                      <SidebarMenuButton asChild tooltip={item.title}>
+                        <Link 
+                          to={item.url} 
+                          className={`flex justify-between w-full ${location.pathname === item.url ? 'font-medium' : ''}`}
+                        >
+                          <div className="flex items-center gap-2">
+                            <item.icon className="h-5 w-5" />
+                            <span>{item.title}</span>
+                          </div>
+                          {item.notifications && item.notifications > 0 && (
+                            <Badge variant="destructive" className="ml-auto">
+                              {item.notifications}
+                            </Badge>
+                          )}
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                  
+                  {/* Add Learning Journey link if startup role is selected */}
+                  {activeRole === "startup" && (
+                    <SidebarMenuItem>
+                      <SidebarMenuButton asChild tooltip="Learning Journey">
+                        <Link 
+                          to="/learning-journey" 
+                          className={`flex justify-between w-full ${location.pathname === '/learning-journey' ? 'font-medium' : ''}`}
+                        >
+                          <div className="flex items-center gap-2">
+                            <GraduationCap className="h-5 w-5" />
+                            <span>Learning Journey</span>
+                          </div>
+                          <Badge variant="secondary" className="ml-auto">New</Badge>
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          </SidebarContent>
+          
+          <SidebarSeparator />
+          
+          <SidebarFooter>
+            <div className="px-4 py-2">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-3">
                   <Button variant="ghost" size="icon">
-                    <Bell className="h-5 w-5" />
-                    {notifications > 0 && (
-                      <span className="absolute top-0 right-0 h-2 w-2 rounded-full bg-destructive" />
-                    )}
+                    <UserCircle className="h-5 w-5" />
                   </Button>
+                  <div className="hidden group-data-[state=expanded]/sidebar-wrapper:block">
+                    <p className="text-sm font-medium">User Profile</p>
+                  </div>
                 </div>
-                
-                <Button variant="outline" className="w-full flex items-center gap-2">
-                  <LogOut className="h-4 w-4" />
-                  <span>Log out</span>
+                <Button variant="ghost" size="icon">
+                  <Bell className="h-5 w-5" />
+                  {notifications > 0 && (
+                    <span className="absolute top-0 right-0 h-2 w-2 rounded-full bg-destructive" />
+                  )}
                 </Button>
               </div>
-            </SidebarFooter>
-            <SidebarRail />
-          </Sidebar>
+              
+              <Button variant="outline" className="w-full flex items-center gap-2">
+                <LogOut className="h-4 w-4" />
+                <span>Log out</span>
+              </Button>
+            </div>
+          </SidebarFooter>
+          <SidebarRail />
+        </Sidebar>
+        
+        <div className="flex flex-col flex-1 w-full">
+          {/* Navigation Bar */}
+          <NavigationBar activeRole={activeRole} />
           
-          {/* Main content area with className and props applied correctly */}
+          {/* Main content area */}
           <main className={`flex-1 p-4 ${className}`} {...props}>
             {children}
           </main>

@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Events from "./pages/events/Events";
 import NotFound from "./pages/NotFound";
+import LearningJourney from "./pages/learning/LearningJourney";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/documents" element={<Dashboard />} />
           <Route path="/investments" element={<Dashboard />} />
           <Route path="/database" element={<Dashboard />} />
+          <Route path="/learning-journey" element={<Dashboard activeRole="startup" />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

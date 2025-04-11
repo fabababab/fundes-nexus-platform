@@ -17,7 +17,7 @@ import {
   SidebarSeparator,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import { UserCircle, Bell, LogOut } from "lucide-react";
+import { UserCircle, Bell, LogOut, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import UserSwitcher from "../common/UserSwitcher";
@@ -86,6 +86,24 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   ))}
+                  
+                  {/* Add Learning Journey link if startup role is selected */}
+                  {activeRole === "startup" && (
+                    <SidebarMenuItem>
+                      <SidebarMenuButton asChild tooltip="Learning Journey">
+                        <Link 
+                          to="/learning-journey" 
+                          className={`flex justify-between w-full ${location.pathname === '/learning-journey' ? 'font-medium' : ''}`}
+                        >
+                          <div className="flex items-center gap-2">
+                            <GraduationCap className="h-5 w-5" />
+                            <span>Learning Journey</span>
+                          </div>
+                          <Badge variant="secondary" className="ml-auto">New</Badge>
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )}
                 </SidebarMenu>
               </SidebarGroupContent>
             </SidebarGroup>
@@ -121,7 +139,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
           <SidebarRail />
         </Sidebar>
         
-        {/* Main content area */}
+        {/* Main content area with className and props applied correctly */}
         <div className={`relative flex min-h-svh flex-1 flex-col bg-background peer-data-[variant=inset]:min-h-[calc(100svh-theme(spacing.4))] md:peer-data-[variant=inset]:m-2 md:peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow p-4 ${className || ''}`} {...props}>
           {children}
         </div>

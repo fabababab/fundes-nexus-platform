@@ -4,7 +4,9 @@ import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import CompanyDashboard from "./CompanyDashboard";
 import StartupDashboard from "./StartupDashboard";
 import InvestorDashboard from "./InvestorDashboard";
-import { Home, Calendar, BarChart3, Users, MessageSquare, FileText, Briefcase, Database } from "lucide-react";
+import LearningJourney from "../learning/LearningJourney";
+import { Home, Calendar, BarChart3, Users, MessageSquare, FileText, Briefcase, Database, GraduationCap } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
 interface DashboardProps {
   activeRole?: "company" | "startup" | "investor";
@@ -12,6 +14,7 @@ interface DashboardProps {
 
 const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => {
   const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor">(initialRole);
+  const location = useLocation();
 
   const menuItems = [
     { title: "Dashboard", icon: Home, url: "/dashboard" },
@@ -25,6 +28,11 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
   ];
 
   const renderDashboard = () => {
+    // Check if we're on the learning journey route
+    if (location.pathname === "/learning-journey") {
+      return <LearningJourney activeRole={activeRole} onRoleChange={setActiveRole} />;
+    }
+    
     switch (activeRole) {
       case "company":
         return <CompanyDashboard activeRole={activeRole} onRoleChange={setActiveRole} />;

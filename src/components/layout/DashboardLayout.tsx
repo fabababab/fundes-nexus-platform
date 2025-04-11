@@ -12,10 +12,9 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarInset,
-  SidebarSeparator,
   SidebarRail,
   SidebarTrigger,
+  SidebarSeparator,
 } from "@/components/ui/sidebar";
 import { UserCircle, Bell, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";

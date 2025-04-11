@@ -145,7 +145,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
           <NavigationBar activeRole={activeRole} />
           
           {/* Main content area */}
-          <main className={`flex-1 p-4 ${className}`} {...props}>
+          <main className={className} {...props}>
             {children}
           </main>
         </div>

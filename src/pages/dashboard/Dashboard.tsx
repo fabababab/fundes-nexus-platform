@@ -27,7 +27,7 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
     { title: "Database", icon: Database, url: "/database" },
   ];
 
-  const renderDashboard = () => {
+  const renderContent = () => {
     // Check if we're on the learning journey route
     if (location.pathname === "/learning-journey") {
       return <LearningJourney activeRole={activeRole} onRoleChange={setActiveRole} />;
@@ -49,8 +49,9 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
       menuItems={menuItems} 
       activeRole={activeRole} 
       onRoleChange={setActiveRole}
+      className="flex-1 p-4"
     >
-      {renderDashboard()}
+      {renderContent()}
     </DashboardLayout>
   );
 };

@@ -159,18 +159,6 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
         </Sidebar>
 
         <div className="flex flex-col flex-1">
-          <header className="h-16 border-b border-gray-200 bg-white flex items-center px-6">
-            <div className="flex items-center mr-4">
-              <SidebarTrigger />
-            </div>
-            <div className="flex-1 ml-4">
-              <h1 className="text-xl font-semibold">{pageTitle}</h1>
-            </div>
-            <div className="flex items-center md:hidden">
-              <span className="text-sm font-medium">{activeRole.charAt(0).toUpperCase() + activeRole.slice(1)}</span>
-            </div>
-          </header>
-          
           <main className={`flex-1 p-6 ${className}`} {...props}>
             {children}
           </main>

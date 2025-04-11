@@ -35,14 +35,14 @@ interface DashboardLayoutProps extends HTMLAttributes<HTMLDivElement> {
   onRoleChange: (role: "company" | "startup" | "investor") => void;
 }
 
-export function DashboardLayout({ 
+export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ 
   children, 
   menuItems, 
   activeRole,
   onRoleChange,
   className,
   ...props
-}: DashboardLayoutProps) {
+}: DashboardLayoutProps) => {
   const [notifications] = useState(5);
   const navigate = useNavigate();
   const location = useLocation();
@@ -128,4 +128,4 @@ export function DashboardLayout({
       </div>
     </SidebarProvider>
   );
-}
+};

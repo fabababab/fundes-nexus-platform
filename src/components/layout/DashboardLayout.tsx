@@ -16,10 +16,11 @@ import {
   SidebarTrigger,
   SidebarSeparator,
 } from "@/components/ui/sidebar";
-import { UserCircle, Bell, LogOut } from "lucide-react";
+import { UserCircle, Bell, LogOut, Home, BarChart3, Users, MessageSquare, FileText, Settings, Briefcase, Database } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import UserSwitcher from "../common/UserSwitcher";
+import { useNavigate } from "react-router-dom";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -40,6 +41,7 @@ export function DashboardLayout({
   onRoleChange 
 }: DashboardLayoutProps) {
   const [notifications] = useState(5);
+  const navigate = useNavigate();
 
   return (
     <SidebarProvider defaultOpen={true}>
@@ -112,8 +114,8 @@ export function DashboardLayout({
           <SidebarRail />
         </Sidebar>
         
-        {/* Changed from SidebarInset to div with appropriate classes */}
-        <div className="relative flex min-h-svh flex-1 flex-col bg-background peer-data-[variant=inset]:min-h-[calc(100svh-theme(spacing.4))] md:peer-data-[variant=inset]:m-2 md:peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow">
+        {/* Main content area */}
+        <div className="relative flex min-h-svh flex-1 flex-col bg-background peer-data-[variant=inset]:min-h-[calc(100svh-theme(spacing.4))] md:peer-data-[variant=inset]:m-2 md:peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow p-4">
           {children}
         </div>
       </div>

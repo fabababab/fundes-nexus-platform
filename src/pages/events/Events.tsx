@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Users, Video, MapPin, Clock, Filter, Calendar as CalendarIcon } from "lucide-react";
+import { Calendar, Users, Video, MapPin, Clock, Filter, Calendar as CalendarIcon, Home, BarChart3, MessageSquare, FileText, Briefcase, Database } from "lucide-react";
 import EventCard from "@/components/events/EventCard";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 
@@ -20,8 +20,14 @@ const Events = ({ activeRole = "investor", onRoleChange }: EventsProps) => {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
 
   const menuItems = [
-    { title: "Dashboard", icon: Calendar, url: "/dashboard", },
+    { title: "Dashboard", icon: Home, url: "/dashboard" },
     { title: "Events", icon: Calendar, url: "/events", notifications: 3 },
+    { title: "Analytics", icon: BarChart3, url: "/analytics" },
+    { title: "Network", icon: Users, url: "/network", notifications: 2 },
+    { title: "Messages", icon: MessageSquare, url: "/messages", notifications: 5 },
+    { title: "Documents", icon: FileText, url: "/documents" },
+    { title: "Investments", icon: Briefcase, url: "/investments" },
+    { title: "Database", icon: Database, url: "/database" },
   ];
 
   const upcomingEvents = [

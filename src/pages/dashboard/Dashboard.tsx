@@ -1,28 +1,49 @@
 
 import React, { useState } from "react";
+import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import CompanyDashboard from "./CompanyDashboard";
 import StartupDashboard from "./StartupDashboard";
 import InvestorDashboard from "./InvestorDashboard";
+import { Home, Calendar, BarChart3, Users, MessageSquare, FileText, Briefcase, Database } from "lucide-react";
 
-const Dashboard = () => {
-  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor">("company");
+interface DashboardProps {
+  activeRole?: "company" | "startup" | "investor";
+}
 
-  const handleRoleChange = (role: "company" | "startup" | "investor") => {
-    setActiveRole(role);
+const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => {
+  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor">(initialRole);
+
+  const menuItems = [
+    { title: "Dashboard", icon: Home, url: "/dashboard" },
+    { title: "Events", icon: Calendar, url: "/events", notifications: 3 },
+    { title: "Analytics", icon: BarChart3, url: "/analytics" },
+    { title: "Network", icon: Users, url: "/network", notifications: 2 },
+    { title: "Messages", icon: MessageSquare, url: "/messages", notifications: 5 },
+    { title: "Documents", icon: FileText, url: "/documents" },
+    { title: "Investments", icon: Briefcase, url: "/investments" },
+    { title: "Database", icon: Database, url: "/database" },
+  ];
+
+  const renderDashboard = () => {
+    switch (activeRole) {
+      case "company":
+        return <CompanyDashboard />;
+      case "startup":
+        return <StartupDashboard />;
+      case "investor":
+      default:
+        return <InvestorDashboard />;
+    }
   };
 
   return (
-    <>
-      {activeRole === "company" && (
-        <CompanyDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />
-      )}
-      {activeRole === "startup" && (
-        <StartupDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />
-      )}
-      {activeRole === "investor" && (
-        <InvestorDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />
-      )}
-    </>
+    <DashboardLayout 
+      menuItems={menuItems} 
+      activeRole={activeRole} 
+      onRoleChange={setActiveRole}
+    >
+      {renderDashboard()}
+    </DashboardLayout>
   );
 };
 

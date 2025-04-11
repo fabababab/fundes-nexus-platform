@@ -7,7 +7,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CalendarRange, Filter, Plus } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { EventCard } from "@/components/events/EventCard";
+import EventCard from "@/components/events/EventCard"; // Changed from named to default import
 import { useNavigate } from "react-router-dom";
 
 interface EventsProps {

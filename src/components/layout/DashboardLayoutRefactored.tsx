@@ -40,6 +40,7 @@ interface DashboardLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   menuItems?: any[];
   activeRole: "company" | "startup" | "investor";
   onRoleChange: (role: "company" | "startup" | "investor") => void;
+  pageTitle: string;
 }
 
 export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ 
@@ -47,6 +48,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   className = '',
   activeRole,
   onRoleChange,
+  pageTitle,
   ...props
 }: DashboardLayoutProps) => {
   
@@ -161,13 +163,10 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
             <div className="flex items-center mr-4">
               <SidebarTrigger />
             </div>
-            <div className="flex-1 ml-4 hidden md:block">
-              <h1 className="text-xl font-semibold">
-                {activeRole === "investor" ? "Investor Dashboard" : 
-                 activeRole === "startup" ? "Startup Dashboard" : "Company Dashboard"}
-              </h1>
+            <div className="flex-1 ml-4">
+              <h1 className="text-xl font-semibold">{pageTitle}</h1>
             </div>
-            <div className="flex items-center space-x-4 md:hidden">
+            <div className="flex items-center md:hidden">
               <span className="text-sm font-medium">{activeRole.charAt(0).toUpperCase() + activeRole.slice(1)}</span>
             </div>
           </header>

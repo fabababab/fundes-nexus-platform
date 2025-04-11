@@ -39,8 +39,29 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
     }
   };
 
+  // Get the title based on the current role and route
+  const getPageTitle = () => {
+    if (location.pathname === "/learning-journey") {
+      return "Learning Journey";
+    }
+    
+    switch (activeRole) {
+      case "company":
+        return "Company Dashboard";
+      case "startup":
+        return "Startup Dashboard";
+      case "investor":
+      default:
+        return "Investor Dashboard";
+    }
+  };
+
   return (
-    <DashboardLayout activeRole={activeRole} onRoleChange={setActiveRole}>
+    <DashboardLayout 
+      activeRole={activeRole} 
+      onRoleChange={setActiveRole}
+      pageTitle={getPageTitle()}
+    >
       {renderDashboardContent()}
     </DashboardLayout>
   );

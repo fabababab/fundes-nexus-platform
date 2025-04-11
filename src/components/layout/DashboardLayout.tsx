@@ -113,9 +113,9 @@ export function DashboardLayout({
           <SidebarRail />
         </Sidebar>
         
-        <SidebarInset className="p-4">
+        <div className="p-4 flex-1">
           {children}
-        </SidebarInset>
+        </div>
       </div>
     </SidebarProvider>
   );

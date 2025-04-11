@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
 import CompanyDashboard from "./CompanyDashboard";
 import StartupDashboard from "./StartupDashboard";
@@ -15,6 +15,13 @@ interface DashboardProps {
 const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => {
   const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor">(initialRole);
   const location = useLocation();
+  
+  // Update activeRole when initialRole changes (e.g. when routing directly to learning journey)
+  useEffect(() => {
+    if (initialRole !== activeRole) {
+      setActiveRole(initialRole);
+    }
+  }, [initialRole]);
 
   const menuItems = [
     { title: "Dashboard", icon: Home, url: "/dashboard" },

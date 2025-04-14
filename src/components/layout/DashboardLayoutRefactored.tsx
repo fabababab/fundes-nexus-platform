@@ -141,11 +141,6 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                               {item.badge}
                             </span>
                           )}
-                          {item.title === "Learning Journey" && activeRole === "startup" && item.badge === "" && (
-                            <span className="absolute right-0 bg-gray-100 text-gray-800 text-xs px-2 py-0.5 rounded">
-                              New
-                            </span>
-                          )}
                         </Link>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
@@ -157,7 +152,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
           <SidebarRail />
         </Sidebar>
 
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-1 flex-col">
           <header className={cn(
             "h-16 border-b border-gray-200 bg-white flex items-center px-6",
             "border-b-4",

@@ -14,6 +14,7 @@ import Messages from "./pages/messages/Messages";
 import Feed from "./pages/feed/Feed";
 import ChatBot from "./pages/chatbot/ChatBot";
 import Community from "./pages/community/Community";
+import Fundes from "./pages/fundes/Fundes";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/feed" element={<Feed />} />
           <Route path="/chatbot" element={<ChatBot />} />
           <Route path="/community" element={<Community />} />
+          <Route path="/fundes" element={<Fundes />} />
           <Route path="/analytics" element={<Dashboard />} />
           <Route path="/network" element={<Dashboard />} />
           <Route path="/documents" element={<Dashboard />} />

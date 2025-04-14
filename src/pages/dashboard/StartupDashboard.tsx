@@ -1,7 +1,9 @@
 
 import React from "react";
-import { Briefcase, GraduationCap, Lightbulb, MessageSquare, Target, Users, ChartLineUp, Calendar, Wallet } from "lucide-react";
+import { Briefcase, GraduationCap, Lightbulb, MessageSquare, Target, Users, ChartLine, Calendar, Wallet } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { StartupCommunityFeed } from "@/components/community/StartupCommunityFeed";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface StartupDashboardProps {
   activeRole: "company" | "startup" | "investor";
@@ -48,7 +50,7 @@ const StartupDashboard: React.FC<StartupDashboardProps> = ({ activeRole, onRoleC
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Growth Rate</CardTitle>
-            <ChartLineUp className="h-4 w-4 text-muted-foreground" />
+            <ChartLine className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">+127%</div>
@@ -77,6 +79,11 @@ const StartupDashboard: React.FC<StartupDashboardProps> = ({ activeRole, onRoleC
             <p className="text-xs text-muted-foreground">TAM by 2025</p>
           </CardContent>
         </Card>
+      </div>
+
+      <div className="mt-8">
+        <h2 className="text-2xl font-bold mb-4">Community</h2>
+        <StartupCommunityFeed />
       </div>
     </div>
   );

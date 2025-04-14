@@ -22,19 +22,19 @@ const RoleSwitcherModal = ({ activeRole, onRoleChange }: RoleSwitcherModalProps)
     {
       id: "company",
       name: "Company View",
-      icon: <Building2 className="h-5 w-5" />,
+      icon: <Building2 className="h-4 w-4" />,
       description: "Access corporate partnership and innovation tools"
     },
     {
       id: "startup",
       name: "Startup View",
-      icon: <Briefcase className="h-5 w-5" />,
+      icon: <Briefcase className="h-4 w-4" />,
       description: "Manage your startup journey and connections"
     },
     {
       id: "investor",
       name: "Investor View",
-      icon: <PiggyBank className="h-5 w-5" />,
+      icon: <PiggyBank className="h-4 w-4" />,
       description: "Track investments and discover opportunities"
     }
   ];
@@ -53,21 +53,21 @@ const RoleSwitcherModal = ({ activeRole, onRoleChange }: RoleSwitcherModalProps)
             Select a view to change your dashboard perspective
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
+        <div className="grid gap-3 py-2">
           {roles.map((role) => (
             <Button
               key={role.id}
               variant={activeRole === role.id ? "default" : "outline"}
-              className="flex items-center justify-start gap-3 p-6"
+              className="flex items-center justify-start gap-3 p-4 h-auto"
               onClick={() => {
                 console.log("Role changed to:", role.id);
                 onRoleChange(role.id as "company" | "startup" | "investor");
               }}
             >
               {role.icon}
-              <div className="text-left">
-                <div className="font-semibold">{role.name}</div>
-                <div className="text-sm text-muted-foreground">{role.description}</div>
+              <div className="text-left flex-1">
+                <div className="font-semibold text-sm">{role.name}</div>
+                <div className="text-xs text-muted-foreground">{role.description}</div>
               </div>
             </Button>
           ))}

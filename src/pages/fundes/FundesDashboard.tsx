@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { 
   BarChart4, 
@@ -54,7 +53,6 @@ const FundesDashboard: React.FC<FundesDashboardProps> = ({ activeRole = "fundes"
     setCurrentRole(role);
   };
 
-  // Sample data for charts
   const investmentData = [
     { name: "Clean Energy", value: 35 },
     { name: "Healthcare", value: 25 },
@@ -93,9 +91,9 @@ const FundesDashboard: React.FC<FundesDashboardProps> = ({ activeRole = "fundes"
   };
 
   const chartConfig = {
-    company: { label: "Company", theme: { light: "#0ea5e9" } },
-    startup: { label: "Startup", theme: { light: "#10b981" } },
-    investor: { label: "Investor", theme: { light: "#8b5cf6" } }
+    company: { label: "Company", theme: { light: "#0ea5e9", dark: "#38bdf8" } },
+    startup: { label: "Startup", theme: { light: "#10b981", dark: "#34d399" } },
+    investor: { label: "Investor", theme: { light: "#8b5cf6", dark: "#a78bfa" } }
   };
 
   return (
@@ -105,7 +103,6 @@ const FundesDashboard: React.FC<FundesDashboardProps> = ({ activeRole = "fundes"
       pageTitle="Fundes Dashboard"
     >
       <div className="space-y-6">
-        {/* Global Overview */}
         <section>
           <h2 className="text-2xl font-bold mb-4">Global Overview</h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -212,7 +209,6 @@ const FundesDashboard: React.FC<FundesDashboardProps> = ({ activeRole = "fundes"
           </div>
         </section>
 
-        {/* Stakeholder Snapshots */}
         <section className="grid gap-4 md:grid-cols-3">
           <Card>
             <CardHeader className="bg-[#0EA5E9]/10 border-b border-[#0EA5E9]/20">
@@ -347,9 +343,7 @@ const FundesDashboard: React.FC<FundesDashboardProps> = ({ activeRole = "fundes"
           </Card>
         </section>
 
-        {/* Notifications and Meetings */}
         <div className="grid gap-4 md:grid-cols-2">
-          {/* Real-time Notifications */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -392,7 +386,6 @@ const FundesDashboard: React.FC<FundesDashboardProps> = ({ activeRole = "fundes"
             </CardContent>
           </Card>
 
-          {/* Upcoming Meetings */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">

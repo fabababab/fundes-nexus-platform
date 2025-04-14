@@ -30,6 +30,7 @@ import {
   Calendar
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { cn } from "@/lib/utils";
 
 interface DashboardLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -88,6 +89,19 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     }
   };
 
+  const getRoleAccentColor = () => {
+    switch (activeRole) {
+      case "company":
+        return "border-b-[#0EA5E9]"; // Ocean Blue for Companies
+      case "startup":
+        return "border-b-[#F2FCE2]"; // Soft Green for Startups
+      case "investor":
+        return "border-b-[#9b87f5]"; // Primary Purple for Investors
+      default:
+        return "";
+    }
+  };
+
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full">
@@ -125,7 +139,11 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
         </Sidebar>
 
         <div className="flex flex-col flex-1">
-          <header className="h-16 border-b border-gray-200 bg-white flex items-center px-6">
+          <header className={cn(
+            "h-16 border-b border-gray-200 bg-white flex items-center px-6",
+            "border-b-4",
+            getRoleAccentColor()
+          )}>
             <div className="flex items-center mr-4">
               <SidebarTrigger />
             </div>

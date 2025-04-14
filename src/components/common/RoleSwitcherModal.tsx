@@ -1,0 +1,73 @@
+
+import React from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { User } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Building2, Briefcase, PiggyBank } from "lucide-react";
+
+interface RoleSwitcherModalProps {
+  activeRole: "company" | "startup" | "investor";
+  onRoleChange: (role: "company" | "startup" | "investor") => void;
+}
+
+const RoleSwitcherModal = ({ activeRole, onRoleChange }: RoleSwitcherModalProps) => {
+  const roles = [
+    {
+      id: "company",
+      name: "Company View",
+      icon: <Building2 className="h-5 w-5" />,
+      description: "Access corporate partnership and innovation tools"
+    },
+    {
+      id: "startup",
+      name: "Startup View",
+      icon: <Briefcase className="h-5 w-5" />,
+      description: "Manage your startup journey and connections"
+    },
+    {
+      id: "investor",
+      name: "Investor View",
+      icon: <PiggyBank className="h-5 w-5" />,
+      description: "Track investments and discover opportunities"
+    }
+  ];
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <button className="rounded-full p-2 hover:bg-gray-100">
+          <User className="h-5 w-5 text-gray-500" />
+        </button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Switch Perspective</DialogTitle>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          {roles.map((role) => (
+            <Button
+              key={role.id}
+              variant={activeRole === role.id ? "default" : "outline"}
+              className="flex items-center justify-start gap-3 p-6"
+              onClick={() => onRoleChange(role.id as "company" | "startup" | "investor")}
+            >
+              {role.icon}
+              <div className="text-left">
+                <div className="font-semibold">{role.name}</div>
+                <div className="text-sm text-muted-foreground">{role.description}</div>
+              </div>
+            </Button>
+          ))}
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+export default RoleSwitcherModal;

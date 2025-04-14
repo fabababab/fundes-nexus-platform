@@ -12,9 +12,8 @@ import {
   SidebarRail,
   SidebarTrigger
 } from "@/components/ui/sidebar";
-import UserSwitcher from "../common/UserSwitcher";
+import RoleSwitcherModal from "../common/RoleSwitcherModal";
 import {
-  PiggyBank,
   Search,
   Briefcase,
   BarChart4,
@@ -31,7 +30,7 @@ import {
   BarChartHorizontal,
   CircleDot,
   Bell,
-  User
+  PiggyBank,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -101,9 +100,6 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
       <div className="flex min-h-screen w-full">
         <Sidebar>
           <SidebarContent>
-            <div className="p-4">
-              <UserSwitcher activeRole={activeRole} onRoleChange={onRoleChange} />
-            </div>
             <SidebarGroup>
               <SidebarGroupLabel className="px-4 text-gray-500 text-sm">Navigation</SidebarGroupLabel>
               <SidebarGroupContent>
@@ -156,9 +152,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                   3
                 </span>
               </button>
-              <button className="rounded-full p-2 hover:bg-gray-100">
-                <User className="h-5 w-5 text-gray-500" />
-              </button>
+              <RoleSwitcherModal activeRole={activeRole} onRoleChange={onRoleChange} />
             </div>
           </header>
           

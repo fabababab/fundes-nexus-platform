@@ -17,9 +17,6 @@ import {
   Search,
   Briefcase,
   BarChart4,
-  Star,
-  Calendar,
-  Settings,
   GraduationCap,
   Users,
   MessageSquare,
@@ -30,6 +27,7 @@ import {
   BarChartHorizontal,
   CircleDot,
   PiggyBank,
+  Calendar
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -55,9 +53,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     { title: "Discover Startups", icon: Search, href: "/discover-startups", badge: "" },
     { title: "Portfolio", icon: Briefcase, href: "/portfolio", badge: "1" },
     { title: "Performance", icon: BarChart4, href: "/analytics", badge: "" },
-    { title: "Watchlist", icon: Star, href: "/database", badge: "" },
-    { title: "Events", icon: Calendar, href: "/events", badge: "2" },
-    { title: "Settings", icon: Settings, href: "/settings", badge: "" },
+    { title: "Messages", icon: MessageSquare, href: "/messages", badge: "2" },
   ];
 
   const startupNavItems = [
@@ -68,7 +64,6 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     { title: "Funding", icon: Lightbulb, href: "/investments", badge: "" },
     { title: "Goals", icon: Target, href: "/documents", badge: "" },
     { title: "Resources", icon: FileText, href: "/database", badge: "" },
-    { title: "Settings", icon: Settings, href: "/settings", badge: "" },
   ];
 
   const companyNavItems = [
@@ -76,9 +71,8 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     { title: "Impact Analytics", icon: BarChartHorizontal, href: "/analytics", badge: "2" },
     { title: "Partnerships", icon: Users, href: "/network", badge: "" },
     { title: "CSR Goals", icon: CircleDot, href: "/documents", badge: "" },
-    { title: "Events", icon: Calendar, href: "/events", badge: "1" },
+    { title: "Messages", icon: MessageSquare, href: "/messages", badge: "1" },
     { title: "Startups", icon: Briefcase, href: "/discover-startups", badge: "" },
-    { title: "Settings", icon: Settings, href: "/settings", badge: "" },
   ];
 
   const getNavItems = () => {

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import CompanyDashboard from "./CompanyDashboard";
 import StartupDashboard from "./StartupDashboard";
@@ -15,7 +14,6 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
   const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor">(initialRole);
   const location = useLocation();
   
-  // Update activeRole when initialRole changes (e.g. when routing directly to learning journey)
   useEffect(() => {
     if (initialRole !== activeRole) {
       setActiveRole(initialRole);
@@ -23,9 +21,8 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
   }, [initialRole, activeRole]);
 
   const renderDashboardContent = () => {
-    // Check if we're on the learning journey route
     if (location.pathname === "/learning-journey") {
-      return <LearningJourney />;
+      return <LearningJourney activeRole={activeRole} onRoleChange={setActiveRole} />;
     }
     
     switch (activeRole) {
@@ -39,7 +36,6 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
     }
   };
 
-  // Get the title based on the current role and route
   const getPageTitle = () => {
     if (location.pathname === "/learning-journey") {
       return "Learning Journey";

@@ -172,7 +172,7 @@ const DiscoverStartups = () => {
                 <SelectValue placeholder="Industry" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Industries</SelectItem>
+                <SelectItem value="all-industries">All Industries</SelectItem>
                 {industries.map(industry => (
                   <SelectItem key={industry} value={industry}>{industry}</SelectItem>
                 ))}
@@ -184,7 +184,7 @@ const DiscoverStartups = () => {
                 <SelectValue placeholder="Funding Stage" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Stages</SelectItem>
+                <SelectItem value="all-stages">All Stages</SelectItem>
                 {stages.map(stage => (
                   <SelectItem key={stage} value={stage}>{stage}</SelectItem>
                 ))}

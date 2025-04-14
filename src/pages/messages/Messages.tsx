@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -34,6 +33,8 @@ export interface Message {
 const Messages = () => {
   const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor" | "fundes">("investor");
   const [activeContact, setActiveContact] = useState<Contact | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showUnreadOnly, setShowUnreadOnly] = useState(false);
   
   const handleRoleChange = (role: "company" | "startup" | "investor" | "fundes") => {
     setActiveRole(role);
@@ -152,13 +153,11 @@ const Messages = () => {
       read: true
     };
 
-    // Update messages
     setMessages(prev => ({
       ...prev,
       [activeContact.id]: [...(prev[activeContact.id] || []), newMessage]
     }));
 
-    // Update last message in contacts
     setContacts(contacts.map(contact => 
       contact.id === activeContact.id 
         ? { ...contact, lastMessage: text, lastMessageTime: 'Just now', unreadCount: 0 } 
@@ -166,29 +165,33 @@ const Messages = () => {
     ));
   };
 
-  const handleContactSelect = (contact: Contact) => {
-    setActiveContact(contact);
-    
-    // Mark messages as read
-    if (contact.unreadCount > 0) {
-      setContacts(contacts.map(c => 
-        c.id === contact.id ? { ...c, unreadCount: 0 } : c
-      ));
+  const handleContactSelect = (contactId: string) => {
+    const contact = contacts.find(c => c.id === contactId);
+    if (contact) {
+      setActiveContact(contact);
       
-      // Mark messages as read
-      if (messages[contact.id]) {
-        setMessages(prev => ({
-          ...prev,
-          [contact.id]: prev[contact.id].map(message => ({ ...message, read: true }))
-        }));
+      if (contact.unreadCount > 0) {
+        setContacts(contacts.map(c => 
+          c.id === contact.id ? { ...c, unreadCount: 0 } : c
+        ));
+        
+        if (messages[contact.id]) {
+          setMessages(prev => ({
+            ...prev,
+            [contact.id]: prev[contact.id].map(message => ({ ...message, read: true }))
+          }));
+        }
       }
     }
+  };
+
+  const handleContactInfoClick = () => {
+    console.log("Contact info clicked");
   };
 
   return (
     <DashboardLayout activeRole={activeRole} onRoleChange={handleRoleChange} pageTitle="Messages">
       <div className="flex h-[calc(100vh-9rem)] overflow-hidden rounded-md border bg-background">
-        {/* Contacts Sidebar */}
         <div className="w-1/4 border-r">
           <div className="p-4 border-b">
             <div className="relative">
@@ -196,6 +199,8 @@ const Messages = () => {
               <Input
                 placeholder="Search messages..."
                 className="pl-8"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
           </div>
@@ -203,33 +208,42 @@ const Messages = () => {
           <Tabs defaultValue="all">
             <div className="px-4 pt-4">
               <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="all">All</TabsTrigger>
-                <TabsTrigger value="unread">Unread</TabsTrigger>
+                <TabsTrigger value="all" onClick={() => setShowUnreadOnly(false)}>All</TabsTrigger>
+                <TabsTrigger value="unread" onClick={() => setShowUnreadOnly(true)}>Unread</TabsTrigger>
                 <TabsTrigger value="groups">Groups</TabsTrigger>
               </TabsList>
             </div>
             
             <TabsContent value="all" className="m-0">
               <ContactsList 
-                contacts={contacts}
-                activeContactId={activeContact?.id}
-                onSelect={handleContactSelect}
+                filter="all"
+                search={searchQuery}
+                onSelectContact={handleContactSelect}
+                selectedContactId={activeContact?.id || ""}
+                showUnreadOnly={false}
+                onContactInfoClick={handleContactInfoClick}
               />
             </TabsContent>
             
             <TabsContent value="unread" className="m-0">
               <ContactsList 
-                contacts={contacts.filter(contact => contact.unreadCount > 0)}
-                activeContactId={activeContact?.id}
-                onSelect={handleContactSelect}
+                filter="all"
+                search={searchQuery}
+                onSelectContact={handleContactSelect}
+                selectedContactId={activeContact?.id || ""}
+                showUnreadOnly={true}
+                onContactInfoClick={handleContactInfoClick}
               />
             </TabsContent>
             
             <TabsContent value="groups" className="m-0">
               <ContactsList 
-                contacts={contacts.filter(contact => contact.name.includes('Group'))}
-                activeContactId={activeContact?.id}
-                onSelect={handleContactSelect}
+                filter="startup"
+                search={searchQuery}
+                onSelectContact={handleContactSelect}
+                selectedContactId={activeContact?.id || ""}
+                showUnreadOnly={false}
+                onContactInfoClick={handleContactInfoClick}
               />
             </TabsContent>
           </Tabs>
@@ -242,13 +256,10 @@ const Messages = () => {
           </div>
         </div>
         
-        {/* Message Thread */}
         <div className="flex-1">
           {activeContact ? (
             <MessageThread
-              contact={activeContact}
-              messages={messages[activeContact.id] || []}
-              onSendMessage={handleSendMessage}
+              contactId={activeContact.id}
             />
           ) : (
             <div className="h-full flex flex-col items-center justify-center p-4 text-center">

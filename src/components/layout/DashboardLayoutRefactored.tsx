@@ -56,7 +56,6 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     { title: "Discover Startups", icon: Search, href: "/discover-startups", badge: "" },
     { title: "Portfolio", icon: Briefcase, href: "/portfolio", badge: "1" },
     { title: "Performance", icon: BarChart4, href: "/analytics", badge: "" },
-    { title: "Messages", icon: MessageSquare, href: "/messages", badge: "2" },
     { title: "AI Assistant", icon: Bot, href: "/chatbot", badge: "" },
   ];
 
@@ -64,7 +63,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     { title: "Dashboard", icon: Briefcase, href: "/dashboard", badge: "" },
     { title: "Learning Journey", icon: GraduationCap, href: "/learning-journey", badge: "2" },
     { title: "Mentoring", icon: Users, href: "/network", badge: "" },
-    { title: "Community", icon: MessageSquare, href: "/messages", badge: "5" },
+    { title: "Community", icon: MessageSquare, href: "/community", badge: "5" },
     { title: "Funding", icon: Lightbulb, href: "/investments", badge: "" },
     { title: "Goals", icon: Target, href: "/documents", badge: "" },
     { title: "Resources", icon: FileText, href: "/database", badge: "" },
@@ -75,7 +74,6 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     { title: "Impact Analytics", icon: BarChartHorizontal, href: "/analytics", badge: "2" },
     { title: "Partnerships", icon: Users, href: "/network", badge: "" },
     { title: "CSR Goals", icon: CircleDot, href: "/documents", badge: "" },
-    { title: "Messages", icon: MessageSquare, href: "/messages", badge: "1" },
     { title: "Startups", icon: Briefcase, href: "/discover-startups", badge: "" },
   ];
 

@@ -12,6 +12,12 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { format } from "date-fns";
 
+interface Topic {
+  id: string;
+  name: string;
+  color: string;
+}
+
 interface Contact {
   id: string;
   name: string;
@@ -21,6 +27,7 @@ interface Contact {
   lastMessageTime: Date;
   unreadCount: number;
   isOnline: boolean;
+  topics: Topic[];
 }
 
 interface Message {
@@ -29,7 +36,17 @@ interface Message {
   text: string;
   time: Date;
   isRead: boolean;
+  topic?: Topic;
 }
+
+const Topics: Topic[] = [
+  { id: "1", name: "Funding", color: "bg-purple-100 text-purple-800" },
+  { id: "2", name: "Mentorship", color: "bg-blue-100 text-blue-800" },
+  { id: "3", name: "Technical", color: "bg-green-100 text-green-800" },
+  { id: "4", name: "Marketing", color: "bg-orange-100 text-orange-800" },
+  { id: "5", name: "Legal", color: "bg-red-100 text-red-800" },
+  { id: "6", name: "General", color: "bg-gray-100 text-gray-800" },
+];
 
 const Messages = () => {
   const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor">("investor");
@@ -44,9 +61,10 @@ const Messages = () => {
       company: "EcoTech Solutions",
       avatar: null,
       lastMessage: "Looking forward to our meeting tomorrow!",
-      lastMessageTime: new Date(2025, 3, 11, 14, 30), // April 11, 2025, 2:30 PM
+      lastMessageTime: new Date(2025, 3, 11, 14, 30),
       unreadCount: 2,
-      isOnline: true
+      isOnline: true,
+      topics: [Topics[0], Topics[2]] // Funding and Technical
     },
     {
       id: "2",
@@ -54,9 +72,10 @@ const Messages = () => {
       company: "MedAI Health",
       avatar: null,
       lastMessage: "Thanks for reviewing our pitch deck. Let me know your thoughts.",
-      lastMessageTime: new Date(2025, 3, 10, 11, 15), // April 10, 2025, 11:15 AM
+      lastMessageTime: new Date(2025, 3, 10, 11, 15),
       unreadCount: 0,
-      isOnline: false
+      isOnline: false,
+      topics: [Topics[0], Topics[1]] // Funding and Mentorship
     },
     {
       id: "3",
@@ -64,9 +83,10 @@ const Messages = () => {
       company: "FinSwift",
       avatar: null,
       lastMessage: "Could you share more details about your investment criteria?",
-      lastMessageTime: new Date(2025, 3, 9, 16, 45), // April 9, 2025, 4:45 PM
+      lastMessageTime: new Date(2025, 3, 9, 16, 45),
       unreadCount: 0,
-      isOnline: true
+      isOnline: true,
+      topics: [Topics[0], Topics[4]] // Funding and Legal
     },
     {
       id: "4",
@@ -74,9 +94,10 @@ const Messages = () => {
       company: "Urban Farming Co.",
       avatar: null,
       lastMessage: "The prototype is ready for review.",
-      lastMessageTime: new Date(2025, 3, 8, 9, 20), // April 8, 2025, 9:20 AM
+      lastMessageTime: new Date(2025, 3, 8, 9, 20),
       unreadCount: 1,
-      isOnline: false
+      isOnline: false,
+      topics: [Topics[2], Topics[3]] // Technical and Marketing
     },
     {
       id: "5",
@@ -84,13 +105,13 @@ const Messages = () => {
       company: "NanoLearn",
       avatar: null,
       lastMessage: "I've attached our latest financial projections.",
-      lastMessageTime: new Date(2025, 3, 7, 13, 10), // April 7, 2025, 1:10 PM
+      lastMessageTime: new Date(2025, 3, 7, 13, 10),
       unreadCount: 0,
-      isOnline: true
+      isOnline: true,
+      topics: [Topics[0], Topics[5]] // Funding and General
     }
   ];
 
-  // Let's create example messages for the selected contact
   const getMessages = (contactId: string): Message[] => {
     switch (contactId) {
       case "1":
@@ -99,57 +120,65 @@ const Messages = () => {
             id: "m1",
             senderId: "user",
             text: "Hi Sarah, I've reviewed your latest pitch deck.",
-            time: new Date(2025, 3, 11, 10, 0), // April 11, 2025, 10:00 AM
-            isRead: true
+            time: new Date(2025, 3, 11, 10, 0),
+            isRead: true,
+            topic: Topics[0] // Funding
           },
           {
             id: "m2",
             senderId: "1",
             text: "Hi there! Thanks for taking the time. Did you have any specific feedback?",
-            time: new Date(2025, 3, 11, 10, 15), // April 11, 2025, 10:15 AM
-            isRead: true
+            time: new Date(2025, 3, 11, 10, 15),
+            isRead: true,
+            topic: Topics[0] // Funding
           },
           {
             id: "m3",
             senderId: "user",
             text: "I was particularly impressed with your sustainable approach. The market analysis was thorough.",
-            time: new Date(2025, 3, 11, 10, 20), // April 11, 2025, 10:20 AM
-            isRead: true
+            time: new Date(2025, 3, 11, 10, 20),
+            isRead: true,
+            topic: Topics[2] // Technical
           },
           {
             id: "m4",
             senderId: "1",
             text: "That's great to hear! We've put a lot of effort into our market research.",
-            time: new Date(2025, 3, 11, 10, 25), // April 11, 2025, 10:25 AM
-            isRead: true
+            time: new Date(2025, 3, 11, 10, 25),
+            isRead: true,
+            topic: Topics[2] // Technical
           },
           {
             id: "m5",
             senderId: "1",
             text: "I'd love to discuss more about potential partnership opportunities. Would you be available for a meeting tomorrow?",
-            time: new Date(2025, 3, 11, 14, 0), // April 11, 2025, 2:00 PM
-            isRead: true
+            time: new Date(2025, 3, 11, 14, 0),
+            isRead: true,
+            topic: Topics[0] // Funding
           },
           {
             id: "m6",
             senderId: "user",
             text: "Absolutely, I can do 10 AM EST. Does that work for you?",
-            time: new Date(2025, 3, 11, 14, 15), // April 11, 2025, 2:15 PM
-            isRead: true
+            time: new Date(2025, 3, 11, 14, 15),
+            isRead: true,
+            topic: Topics[5] // General
           },
           {
             id: "m7",
             senderId: "1",
             text: "Perfect! 10 AM EST works for me. I'll send a calendar invite shortly.",
-            time: new Date(2025, 3, 11, 14, 20), // April 11, 2025, 2:20 PM
-            isRead: true
+            time: new Date(2025, 3, 11, 14, 20),
+            isRead: true,
+            topic: Topics[5] // General
           },
           {
             id: "m8",
             senderId: "1",
             text: "Looking forward to our meeting tomorrow!",
-            time: new Date(2025, 3, 11, 14, 30), // April 11, 2025, 2:30 PM
-            isRead: false
+            time: new Date(2025, 3, 11, 14, 30),
+            isRead: false,
+            topic: Topics[5] // General
           }
         ];
       default:
@@ -227,6 +256,13 @@ const Messages = () => {
                       </div>
                       <p className="text-xs text-muted-foreground">{contact.company}</p>
                       <p className="text-xs truncate mt-1">{contact.lastMessage}</p>
+                      <div className="flex gap-1 mt-1 flex-wrap">
+                        {contact.topics.map(topic => (
+                          <Badge key={topic.id} className={`${topic.color} text-xs`}>
+                            {topic.name}
+                          </Badge>
+                        ))}
+                      </div>
                     </div>
                     {contact.unreadCount > 0 && (
                       <Badge className="ml-auto shrink-0 self-center">
@@ -257,16 +293,25 @@ const Messages = () => {
                 </Avatar>
                 <div>
                   <h2 className="font-medium">{selectedContact.name}</h2>
-                  <p className="text-xs text-muted-foreground flex items-center">
-                    {selectedContact.isOnline ? (
-                      <>
-                        <div className="h-2 w-2 rounded-full bg-green-500 mr-1" />
-                        Online
-                      </>
-                    ) : (
-                      'Offline'
-                    )}
-                  </p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-xs text-muted-foreground flex items-center">
+                      {selectedContact.isOnline ? (
+                        <>
+                          <div className="h-2 w-2 rounded-full bg-green-500 mr-1" />
+                          Online
+                        </>
+                      ) : (
+                        'Offline'
+                      )}
+                    </p>
+                    <div className="flex gap-1">
+                      {selectedContact.topics.map(topic => (
+                        <Badge key={topic.id} className={`${topic.color} text-xs`}>
+                          {topic.name}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="flex gap-2">
@@ -296,13 +341,20 @@ const Messages = () => {
                           ? 'bg-primary text-primary-foreground rounded-tl-md rounded-tr-md rounded-bl-md' 
                           : 'bg-muted rounded-tl-md rounded-tr-md rounded-br-md'
                       } px-4 py-2`}>
-                        <p className="text-sm">{message.text}</p>
-                        <p className="text-xs opacity-70 mt-1 text-right">
-                          {format(message.time, 'h:mm a')}
-                          {message.senderId === 'user' && (
-                            <span className="ml-1">✓{message.isRead ? '✓' : ''}</span>
+                        <div className="flex flex-col gap-1">
+                          {message.topic && (
+                            <Badge className={`${message.topic.color} text-xs self-start mb-1`}>
+                              {message.topic.name}
+                            </Badge>
                           )}
-                        </p>
+                          <p className="text-sm">{message.text}</p>
+                          <p className="text-xs opacity-70 text-right">
+                            {format(message.time, 'h:mm a')}
+                            {message.senderId === 'user' && (
+                              <span className="ml-1">✓{message.isRead ? '✓' : ''}</span>
+                            )}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))

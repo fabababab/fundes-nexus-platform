@@ -1,4 +1,3 @@
-
 import React from "react";
 import { 
   SidebarProvider,
@@ -29,7 +28,8 @@ import {
   CircleDot,
   PiggyBank,
   Calendar,
-  Rss  // Added Rss icon for feed
+  Rss,
+  BotMessage
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -57,6 +57,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     { title: "Portfolio", icon: Briefcase, href: "/portfolio", badge: "1" },
     { title: "Performance", icon: BarChart4, href: "/analytics", badge: "" },
     { title: "Messages", icon: MessageSquare, href: "/messages", badge: "2" },
+    { title: "AI Assistant", icon: BotMessage, href: "/chatbot", badge: "" },
   ];
 
   const startupNavItems = [
@@ -94,11 +95,11 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   const getRoleAccentColor = () => {
     switch (activeRole) {
       case "company":
-        return "border-b-[#0EA5E9]"; // Ocean Blue for Companies
+        return "border-b-[#0EA5E9]";
       case "startup":
-        return "border-b-[#F2FCE2]"; // Soft Green for Startups
+        return "border-b-[#F2FCE2]";
       case "investor":
-        return "border-b-[#9b87f5]"; // Primary Purple for Investors
+        return "border-b-[#9b87f5]";
       default:
         return "";
     }

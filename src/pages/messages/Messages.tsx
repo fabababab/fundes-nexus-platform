@@ -19,7 +19,7 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Send, Paperclip, Smile } from "lucide-react";
+import { Send, Paperclip, Smile, Filter, Search } from "lucide-react";
 import ContactsList from "./ContactsList";
 import MessageThread from "./MessageThread";
 
@@ -42,21 +42,27 @@ const Messages = () => {
           <div className="p-4 border-b space-y-4">
             <TabsList className="w-full">
               <TabsTrigger value="messages" className="flex-1">Messages</TabsTrigger>
-              <TabsTrigger value="contacts" className="flex-1">Contacts</TabsTrigger>
+              <TabsTrigger value="contacts" className="flex-1">Address Book</TabsTrigger>
             </TabsList>
             <div className="space-y-2">
-              <Input
-                placeholder="Search..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full"
-              />
+              <div className="relative">
+                <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-8"
+                />
+              </div>
               <Select
                 value={filterType}
                 onValueChange={(value) => setFilterType(value as ContactType | "all")}
               >
-                <SelectTrigger>
-                  <SelectValue placeholder="Filter by type" />
+                <SelectTrigger className="w-full">
+                  <div className="flex items-center">
+                    <Filter className="mr-2 h-4 w-4" />
+                    <SelectValue placeholder="Filter by type" />
+                  </div>
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Contacts</SelectItem>

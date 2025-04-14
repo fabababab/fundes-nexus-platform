@@ -1,4 +1,3 @@
-
 import React from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -23,6 +22,7 @@ interface ContactsListProps {
   onSelectContact: (id: string) => void;
   selectedContactId: string;
   showUnreadOnly: boolean;
+  onContactInfoClick: () => void;
 }
 
 const mockContacts: Contact[] = [
@@ -69,7 +69,14 @@ const mockContacts: Contact[] = [
   }
 ];
 
-const ContactsList = ({ filter, search, onSelectContact, selectedContactId, showUnreadOnly }: ContactsListProps) => {
+const ContactsList = ({ 
+  filter, 
+  search, 
+  onSelectContact, 
+  selectedContactId, 
+  showUnreadOnly,
+  onContactInfoClick 
+}: ContactsListProps) => {
   const filteredContacts = mockContacts.filter(contact => {
     const matchesFilter = filter === "all" || contact.type === filter;
     const matchesSearch = 
@@ -89,10 +96,19 @@ const ContactsList = ({ filter, search, onSelectContact, selectedContactId, show
             className={`p-3 border-b cursor-pointer hover:bg-accent transition-colors ${
               selectedContactId === contact.id ? 'bg-accent' : ''
             }`}
-            onClick={() => onSelectContact(contact.id)}
           >
-            <div className="flex items-start gap-3">
-              <div className="relative">
+            <div 
+              className="flex items-start gap-3"
+              onClick={() => onSelectContact(contact.id)}
+            >
+              <div 
+                className="relative cursor-pointer" 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onSelectContact(contact.id);
+                  onContactInfoClick();
+                }}
+              >
                 <Avatar>
                   <AvatarFallback>
                     {contact.name.split(' ').map(n => n[0]).join('')}

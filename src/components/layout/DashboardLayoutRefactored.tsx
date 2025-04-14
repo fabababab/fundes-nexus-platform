@@ -1,3 +1,4 @@
+
 import React from "react";
 import { 
   SidebarProvider,
@@ -27,7 +28,8 @@ import {
   BarChartHorizontal,
   CircleDot,
   PiggyBank,
-  Calendar
+  Calendar,
+  Rss  // Added Rss icon for feed
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -155,6 +157,12 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                 <MessageSquare className="h-5 w-5 text-gray-500" />
                 <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
                   2
+                </span>
+              </Link>
+              <Link to="/feed" className="relative rounded-full p-2 hover:bg-gray-100">
+                <Rss className="h-5 w-5 text-gray-500" />
+                <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-green-500 text-xs text-white">
+                  4
                 </span>
               </Link>
               <Link to="/events" className="relative rounded-full p-2 hover:bg-gray-100">

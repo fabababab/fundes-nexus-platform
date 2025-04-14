@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import DiscoverStartups from "./pages/startups/DiscoverStartups";
 import Portfolio from "./pages/portfolio/Portfolio";
 import Messages from "./pages/messages/Messages";
+import Feed from "./pages/feed/Feed";  // New Feed page
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/events" element={<Events />} />
           <Route path="/messages" element={<Messages />} />
+          <Route path="/feed" element={<Feed />} />  {/* New Feed route */}
           <Route path="/analytics" element={<Dashboard />} />
           <Route path="/network" element={<Dashboard />} />
           <Route path="/documents" element={<Dashboard />} />

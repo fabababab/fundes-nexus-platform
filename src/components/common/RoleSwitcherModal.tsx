@@ -10,11 +10,11 @@ import {
 } from "@/components/ui/dialog";
 import { User } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Building2, Briefcase, PiggyBank } from "lucide-react";
+import { Building2, Briefcase, PiggyBank, Target } from "lucide-react";
 
 interface RoleSwitcherModalProps {
-  activeRole: "company" | "startup" | "investor";
-  onRoleChange: (role: "company" | "startup" | "investor") => void;
+  activeRole: "company" | "startup" | "investor" | "fundes";
+  onRoleChange: (role: "company" | "startup" | "investor" | "fundes") => void;
 }
 
 const RoleSwitcherModal = ({ activeRole, onRoleChange }: RoleSwitcherModalProps) => {
@@ -36,6 +36,12 @@ const RoleSwitcherModal = ({ activeRole, onRoleChange }: RoleSwitcherModalProps)
       name: "Investor View",
       icon: <PiggyBank className="h-4 w-4" />,
       description: "Track investments and discover opportunities"
+    },
+    {
+      id: "fundes",
+      name: "Fundes View",
+      icon: <Target className="h-4 w-4" />,
+      description: "Comprehensive ecosystem management and insights"
     }
   ];
 
@@ -61,7 +67,7 @@ const RoleSwitcherModal = ({ activeRole, onRoleChange }: RoleSwitcherModalProps)
               className="flex items-center justify-start gap-3 p-4 h-auto"
               onClick={() => {
                 console.log("Role changed to:", role.id);
-                onRoleChange(role.id as "company" | "startup" | "investor");
+                onRoleChange(role.id as "company" | "startup" | "investor" | "fundes");
               }}
             >
               {role.icon}

@@ -6,13 +6,14 @@ import InvestorDashboard from "./InvestorDashboard";
 import LearningJourney from "../learning/LearningJourney";
 import { useLocation } from "react-router-dom";
 import DashboardLayout from "../../components/layout/DashboardLayoutRefactored";
+import FundesDashboard from "../fundes/FundesDashboard";
 
 interface DashboardProps {
-  activeRole?: "company" | "startup" | "investor";
+  activeRole?: "company" | "startup" | "investor" | "fundes";
 }
 
 const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => {
-  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor">(initialRole);
+  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor" | "fundes">(initialRole);
   const location = useLocation();
   
   // Update activeRole when initialRole prop changes
@@ -23,7 +24,7 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
     }
   }, [initialRole]);
 
-  const handleRoleChange = (newRole: "company" | "startup" | "investor") => {
+  const handleRoleChange = (newRole: "company" | "startup" | "investor" | "fundes") => {
     console.log("Role changing in Dashboard from", activeRole, "to", newRole);
     setActiveRole(newRole);
   };
@@ -39,6 +40,9 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
       case "startup":
         return <StartupDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
       case "investor":
+        return <InvestorDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
+      case "fundes":
+        return <FundesDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
       default:
         return <InvestorDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
     }
@@ -55,6 +59,9 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
       case "startup":
         return "Startup Dashboard";
       case "investor":
+        return "Investor Dashboard";
+      case "fundes":
+        return "Fundes Dashboard";
       default:
         return "Investor Dashboard";
     }

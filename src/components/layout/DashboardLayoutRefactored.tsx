@@ -1,3 +1,4 @@
+
 import React from "react";
 import { 
   SidebarProvider,
@@ -37,8 +38,8 @@ import { cn } from "@/lib/utils";
 interface DashboardLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   menuItems?: any[];
-  activeRole: "company" | "startup" | "investor";
-  onRoleChange: (role: "company" | "startup" | "investor") => void;
+  activeRole: "company" | "startup" | "investor" | "fundes";
+  onRoleChange: (role: "company" | "startup" | "investor" | "fundes") => void;
   pageTitle: string;
 }
 
@@ -51,6 +52,14 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   ...props
 }: DashboardLayoutProps) => {
   
+  const fundesNavItems = [
+    { title: "Dashboard", icon: Target, href: "/fundes", badge: "" },
+    { title: "Ecosystem Insights", icon: BarChart4, href: "/analytics", badge: "2" },
+    { title: "Stakeholder Network", icon: Users, href: "/network", badge: "" },
+    { title: "Strategic Initiatives", icon: Lightbulb, href: "/investments", badge: "" },
+    { title: "Community Impact", icon: MessageSquare, href: "/community", badge: "5" }
+  ];
+
   const investorNavItems = [
     { title: "Dashboard", icon: PiggyBank, href: "/dashboard", badge: "" },
     { title: "Discover Startups", icon: Search, href: "/discover-startups", badge: "" },
@@ -85,6 +94,8 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
         return startupNavItems;
       case "company":
         return companyNavItems;
+      case "fundes":
+        return fundesNavItems;
       default:
         return investorNavItems;
     }
@@ -98,6 +109,8 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
         return "border-b-[#F2FCE2]";
       case "investor":
         return "border-b-[#9b87f5]";
+      case "fundes":
+        return "border-b-[#10b981]";
       default:
         return "";
     }

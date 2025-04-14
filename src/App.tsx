@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +13,7 @@ import Portfolio from "./pages/portfolio/Portfolio";
 import Messages from "./pages/messages/Messages";
 import Feed from "./pages/feed/Feed";
 import ChatBot from "./pages/chatbot/ChatBot";
+import Community from "./pages/community/Community";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +32,7 @@ const App = () => (
           <Route path="/messages" element={<Messages />} />
           <Route path="/feed" element={<Feed />} />
           <Route path="/chatbot" element={<ChatBot />} />
+          <Route path="/community" element={<Community />} />
           <Route path="/analytics" element={<Dashboard />} />
           <Route path="/network" element={<Dashboard />} />
           <Route path="/documents" element={<Dashboard />} />

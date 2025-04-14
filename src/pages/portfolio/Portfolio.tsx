@@ -1,244 +1,402 @@
 
 import React, { useState } from "react";
-import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { BarChart4, TrendingUp, TrendingDown, BarChart2, PieChart, Filter } from "lucide-react";
-import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { Progress } from "@/components/ui/progress";
+import { Button } from "@/components/ui/button";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  AreaChart,
+  Area,
+} from "recharts";
+import DashboardLayout from "@/components/layout/DashboardLayoutRefactored";
 
-interface Investment {
-  id: string;
-  companyName: string;
-  investmentDate: string;
-  investmentAmount: number;
-  currentValue: number;
-  equity: number;
-  performancePercent: number;
-  isPositive: boolean;
-}
+const allocations = [
+  { name: "Technology", value: 35 },
+  { name: "Healthcare", value: 25 },
+  { name: "Sustainability", value: 20 },
+  { name: "Fintech", value: 15 },
+  { name: "Others", value: 5 },
+];
 
-const Portfolio = () => {
-  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor">("investor");
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884d8"];
 
-  const portfolioSummary = {
-    totalInvested: "$1.45M",
-    currentValue: "$2.12M",
-    totalReturn: "+46.2%",
-    numberOfStartups: 8,
-  };
+const performanceData = [
+  {
+    month: "Jan",
+    portfolio: 12,
+    benchmark: 10,
+  },
+  {
+    month: "Feb",
+    portfolio: 18,
+    benchmark: 12,
+  },
+  {
+    month: "Mar",
+    portfolio: 14,
+    benchmark: 13,
+  },
+  {
+    month: "Apr",
+    portfolio: 22,
+    benchmark: 15,
+  },
+  {
+    month: "May",
+    portfolio: 25,
+    benchmark: 18,
+  },
+  {
+    month: "Jun",
+    portfolio: 32,
+    benchmark: 20,
+  },
+];
 
-  const investments: Investment[] = [
-    {
-      id: "1",
-      companyName: "EcoTech Solutions",
-      investmentDate: "Mar 2024",
-      investmentAmount: 250000,
-      currentValue: 375000,
-      equity: 5.2,
-      performancePercent: 50,
-      isPositive: true
-    },
-    {
-      id: "2",
-      companyName: "MedAI Health",
-      investmentDate: "Jan 2024",
-      investmentAmount: 180000,
-      currentValue: 225000,
-      equity: 3.8,
-      performancePercent: 25,
-      isPositive: true
-    },
-    {
-      id: "3",
-      companyName: "Urban Farming Co.",
-      investmentDate: "Nov 2023",
-      investmentAmount: 320000,
-      currentValue: 448000,
-      equity: 6.5,
-      performancePercent: 40,
-      isPositive: true
-    },
-    {
-      id: "4",
-      companyName: "DataSync",
-      investmentDate: "Aug 2023",
-      investmentAmount: 200000,
-      currentValue: 160000,
-      equity: 4.2,
-      performancePercent: 20,
-      isPositive: false
-    },
-    {
-      id: "5",
-      companyName: "GreenCommute",
-      investmentDate: "May 2023",
-      investmentAmount: 150000,
-      currentValue: 195000,
-      equity: 3.0,
-      performancePercent: 30,
-      isPositive: true
-    }
-  ];
+const investments = [
+  {
+    id: 1,
+    name: "Green Energy Solutions",
+    invested: 250000,
+    currentValue: 320000,
+    roi: 28,
+    sector: "Sustainability",
+    stage: "Series A",
+    trend: "up",
+    riskRating: "Medium",
+  },
+  {
+    id: 2,
+    name: "HealthTech Innovations",
+    invested: 500000,
+    currentValue: 580000,
+    roi: 16,
+    sector: "Healthcare",
+    stage: "Series B",
+    trend: "up",
+    riskRating: "Low",
+  },
+  {
+    id: 3,
+    name: "FinSecure",
+    invested: 350000,
+    currentValue: 280000,
+    roi: -20,
+    sector: "Fintech",
+    stage: "Seed",
+    trend: "down",
+    riskRating: "High",
+  },
+  {
+    id: 4,
+    name: "AI Analytics Platform",
+    invested: 400000,
+    currentValue: 520000,
+    roi: 30,
+    sector: "Technology",
+    stage: "Series A",
+    trend: "up",
+    riskRating: "Medium",
+  },
+  {
+    id: 5,
+    name: "Smart Manufacturing",
+    invested: 300000,
+    currentValue: 330000,
+    roi: 10,
+    sector: "Technology",
+    stage: "Seed",
+    trend: "up",
+    riskRating: "Medium",
+  },
+];
 
-  const performanceData = [
-    { month: 'Apr', value: 1450000 },
-    { month: 'May', value: 1520000 },
-    { month: 'Jun', value: 1485000 },
-    { month: 'Jul', value: 1560000 },
-    { month: 'Aug', value: 1645000 },
-    { month: 'Sep', value: 1730000 },
-    { month: 'Oct', value: 1795000 },
-    { month: 'Nov', value: 1860000 },
-    { month: 'Dec', value: 1980000 },
-    { month: 'Jan', value: 2050000 },
-    { month: 'Feb', value: 2120000 },
-    { month: 'Mar', value: 2120000 }
-  ];
-
-  return (
-    <DashboardLayout 
-      activeRole={activeRole} 
-      onRoleChange={setActiveRole}
-      pageTitle="Portfolio"
-    >
-      <div className="space-y-6">
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Invested</CardTitle>
-              <BarChart4 className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{portfolioSummary.totalInvested}</div>
-              <p className="text-xs text-muted-foreground">Across {portfolioSummary.numberOfStartups} startups</p>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Current Value</CardTitle>
-              <PieChart className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{portfolioSummary.currentValue}</div>
-              <p className="text-xs text-muted-foreground">Updated today</p>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Return</CardTitle>
-              <TrendingUp className="h-4 w-4 text-green-500" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-green-500">{portfolioSummary.totalReturn}</div>
-              <p className="text-xs text-muted-foreground">Since first investment</p>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">IRR</CardTitle>
-              <BarChart2 className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">24.5%</div>
-              <p className="text-xs text-muted-foreground">Annual return rate</p>
-            </CardContent>
-          </Card>
-        </div>
-        
-        <Card>
-          <CardHeader>
-            <CardTitle>Portfolio Performance</CardTitle>
-            <CardDescription>12-month portfolio value</CardDescription>
-          </CardHeader>
-          <CardContent className="h-80">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={performanceData}>
-                <defs>
-                  <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
-                    <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
-                  </linearGradient>
-                </defs>
-                <XAxis dataKey="month" />
-                <YAxis 
-                  tickFormatter={(value) => `$${(value / 1000000).toFixed(1)}M`} 
-                />
-                <Tooltip 
-                  formatter={(value) => [`$${(Number(value) / 1000).toFixed(1)}K`, 'Value']}
-                  labelFormatter={(label) => `${label} 2024`}
-                />
-                <Area 
-                  type="monotone" 
-                  dataKey="value" 
-                  stroke="#8884d8" 
-                  fillOpacity={1} 
-                  fill="url(#colorValue)" 
-                />
-              </AreaChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
-
-        <div>
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-semibold">My Investments</h2>
-            <Button variant="outline" size="sm">
-              <Filter className="h-4 w-4 mr-2" />
-              Filter
-            </Button>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {investments.map((investment) => (
-              <InvestmentCard key={investment.id} investment={investment} />
-            ))}
-          </div>
-        </div>
-      </div>
-    </DashboardLayout>
-  );
+const formatCurrency = (amount: number) => {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    notation: "compact",
+    maximumFractionDigits: 1,
+  }).format(amount);
 };
 
-const InvestmentCard = ({ investment }: { investment: Investment }) => {
+const Portfolio = () => {
+  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor" | "fundes">("investor");
+
+  const handleRoleChange = (role: "company" | "startup" | "investor" | "fundes") => {
+    setActiveRole(role);
+  };
+
+  const totalInvested = investments.reduce((acc, curr) => acc + curr.invested, 0);
+  const currentValue = investments.reduce((acc, curr) => acc + curr.currentValue, 0);
+  const overallReturn = ((currentValue - totalInvested) / totalInvested) * 100;
+
   return (
-    <Card>
-      <CardHeader className="pb-2">
-        <div className="flex justify-between">
-          <CardTitle className="text-lg">{investment.companyName}</CardTitle>
-          <Badge variant={investment.isPositive ? "default" : "destructive"} className="ml-2">
-            {investment.isPositive ? "+" : "-"}{investment.performancePercent}%
-          </Badge>
+    <DashboardLayout activeRole={activeRole} onRoleChange={handleRoleChange} pageTitle="Portfolio">
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium">Total Invested</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{formatCurrency(totalInvested)}</div>
+              <p className="text-xs text-muted-foreground">
+                Across {investments.length} startups
+              </p>
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium">Current Value</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{formatCurrency(currentValue)}</div>
+              <p className="text-xs text-muted-foreground">
+                {overallReturn >= 0 ? "+" : ""}{overallReturn.toFixed(2)}% overall
+              </p>
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium">Available for Investment</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{formatCurrency(750000)}</div>
+              <p className="text-xs text-muted-foreground">
+                Ready to deploy
+              </p>
+            </CardContent>
+          </Card>
         </div>
-        <CardDescription>Invested {investment.investmentDate}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <p className="text-sm text-muted-foreground">Invested</p>
-            <p className="font-medium">${(investment.investmentAmount / 1000).toFixed(1)}K</p>
-          </div>
-          <div>
-            <p className="text-sm text-muted-foreground">Current Value</p>
-            <p className="font-medium">${(investment.currentValue / 1000).toFixed(1)}K</p>
-          </div>
-          <div>
-            <p className="text-sm text-muted-foreground">Equity</p>
-            <p className="font-medium">{investment.equity}%</p>
-          </div>
-          <div>
-            <p className="text-sm text-muted-foreground">Return</p>
-            <p className={`font-medium ${investment.isPositive ? 'text-green-500' : 'text-red-500'}`}>
-              {investment.isPositive ? "+" : "-"}${Math.abs((investment.currentValue - investment.investmentAmount)/1000).toFixed(1)}K
-            </p>
-          </div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <Card>
+            <CardHeader>
+              <CardTitle>Portfolio Allocation</CardTitle>
+              <CardDescription>
+                Distribution by sector
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="h-80">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={allocations}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={false}
+                      label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                      outerRadius={80}
+                      fill="#8884d8"
+                      dataKey="value"
+                    >
+                      {allocations.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      ))}
+                    </Pie>
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardHeader>
+              <CardTitle>Performance</CardTitle>
+              <CardDescription>
+                Portfolio vs Benchmark
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="h-80">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart
+                    data={performanceData}
+                    margin={{
+                      top: 5,
+                      right: 30,
+                      left: 20,
+                      bottom: 5,
+                    }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line
+                      type="monotone"
+                      dataKey="portfolio"
+                      stroke="#8884d8"
+                      activeDot={{ r: 8 }}
+                    />
+                    <Line type="monotone" dataKey="benchmark" stroke="#82ca9d" />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+            </CardContent>
+          </Card>
         </div>
-      </CardContent>
-    </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Investments</CardTitle>
+            <CardDescription>
+              Your active startup investments
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Tabs defaultValue="all">
+              <TabsList className="mb-4">
+                <TabsTrigger value="all">All Investments</TabsTrigger>
+                <TabsTrigger value="performing">Top Performing</TabsTrigger>
+                <TabsTrigger value="watchlist">Watchlist</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="all">
+                <div className="space-y-6">
+                  {investments.map((investment) => (
+                    <Card key={investment.id}>
+                      <CardHeader className="pb-2">
+                        <div className="flex items-center justify-between">
+                          <CardTitle>{investment.name}</CardTitle>
+                          <Badge variant={investment.trend === "up" ? "default" : "destructive"}>
+                            {investment.roi >= 0 ? "+" : ""}{investment.roi}% ROI
+                          </Badge>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Badge variant="outline">{investment.sector}</Badge>
+                          <Badge variant="outline">{investment.stage}</Badge>
+                          <Badge variant="outline" className={
+                            investment.riskRating === "Low" ? "bg-green-100 text-green-800" :
+                            investment.riskRating === "Medium" ? "bg-yellow-100 text-yellow-800" :
+                            "bg-red-100 text-red-800"
+                          }>
+                            {investment.riskRating} Risk
+                          </Badge>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="pb-2">
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <p className="text-sm font-medium">Invested</p>
+                            <p className="text-lg">{formatCurrency(investment.invested)}</p>
+                          </div>
+                          <div>
+                            <p className="text-sm font-medium">Current Value</p>
+                            <p className="text-lg">{formatCurrency(investment.currentValue)}</p>
+                          </div>
+                        </div>
+                        <div className="mt-4">
+                          <p className="text-sm mb-1">Performance</p>
+                          <Progress value={investment.roi + 40} className="h-2" />
+                        </div>
+                      </CardContent>
+                      <CardFooter>
+                        <Button variant="outline" className="w-full">View Details</Button>
+                      </CardFooter>
+                    </Card>
+                  ))}
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="performing">
+                <div className="space-y-6">
+                  {investments
+                    .filter((i) => i.roi > 15)
+                    .map((investment) => (
+                      <Card key={investment.id}>
+                        <CardHeader className="pb-2">
+                          <div className="flex items-center justify-between">
+                            <CardTitle>{investment.name}</CardTitle>
+                            <Badge variant="default">
+                              +{investment.roi}% ROI
+                            </Badge>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Badge variant="outline">{investment.sector}</Badge>
+                            <Badge variant="outline">{investment.stage}</Badge>
+                          </div>
+                        </CardHeader>
+                        <CardContent className="pb-2">
+                          <div className="grid grid-cols-2 gap-4">
+                            <div>
+                              <p className="text-sm font-medium">Invested</p>
+                              <p className="text-lg">{formatCurrency(investment.invested)}</p>
+                            </div>
+                            <div>
+                              <p className="text-sm font-medium">Current Value</p>
+                              <p className="text-lg">{formatCurrency(investment.currentValue)}</p>
+                            </div>
+                          </div>
+                          <div className="mt-4">
+                            <p className="text-sm mb-1">Performance</p>
+                            <Progress value={investment.roi + 40} className="h-2" />
+                          </div>
+                        </CardContent>
+                        <CardFooter>
+                          <Button variant="outline" className="w-full">View Details</Button>
+                        </CardFooter>
+                      </Card>
+                    ))}
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="watchlist">
+                <div className="flex flex-col items-center justify-center py-12">
+                  <div className="rounded-full bg-gray-100 p-3">
+                    <svg
+                      className="h-6 w-6 text-gray-500"
+                      fill="none"
+                      height="24"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M12 5v14" />
+                      <path d="M5 12h14" />
+                    </svg>
+                  </div>
+                  <h3 className="mt-4 text-lg font-medium">Your watchlist is empty</h3>
+                  <p className="mt-2 text-center text-gray-500">
+                    Add startups to your watchlist to track them before investing.
+                  </p>
+                  <Button className="mt-4">Browse Startups</Button>
+                </div>
+              </TabsContent>
+            </Tabs>
+          </CardContent>
+        </Card>
+      </div>
+    </DashboardLayout>
   );
 };
 

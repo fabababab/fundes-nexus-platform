@@ -15,6 +15,9 @@ import Feed from "./pages/feed/Feed";
 import ChatBot from "./pages/chatbot/ChatBot";
 import Community from "./pages/community/Community";
 import Fundes from "./pages/fundes/Fundes";
+import FundesCommunications from "./pages/fundes/FundesCommunications";
+import FundesEvents from "./pages/fundes/FundesEvents";
+import FundesTasks from "./pages/fundes/FundesTasks";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +38,9 @@ const App = () => (
           <Route path="/chatbot" element={<ChatBot />} />
           <Route path="/community" element={<Community />} />
           <Route path="/fundes" element={<Dashboard activeRole="fundes" />} />
+          <Route path="/fundes/communications" element={<FundesCommunications />} />
+          <Route path="/fundes/events" element={<FundesEvents />} />
+          <Route path="/fundes/tasks" element={<FundesTasks />} />
           <Route path="/analytics" element={<Dashboard />} />
           <Route path="/network" element={<Dashboard />} />
           <Route path="/documents" element={<Dashboard />} />

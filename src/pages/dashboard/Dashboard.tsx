@@ -31,7 +31,7 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
 
   const renderDashboardContent = () => {
     if (location.pathname === "/learning-journey") {
-      return <LearningJourney activeRole={activeRole} onRoleChange={handleRoleChange} />;
+      return <LearningJourney activeRole={activeRole as "company" | "startup" | "investor"} onRoleChange={handleRoleChange} />;
     }
     
     switch (activeRole) {
@@ -42,7 +42,7 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
       case "investor":
         return <InvestorDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
       case "fundes":
-        return <FundesDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
+        return <FundesDashboard activeRole={activeRole} />;
       default:
         return <InvestorDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
     }

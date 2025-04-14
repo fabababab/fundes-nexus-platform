@@ -1,4 +1,3 @@
-
 import React from "react";
 import { 
   SidebarProvider,
@@ -30,7 +29,10 @@ import {
   PiggyBank,
   Calendar,
   Rss,
-  Bot
+  Bot,
+  MessageSquareText,
+  CalendarDays,
+  ListTodo
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -57,7 +59,10 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     { title: "Ecosystem Insights", icon: BarChart4, href: "/analytics", badge: "2" },
     { title: "Stakeholder Network", icon: Users, href: "/network", badge: "" },
     { title: "Strategic Initiatives", icon: Lightbulb, href: "/investments", badge: "" },
-    { title: "Community Impact", icon: MessageSquare, href: "/community", badge: "5" }
+    { title: "Community", icon: MessageSquare, href: "/community", badge: "5" },
+    { title: "Communications Hub", icon: MessageSquareText, href: "/fundes/communications", badge: "3" },
+    { title: "Events Calendar", icon: CalendarDays, href: "/fundes/events", badge: "2" },
+    { title: "Task Management", icon: ListTodo, href: "/fundes/tasks", badge: "4" }
   ];
 
   const investorNavItems = [

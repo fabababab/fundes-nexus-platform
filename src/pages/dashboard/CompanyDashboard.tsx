@@ -1,6 +1,6 @@
 
 import React from "react";
-import { BarChart4, Building2, CircleDot, Users } from "lucide-react";
+import { BarChart4, Building2, CircleDot, Users, TrendingUp, Target, Rocket, Briefcase } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface CompanyDashboardProps {
@@ -36,12 +36,45 @@ const CompanyDashboard: React.FC<CompanyDashboardProps> = ({ activeRole, onRoleC
         
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Goal Completion</CardTitle>
-            <CircleDot className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">Innovation Index</CardTitle>
+            <Rocket className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">72%</div>
-            <p className="text-xs text-muted-foreground">+4% from last month</p>
+            <div className="text-2xl font-bold">78%</div>
+            <p className="text-xs text-muted-foreground">Top 10% in industry</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Carbon Reduction</CardTitle>
+            <Target className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">-15%</div>
+            <p className="text-xs text-muted-foreground">YoY reduction in emissions</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Startup Pipeline</CardTitle>
+            <Briefcase className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">28</div>
+            <p className="text-xs text-muted-foreground">8 in final evaluation</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">ROI on Innovation</CardTitle>
+            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">182%</div>
+            <p className="text-xs text-muted-foreground">From startup collaborations</p>
           </CardContent>
         </Card>
       </div>

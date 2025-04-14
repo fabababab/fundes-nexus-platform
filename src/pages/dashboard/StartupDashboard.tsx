@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Briefcase, GraduationCap, Lightbulb, MessageSquare, Target } from "lucide-react";
+import { Briefcase, GraduationCap, Lightbulb, MessageSquare, Target, Users, ChartLineUp, Calendar, Wallet } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface StartupDashboardProps {
@@ -15,11 +15,11 @@ const StartupDashboard: React.FC<StartupDashboardProps> = ({ activeRole, onRoleC
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Funding Progress</CardTitle>
-            <Lightbulb className="h-4 w-4 text-muted-foreground" />
+            <Wallet className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">$120,000</div>
-            <p className="text-xs text-muted-foreground">$200,000 goal</p>
+            <p className="text-xs text-muted-foreground">$200,000 goal (60% reached)</p>
           </CardContent>
         </Card>
         
@@ -36,12 +36,45 @@ const StartupDashboard: React.FC<StartupDashboardProps> = ({ activeRole, onRoleC
         
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Community Engagement</CardTitle>
-            <MessageSquare className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">Active Mentors</CardTitle>
+            <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">28</div>
-            <p className="text-xs text-muted-foreground">Active discussions</p>
+            <div className="text-2xl font-bold">4</div>
+            <p className="text-xs text-muted-foreground">2 meetings this week</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Growth Rate</CardTitle>
+            <ChartLineUp className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">+127%</div>
+            <p className="text-xs text-muted-foreground">Month over month</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Upcoming Events</CardTitle>
+            <Calendar className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">3</div>
+            <p className="text-xs text-muted-foreground">Next: Pitch Competition</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Market Size</CardTitle>
+            <Target className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">$4.2B</div>
+            <p className="text-xs text-muted-foreground">TAM by 2025</p>
           </CardContent>
         </Card>
       </div>

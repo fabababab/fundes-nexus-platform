@@ -1,3 +1,4 @@
+
 import React from "react";
 import { 
   SidebarProvider,
@@ -144,6 +145,12 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                 <MessageSquare className="h-5 w-5 text-gray-500" />
                 <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
                   2
+                </span>
+              </Link>
+              <Link to="/events" className="relative rounded-full p-2 hover:bg-gray-100">
+                <Calendar className="h-5 w-5 text-gray-500" />
+                <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                  3
                 </span>
               </Link>
               <button className="relative rounded-full p-2 hover:bg-gray-100">

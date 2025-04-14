@@ -1,7 +1,7 @@
+
 import React from "react";
 import { Briefcase, GraduationCap, Lightbulb, MessageSquare, Target } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import StartupFeed from "@/components/feed/StartupFeed";
 
 interface StartupDashboardProps {
   activeRole: "company" | "startup" | "investor";
@@ -44,11 +44,6 @@ const StartupDashboard: React.FC<StartupDashboardProps> = ({ activeRole, onRoleC
             <p className="text-xs text-muted-foreground">Active discussions</p>
           </CardContent>
         </Card>
-      </div>
-      
-      <div className="mt-6">
-        <h2 className="text-2xl font-semibold mb-4">Your Feed</h2>
-        <StartupFeed />
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
+
 import React from "react";
 import { Briefcase, PiggyBank, Star } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import InvestorFeed from "@/components/feed/InvestorFeed";
 
 interface InvestorDashboardProps {
   activeRole: "company" | "startup" | "investor";
@@ -44,11 +44,6 @@ const InvestorDashboard: React.FC<InvestorDashboardProps> = ({ activeRole, onRol
             <p className="text-xs text-muted-foreground">8 high priority</p>
           </CardContent>
         </Card>
-      </div>
-      
-      <div className="mt-6">
-        <h2 className="text-2xl font-semibold mb-4">Your Feed</h2>
-        <InvestorFeed />
       </div>
     </div>
   );

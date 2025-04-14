@@ -1,7 +1,7 @@
+
 import React from "react";
 import { BarChart4, Building2, CircleDot, Users } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import CompanyFeed from "@/components/feed/CompanyFeed";
 
 interface CompanyDashboardProps {
   activeRole: "company" | "startup" | "investor";
@@ -44,11 +44,6 @@ const CompanyDashboard: React.FC<CompanyDashboardProps> = ({ activeRole, onRoleC
             <p className="text-xs text-muted-foreground">+4% from last month</p>
           </CardContent>
         </Card>
-      </div>
-      
-      <div className="mt-6">
-        <h2 className="text-2xl font-semibold mb-4">Your Feed</h2>
-        <CompanyFeed />
       </div>
     </div>
   );

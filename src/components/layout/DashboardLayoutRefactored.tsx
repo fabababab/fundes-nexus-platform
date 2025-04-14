@@ -29,7 +29,7 @@ import {
   PiggyBank,
   Calendar,
   Rss,
-  BotMessage
+  Bot
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -57,7 +57,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     { title: "Portfolio", icon: Briefcase, href: "/portfolio", badge: "1" },
     { title: "Performance", icon: BarChart4, href: "/analytics", badge: "" },
     { title: "Messages", icon: MessageSquare, href: "/messages", badge: "2" },
-    { title: "AI Assistant", icon: BotMessage, href: "/chatbot", badge: "" },
+    { title: "AI Assistant", icon: Bot, href: "/chatbot", badge: "" },
   ];
 
   const startupNavItems = [

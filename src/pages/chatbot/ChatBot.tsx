@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
 import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -15,7 +15,7 @@ interface Message {
 }
 
 const ChatBot = () => {
-  const [messages, setMessages] = React.useState<Message[]>([
+  const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
       text: "Hello! I'm your AI assistant. How can I help you today?",
@@ -23,7 +23,8 @@ const ChatBot = () => {
       timestamp: new Date(),
     },
   ]);
-  const [input, setInput] = React.useState("");
+  const [input, setInput] = useState("");
+  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor">("investor");
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
   const handleSend = () => {
@@ -51,14 +52,22 @@ const ChatBot = () => {
     }, 1000);
   };
 
-  React.useEffect(() => {
+  const handleRoleChange = (newRole: "company" | "startup" | "investor") => {
+    setActiveRole(newRole);
+  };
+
+  useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages]);
 
   return (
-    <DashboardLayout pageTitle="AI Assistant">
+    <DashboardLayout 
+      pageTitle="AI Assistant" 
+      activeRole={activeRole} 
+      onRoleChange={handleRoleChange}
+    >
       <div className="container mx-auto max-w-4xl p-4">
         <Card className="h-[calc(100vh-180px)] flex flex-col">
           <ScrollArea ref={scrollRef} className="flex-1 p-4">

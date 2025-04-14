@@ -3,6 +3,7 @@ import React from "react";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -48,6 +49,9 @@ const RoleSwitcherModal = ({ activeRole, onRoleChange }: RoleSwitcherModalProps)
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Switch Perspective</DialogTitle>
+          <DialogDescription>
+            Select a view to change your dashboard perspective
+          </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           {roles.map((role) => (
@@ -55,7 +59,10 @@ const RoleSwitcherModal = ({ activeRole, onRoleChange }: RoleSwitcherModalProps)
               key={role.id}
               variant={activeRole === role.id ? "default" : "outline"}
               className="flex items-center justify-start gap-3 p-6"
-              onClick={() => onRoleChange(role.id as "company" | "startup" | "investor")}
+              onClick={() => {
+                console.log("Role changed to:", role.id);
+                onRoleChange(role.id as "company" | "startup" | "investor");
+              }}
             >
               {role.icon}
               <div className="text-left">

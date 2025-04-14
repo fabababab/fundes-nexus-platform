@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import CompanyDashboard from "./CompanyDashboard";
 import StartupDashboard from "./StartupDashboard";
@@ -14,25 +15,32 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
   const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor">(initialRole);
   const location = useLocation();
   
+  // Update activeRole when initialRole prop changes
   useEffect(() => {
     if (initialRole !== activeRole) {
+      console.log("Initial role changed:", initialRole);
       setActiveRole(initialRole);
     }
-  }, [initialRole, activeRole]);
+  }, [initialRole]);
+
+  const handleRoleChange = (newRole: "company" | "startup" | "investor") => {
+    console.log("Role changing in Dashboard from", activeRole, "to", newRole);
+    setActiveRole(newRole);
+  };
 
   const renderDashboardContent = () => {
     if (location.pathname === "/learning-journey") {
-      return <LearningJourney activeRole={activeRole} onRoleChange={setActiveRole} />;
+      return <LearningJourney activeRole={activeRole} onRoleChange={handleRoleChange} />;
     }
     
     switch (activeRole) {
       case "company":
-        return <CompanyDashboard activeRole={activeRole} onRoleChange={setActiveRole} />;
+        return <CompanyDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
       case "startup":
-        return <StartupDashboard activeRole={activeRole} onRoleChange={setActiveRole} />;
+        return <StartupDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
       case "investor":
       default:
-        return <InvestorDashboard activeRole={activeRole} onRoleChange={setActiveRole} />;
+        return <InvestorDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
     }
   };
 
@@ -55,7 +63,7 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
   return (
     <DashboardLayout 
       activeRole={activeRole} 
-      onRoleChange={setActiveRole}
+      onRoleChange={handleRoleChange}
       pageTitle={getPageTitle()}
     >
       {renderDashboardContent()}

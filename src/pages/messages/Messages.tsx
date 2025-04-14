@@ -63,7 +63,7 @@ const Messages = () => {
       name: 'Tech Innovators Group',
       avatar: '/placeholder.svg',
       status: 'online',
-      lastMessage: 'Maria: I'll share the pitch deck shortly',
+      lastMessage: "Maria: I'll share the pitch deck shortly",
       lastMessageTime: 'Yesterday',
       unreadCount: 4
     },
@@ -90,7 +90,7 @@ const Messages = () => {
       {
         id: 'm2',
         senderId: 'me',
-        text: 'Hello Sarah! Yes, I've reviewed the materials you sent. I have a few questions about the market projections.',
+        text: "Hello Sarah! Yes, I've reviewed the materials you sent. I have a few questions about the market projections.",
         timestamp: '10:35 AM',
         read: true
       },
@@ -127,7 +127,7 @@ const Messages = () => {
       {
         id: 'm7',
         senderId: 'me',
-        text: 'They've developed an AI-powered financial planning tool for small businesses. Here's their website: finai.example.com',
+        text: "They've developed an AI-powered financial planning tool for small businesses. Here's their website: finai.example.com",
         timestamp: '4:05 PM (Yesterday)',
         read: true
       },

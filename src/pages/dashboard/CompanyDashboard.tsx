@@ -5,13 +5,11 @@ import {
   Building2, 
   CircleDot, 
   Users, 
-  TrendingUp, 
-  Target, 
-  Rocket, 
-  Briefcase, 
+  Target,
   BookOpen,
   Globe,
-  FileCheck
+  FileCheck,
+  Search
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -50,45 +48,12 @@ const CompanyDashboard: React.FC<CompanyDashboardProps> = ({ activeRole, onRoleC
         
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Innovation Index</CardTitle>
-            <Rocket className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">78%</div>
-            <p className="text-xs text-muted-foreground">Top 10% in industry</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Carbon Reduction</CardTitle>
+            <CardTitle className="text-sm font-medium">ESG Goals</CardTitle>
             <Target className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">-15%</div>
-            <p className="text-xs text-muted-foreground">YoY reduction in emissions</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Startup Pipeline</CardTitle>
-            <Briefcase className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">28</div>
-            <p className="text-xs text-muted-foreground">8 in final evaluation</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">ROI on Innovation</CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">182%</div>
-            <p className="text-xs text-muted-foreground">From startup collaborations</p>
+            <div className="text-2xl font-bold">78%</div>
+            <p className="text-xs text-muted-foreground">On track for Q2 targets</p>
           </CardContent>
         </Card>
       </div>
@@ -128,7 +93,7 @@ const CompanyDashboard: React.FC<CompanyDashboardProps> = ({ activeRole, onRoleC
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-base font-medium">Partner Discovery</CardTitle>
-            <Users className="h-5 w-5 text-purple-600" />
+            <Search className="h-5 w-5 text-purple-600" />
           </CardHeader>
           <CardContent className="space-y-2">
             <p className="text-sm text-muted-foreground">

@@ -18,6 +18,11 @@ import Fundes from "./pages/fundes/Fundes";
 import FundesCommunications from "./pages/fundes/FundesCommunications";
 import FundesEvents from "./pages/fundes/FundesEvents";
 import FundesTasks from "./pages/fundes/FundesTasks";
+import CompanyESGDashboard from "./pages/company/CompanyESGDashboard";
+import CompanyIntranet from "./pages/company/CompanyIntranet";
+import CompanyPartnerDiscovery from "./pages/company/CompanyPartnerDiscovery";
+import CompanySocialImpact from "./pages/company/CompanySocialImpact";
+import CompanyProjectRoom from "./pages/company/CompanyProjectRoom";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +46,14 @@ const App = () => (
           <Route path="/fundes/communications" element={<FundesCommunications />} />
           <Route path="/fundes/events" element={<FundesEvents />} />
           <Route path="/fundes/tasks" element={<FundesTasks />} />
+          
+          {/* Company routes */}
+          <Route path="/company/esg" element={<CompanyESGDashboard />} />
+          <Route path="/company/intranet" element={<CompanyIntranet />} />
+          <Route path="/company/partners" element={<CompanyPartnerDiscovery />} />
+          <Route path="/company/impact" element={<CompanySocialImpact />} />
+          <Route path="/company/projects" element={<CompanyProjectRoom />} />
+          
           <Route path="/analytics" element={<Dashboard />} />
           <Route path="/network" element={<Dashboard />} />
           <Route path="/documents" element={<Dashboard />} />

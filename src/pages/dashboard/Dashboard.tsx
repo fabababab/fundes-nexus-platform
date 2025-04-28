@@ -45,6 +45,8 @@ const Dashboard = ({ activeRole: propActiveRole = "investor" }: DashboardProps) 
         return <InvestorDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
       case "fundes":
         return <FundesDashboard activeRole={activeRole} />;
+      case "company":
+        return <MSMEDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
       default:
         return <InvestorDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
     }

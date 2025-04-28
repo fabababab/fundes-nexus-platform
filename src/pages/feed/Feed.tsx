@@ -5,11 +5,12 @@ import CompanyFeed from "../../components/feed/CompanyFeed";
 import StartupFeed from "../../components/feed/StartupFeed";
 import InvestorFeed from "../../components/feed/InvestorFeed";
 import DashboardLayout from "../../components/layout/DashboardLayoutRefactored";
+import { UserRole } from "@/types/common";
 
 const Feed = () => {
-  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor" | "fundes">("investor");
+  const [activeRole, setActiveRole] = useState<UserRole>("investor");
 
-  const handleRoleChange = (role: "company" | "startup" | "investor" | "fundes") => {
+  const handleRoleChange = (role: UserRole) => {
     setActiveRole(role);
   };
 

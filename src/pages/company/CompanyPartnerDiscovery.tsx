@@ -5,17 +5,18 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, Filter, MapPin, Building2, CheckCircle, AlertCircle } from "lucide-react";
+import { Search, Filter, MapPin, Building2, CheckCircle } from "lucide-react";
 import DashboardLayout from "@/components/layout/DashboardLayoutRefactored";
+import { UserRole } from "@/types/common";
 
 const CompanyPartnerDiscovery = () => {
-  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor" | "fundes">("company");
+  const [activeRole, setActiveRole] = useState<UserRole>("company");
   const [searchTerm, setSearchTerm] = useState("");
   const [industry, setIndustry] = useState<string>("all");
   const [location, setLocation] = useState<string>("all");
   const [esgRating, setEsgRating] = useState<string>("all");
   
-  const handleRoleChange = (role: "company" | "startup" | "investor" | "fundes") => {
+  const handleRoleChange = (role: UserRole) => {
     setActiveRole(role);
   };
 

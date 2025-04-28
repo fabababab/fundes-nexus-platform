@@ -1,11 +1,12 @@
 
 import React from "react";
-import { Book, CheckCircle, Circle, Clock } from "lucide-react";
+import { Book, CheckCircle, Clock } from "lucide-react";
 import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
+import { UserRole } from "@/types/common";
 
 interface LearningJourneyProps {
-  activeRole: "company" | "startup" | "investor";
-  onRoleChange: (role: "company" | "startup" | "investor") => void;
+  activeRole: UserRole;
+  onRoleChange: (role: UserRole) => void;
 }
 
 const LearningJourney: React.FC<LearningJourneyProps> = ({ activeRole, onRoleChange }) => {

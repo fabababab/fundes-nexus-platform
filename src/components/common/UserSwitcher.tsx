@@ -22,16 +22,16 @@ const UserSwitcher = ({ activeRole, onRoleChange }: UserSwitcherProps) => {
     {
       id: "msme",
       name: "MSME",
-      icon: <Building2 className="mr-2 h-4 w-4" />,
-    },
-    {
-      id: "startup",
-      name: "Startup",
       icon: <Briefcase className="mr-2 h-4 w-4" />,
     },
     {
+      id: "company",
+      name: "Companies",
+      icon: <Building2 className="mr-2 h-4 w-4" />,
+    },
+    {
       id: "investor",
-      name: "Investor",
+      name: "Donor",
       icon: <PiggyBank className="mr-2 h-4 w-4" />,
     },
   ];

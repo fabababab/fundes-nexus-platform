@@ -1,12 +1,12 @@
 
 import React, { useState, useEffect } from "react";
-import StartupDashboard from "./StartupDashboard";
-import InvestorDashboard from "./InvestorDashboard";
-import LearningJourney from "../learning/LearningJourney";
 import { useLocation } from "react-router-dom";
 import DashboardLayout from "../../components/layout/DashboardLayoutRefactored";
-import FundesDashboard from "../fundes/FundesDashboard";
 import MSMEDashboard from "./MSMEDashboard";
+import InvestorDashboard from "./InvestorDashboard";
+import LearningJourney from "../learning/LearningJourney";
+import CompanyDashboard from "./MSMEDashboard"; // Reusing the MSME Dashboard for Company view
+import FundesDashboard from "../fundes/FundesDashboard";
 import { UserRole } from "@/types/common";
 
 interface DashboardProps {
@@ -37,16 +37,14 @@ const Dashboard = ({ activeRole: propActiveRole = "investor" }: DashboardProps) 
     }
     
     switch (activeRole) {
-      case "startup":
-        return <MSMEDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
       case "msme":
-        return <StartupDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
+        return <MSMEDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
+      case "company":
+        return <CompanyDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
       case "investor":
         return <InvestorDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
       case "fundes":
         return <FundesDashboard activeRole={activeRole} />;
-      case "company":
-        return <MSMEDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
       default:
         return <InvestorDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
     }
@@ -58,16 +56,16 @@ const Dashboard = ({ activeRole: propActiveRole = "investor" }: DashboardProps) 
     }
     
     switch (activeRole) {
-      case "startup":
-        return "MSME Dashboard";
       case "msme":
-        return "Startup Dashboard";
+        return "MSME Dashboard";
+      case "company":
+        return "Companies Dashboard";
       case "investor":
-        return "Donor Dashboard";
+        return "Donors Dashboard";
       case "fundes":
         return "Fundes Dashboard";
       default:
-        return "Donor Dashboard";
+        return "Donors Dashboard";
     }
   };
 

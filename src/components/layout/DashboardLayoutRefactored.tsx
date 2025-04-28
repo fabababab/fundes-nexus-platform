@@ -85,7 +85,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     { title: "Resources", icon: FileText, href: "/database", badge: "" },
   ];
 
-  const startupNavItems = [
+  const companyNavItems = [
     { title: "Dashboard", icon: Building2, href: "/dashboard", badge: "" },
     { title: "Impact Analytics", icon: BarChartHorizontal, href: "/analytics", badge: "2" },
     { title: "Partnerships", icon: Users, href: "/network", badge: "" },
@@ -99,8 +99,8 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
         return investorNavItems;
       case "msme":
         return msmeNavItems;
-      case "startup":
-        return startupNavItems;
+      case "company":
+        return companyNavItems;
       case "fundes":
         return fundesNavItems;
       default:
@@ -110,7 +110,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 
   const getRoleAccentColor = () => {
     switch (activeRole) {
-      case "startup":
+      case "company":
         return "border-b-[#0EA5E9]";
       case "msme":
         return "border-b-[#F2FCE2]";

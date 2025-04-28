@@ -1,10 +1,13 @@
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { UserRole } from "@/types/common";
+
 const Index = () => {
   const navigate = useNavigate();
-  const handleNavigate = (role: "company" | "startup" | "investor" | "fundes") => {
+  const handleNavigate = (role: UserRole) => {
     navigate("/dashboard", {
       state: {
         initialRole: role
@@ -16,7 +19,7 @@ const Index = () => {
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold mb-4 text-primary">Welcome to Fundes</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Connect MSMEs with impactful startups and donors to drive sustainable innovation
+            Connect MSMEs with impactful companies and donors to drive sustainable innovation
           </p>
         </div>
 
@@ -25,16 +28,16 @@ const Index = () => {
             <CardHeader>
               <CardTitle>For MSMEs</CardTitle>
               <CardDescription>
-                Find innovative startups aligned with your ESG goals
+                Find innovative solutions aligned with your goals
               </CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-gray-500 text-sm">
-                Discover promising startups, track your partnerships, and measure your impact on sustainability goals.
+                Discover partnerships, track your collaborations, and measure your impact on sustainability goals.
               </p>
             </CardContent>
             <CardFooter>
-              <Button className="w-full" onClick={() => handleNavigate("company")}>
+              <Button className="w-full" onClick={() => handleNavigate("msme")}>
                 MSME Dashboard
               </Button>
             </CardFooter>
@@ -53,7 +56,7 @@ const Index = () => {
               </p>
             </CardContent>
             <CardFooter>
-              <Button className="w-full" onClick={() => handleNavigate("startup")}>Companies Dashboard</Button>
+              <Button className="w-full" onClick={() => handleNavigate("company")}>Companies Dashboard</Button>
             </CardFooter>
           </Card>
 
@@ -66,7 +69,7 @@ const Index = () => {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-gray-500">
-                Find promising startups aligned with your donation criteria and track portfolio impact.
+                Find promising initiatives aligned with your donation criteria and track portfolio impact.
               </p>
             </CardContent>
             <CardFooter>
@@ -98,7 +101,7 @@ const Index = () => {
 
         <div className="text-center mt-12">
           <p className="text-sm text-gray-500 mb-4">
-            Fundes connects MSMEs with impactful startups and donors to drive sustainable innovation.
+            Fundes connects MSMEs with impactful companies and donors to drive sustainable innovation.
           </p>
           <Button variant="outline" size="sm" onClick={() => handleNavigate("investor")}>
             Explore All Features

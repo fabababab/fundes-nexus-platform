@@ -11,10 +11,11 @@ import {
 import { User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Building2, Briefcase, PiggyBank, Target } from "lucide-react";
+import { UserRole } from "@/types/common";
 
 interface RoleSwitcherModalProps {
-  activeRole: "company" | "startup" | "investor" | "fundes";
-  onRoleChange: (role: "company" | "startup" | "investor" | "fundes") => void;
+  activeRole: UserRole;
+  onRoleChange: (role: UserRole) => void;
 }
 
 const RoleSwitcherModal = ({ activeRole, onRoleChange }: RoleSwitcherModalProps) => {
@@ -26,14 +27,14 @@ const RoleSwitcherModal = ({ activeRole, onRoleChange }: RoleSwitcherModalProps)
       description: "Access corporate partnership and innovation tools"
     },
     {
-      id: "startup",
-      name: "Startup View",
+      id: "msme",
+      name: "MSME View",
       icon: <Briefcase className="h-4 w-4" />,
-      description: "Manage your startup journey and connections"
+      description: "Manage your MSME journey and connections"
     },
     {
       id: "investor",
-      name: "Donor View",
+      name: "Donors View",
       icon: <PiggyBank className="h-4 w-4" />,
       description: "Track donations and discover opportunities"
     },
@@ -67,7 +68,7 @@ const RoleSwitcherModal = ({ activeRole, onRoleChange }: RoleSwitcherModalProps)
               className="flex items-center justify-start gap-3 p-4 h-auto"
               onClick={() => {
                 console.log("Role changed to:", role.id);
-                onRoleChange(role.id as "company" | "startup" | "investor" | "fundes");
+                onRoleChange(role.id as UserRole);
               }}
             >
               {role.icon}

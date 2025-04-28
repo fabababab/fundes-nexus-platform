@@ -1,2 +1,2 @@
 
-export type UserRole = "startup" | "msme" | "investor" | "fundes" | "company";
+export type UserRole = "msme" | "company" | "investor" | "fundes";

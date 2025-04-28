@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -23,6 +22,7 @@ import CompanyIntranet from "./pages/company/CompanyIntranet";
 import CompanyPartnerDiscovery from "./pages/company/CompanyPartnerDiscovery";
 import CompanySocialImpact from "./pages/company/CompanySocialImpact";
 import CompanyProjectRoom from "./pages/company/CompanyProjectRoom";
+import MSMEDashboard from "./pages/dashboard/MSMEDashboard";
 
 const queryClient = new QueryClient();
 
@@ -47,12 +47,12 @@ const App = () => (
           <Route path="/fundes/events" element={<FundesEvents />} />
           <Route path="/fundes/tasks" element={<FundesTasks />} />
           
-          {/* Company routes */}
-          <Route path="/company/esg" element={<CompanyESGDashboard />} />
-          <Route path="/company/intranet" element={<CompanyIntranet />} />
-          <Route path="/company/partners" element={<CompanyPartnerDiscovery />} />
-          <Route path="/company/impact" element={<CompanySocialImpact />} />
-          <Route path="/company/projects" element={<CompanyProjectRoom />} />
+          {/* MSME routes (formerly Company routes) */}
+          <Route path="/msme/esg" element={<CompanyESGDashboard />} />
+          <Route path="/msme/intranet" element={<CompanyIntranet />} />
+          <Route path="/msme/partners" element={<CompanyPartnerDiscovery />} />
+          <Route path="/msme/impact" element={<CompanySocialImpact />} />
+          <Route path="/msme/projects" element={<CompanyProjectRoom />} />
           
           <Route path="/analytics" element={<Dashboard />} />
           <Route path="/network" element={<Dashboard />} />

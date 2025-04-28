@@ -1,28 +1,46 @@
-
 import React from "react";
 import { 
   BarChart4, 
   Building2, 
-  CircleDot, 
   Users, 
   Target,
   BookOpen,
   Globe,
   FileCheck,
-  Search
+  Search,
+  Bot,
+  MessageSquare
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import MSMEChatbot from "./components/MSMEChatbot";
 
-interface CompanyDashboardProps {
+interface MSMEDashboardProps {
   activeRole: "company" | "startup" | "investor";
   onRoleChange: (role: "company" | "startup" | "investor") => void;
 }
 
-const CompanyDashboard: React.FC<CompanyDashboardProps> = ({ activeRole, onRoleChange }) => {
+const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange }) => {
   return (
     <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <h1 className="text-3xl font-bold">MSME Dashboard</h1>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="default" className="flex gap-2">
+              <Bot className="h-5 w-5" />
+              Get Support
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[500px] h-[600px]">
+            <MSMEChatbot />
+          </DialogContent>
+        </Dialog>
+      </div>
+
+      {/* Keep existing metrics cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -58,7 +76,7 @@ const CompanyDashboard: React.FC<CompanyDashboardProps> = ({ activeRole, onRoleC
         </Card>
       </div>
 
-      <h2 className="text-2xl font-bold mt-8 mb-4">Company Features</h2>
+      <h2 className="text-2xl font-bold mt-8 mb-4">MSME Features</h2>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -139,4 +157,4 @@ const CompanyDashboard: React.FC<CompanyDashboardProps> = ({ activeRole, onRoleC
   );
 };
 
-export default CompanyDashboard;
+export default MSMEDashboard;

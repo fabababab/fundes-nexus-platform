@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/select";
 import DashboardLayout from "@/components/layout/DashboardLayoutRefactored";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { UserRole } from "@/types/common";
 
 interface Project {
   id: number;
@@ -35,7 +36,7 @@ interface Project {
 }
 
 const DiscoverProjects = () => {
-  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor" | "fundes">("investor");
+  const [activeRole, setActiveRole] = useState<UserRole>("investor");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedSector, setSelectedSector] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
@@ -44,7 +45,7 @@ const DiscoverProjects = () => {
   const [favoriteProjects, setFavoriteProjects] = useState<number[]>([]);
   const [selectedProjects, setSelectedProjects] = useState<number[]>([]);
 
-  const handleRoleChange = (role: "company" | "startup" | "investor" | "fundes") => {
+  const handleRoleChange = (role: UserRole) => {
     setActiveRole(role);
   };
 

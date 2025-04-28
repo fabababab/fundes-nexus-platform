@@ -28,7 +28,7 @@ const Feed = () => {
         <TabsContent value="for-you">
           {activeRole === "company" ? (
             <CompanyFeed />
-          ) : activeRole === "startup" ? (
+          ) : activeRole === "msme" ? (
             <StartupFeed />
           ) : (
             <InvestorFeed />

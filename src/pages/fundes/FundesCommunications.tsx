@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   MessageSquare,
@@ -40,6 +39,7 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import DashboardLayout from "@/components/layout/DashboardLayoutRefactored";
+import { UserRole } from "@/types/common";
 
 interface Message {
   id: number;
@@ -66,10 +66,11 @@ interface Contact {
 }
 
 const FundesCommunications = () => {
-  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor" | "fundes">("fundes");
+  const [activeRole, setActiveRole] = useState<UserRole>("fundes");
   const [activeContact, setActiveContact] = useState<Contact | null>(null);
   const [messageText, setMessageText] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
@@ -184,13 +185,12 @@ const FundesCommunications = () => {
     }
   ]);
 
-  const handleRoleChange = (role: "company" | "startup" | "investor" | "fundes") => {
+  const handleRoleChange = (role: UserRole) => {
     setActiveRole(role);
   };
 
   const handleContactSelect = (contact: Contact) => {
     setActiveContact(contact);
-    // Mark messages as read when selecting contact
     setContacts(contacts.map(c => 
       c.id === contact.id ? { ...c, unreadCount: 0 } : c
     ));
@@ -212,7 +212,6 @@ const FundesCommunications = () => {
     setMessages([...messages, newMessage]);
     setMessageText("");
 
-    // Update last message in contacts
     setContacts(contacts.map(contact => 
       contact.id === activeContact.id 
         ? { ...contact, lastMessage: messageText, lastMessageTime: "Just now" } 

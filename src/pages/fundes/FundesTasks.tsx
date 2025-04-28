@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   Check,
@@ -58,6 +57,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Separator } from "@/components/ui/separator";
 import { addDays, format, isAfter, isBefore, isPast } from "date-fns";
 import DashboardLayout from "@/components/layout/DashboardLayoutRefactored";
+import { UserRole } from "@/types/common";
 
 interface Task {
   id: number;
@@ -77,7 +77,7 @@ interface Task {
 }
 
 const FundesTasks = () => {
-  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor" | "fundes">("fundes");
+  const [activeRole, setActiveRole] = useState<UserRole>("fundes");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedStatus, setSelectedStatus] = useState<string | null>(null);
   const [selectedPriority, setSelectedPriority] = useState<string | null>(null);
@@ -237,7 +237,7 @@ const FundesTasks = () => {
     progress: 0
   });
 
-  const handleRoleChange = (role: "company" | "startup" | "investor" | "fundes") => {
+  const handleRoleChange = (role: UserRole) => {
     setActiveRole(role);
   };
 

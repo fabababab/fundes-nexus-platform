@@ -6,10 +6,10 @@ import MSMECommunity from "./MSMECommunity";
 import { UserRole } from "@/types/common";
 
 const Community: React.FC = () => {
-  const [activeRole, setActiveRole] = useState<UserRole>("startup");
+  const [activeRole, setActiveRole] = useState<UserRole>("msme");
 
-  const handleRoleChange = (newRole: UserRole) => {
-    setActiveRole(newRole);
+  const handleRoleChange = (role: UserRole) => {
+    setActiveRole(role);
   };
 
   return (

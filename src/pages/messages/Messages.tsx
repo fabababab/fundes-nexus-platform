@@ -6,6 +6,7 @@ import { Search, PlusCircle } from "lucide-react";
 import ContactsList from "./ContactsList";
 import MessageThread from "./MessageThread";
 import DashboardLayout from "@/components/layout/DashboardLayoutRefactored";
+import { UserRole } from "@/types/common";
 
 export interface Contact {
   id: string;
@@ -31,12 +32,12 @@ export interface Message {
 }
 
 const Messages = () => {
-  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor" | "fundes">("investor");
+  const [activeRole, setActiveRole] = useState<UserRole>("investor");
   const [activeContact, setActiveContact] = useState<Contact | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [showUnreadOnly, setShowUnreadOnly] = useState(false);
   
-  const handleRoleChange = (role: "company" | "startup" | "investor" | "fundes") => {
+  const handleRoleChange = (role: UserRole) => {
     setActiveRole(role);
   };
 

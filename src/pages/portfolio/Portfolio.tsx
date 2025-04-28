@@ -27,6 +27,7 @@ import {
   Area,
 } from "recharts";
 import DashboardLayout from "@/components/layout/DashboardLayoutRefactored";
+import { UserRole } from "@/types/common";
 
 const allocations = [
   { name: "Technology", value: 35 },
@@ -139,9 +140,9 @@ const formatCurrency = (amount: number) => {
 };
 
 const Portfolio = () => {
-  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor" | "fundes">("investor");
+  const [activeRole, setActiveRole] = useState<UserRole>("investor");
 
-  const handleRoleChange = (role: "company" | "startup" | "investor" | "fundes") => {
+  const handleRoleChange = (role: UserRole) => {
     setActiveRole(role);
   };
 

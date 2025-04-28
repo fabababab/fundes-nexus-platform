@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, MoreHorizontal, Clock, MapPin, Users, PlusCircle, Search, Filter, CheckCircle2, X } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -26,6 +25,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { format, addDays, addMonths, startOfDay, isSameDay } from "date-fns";
 import DashboardLayout from "@/components/layout/DashboardLayoutRefactored";
+import { UserRole } from "@/types/common";
 
 interface Event {
   id: number;
@@ -42,7 +42,7 @@ interface Event {
 }
 
 const FundesEvents = () => {
-  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor" | "fundes">("fundes");
+  const [activeRole, setActiveRole] = useState<UserRole>("fundes");
   const [date, setDate] = useState<Date>(new Date());
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedEventType, setSelectedEventType] = useState<string | null>(null);
@@ -141,7 +141,7 @@ const FundesEvents = () => {
     }
   ];
 
-  const handleRoleChange = (role: "company" | "startup" | "investor" | "fundes") => {
+  const handleRoleChange = (role: UserRole) => {
     setActiveRole(role);
   };
 

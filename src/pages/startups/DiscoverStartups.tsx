@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -15,6 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import DashboardLayout from "@/components/layout/DashboardLayoutRefactored";
+import { UserRole } from "@/types/common";
 
 interface Startup {
   id: number;
@@ -32,12 +32,12 @@ interface Startup {
 }
 
 const DiscoverStartups = () => {
-  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor" | "fundes">("investor");
+  const [activeRole, setActiveRole] = useState<UserRole>("investor");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedIndustry, setSelectedIndustry] = useState("");
   const [selectedStage, setSelectedStage] = useState("");
 
-  const handleRoleChange = (role: "company" | "startup" | "investor" | "fundes") => {
+  const handleRoleChange = (role: UserRole) => {
     setActiveRole(role);
   };
 
@@ -145,7 +145,6 @@ const DiscoverStartups = () => {
     }).format(amount);
   };
 
-  // Get unique industries and stages for filters
   const industries = Array.from(new Set(startups.map(startup => startup.industry)));
   const stages = Array.from(new Set(startups.map(startup => startup.stage)));
 

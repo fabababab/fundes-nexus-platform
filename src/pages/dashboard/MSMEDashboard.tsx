@@ -40,7 +40,6 @@ const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange 
         </Dialog>
       </div>
 
-      {/* Keep existing metrics cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -78,6 +77,21 @@ const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange 
 
       <h2 className="text-2xl font-bold mt-8 mb-4">MSME Features</h2>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-base font-medium">Project Overview</CardTitle>
+            <folder className="h-5 w-5 text-blue-600" />
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <p className="text-sm text-muted-foreground">
+              View active FUNDES projects, apply to participate, or recommend other MSMEs.
+            </p>
+            <Button asChild className="w-full mt-2">
+              <Link to="/msme/projects">View Projects</Link>
+            </Button>
+          </CardContent>
+        </Card>
+
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-base font-medium">ESG Goals Dashboard</CardTitle>

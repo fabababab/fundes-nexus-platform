@@ -23,6 +23,7 @@ import CompanyPartnerDiscovery from "./pages/company/CompanyPartnerDiscovery";
 import CompanySocialImpact from "./pages/company/CompanySocialImpact";
 import CompanyProjectRoom from "./pages/company/CompanyProjectRoom";
 import MSMEDashboard from "./pages/dashboard/MSMEDashboard";
+import ProjectOverview from "./pages/msme/ProjectOverview";
 
 const queryClient = new QueryClient();
 
@@ -52,7 +53,7 @@ const App = () => (
           <Route path="/msme/intranet" element={<CompanyIntranet />} />
           <Route path="/msme/partners" element={<CompanyPartnerDiscovery />} />
           <Route path="/msme/impact" element={<CompanySocialImpact />} />
-          <Route path="/msme/projects" element={<CompanyProjectRoom />} />
+          <Route path="/msme/projects" element={<ProjectRoom />} />
           
           <Route path="/analytics" element={<Dashboard />} />
           <Route path="/network" element={<Dashboard />} />
@@ -61,6 +62,7 @@ const App = () => (
           <Route path="/database" element={<Dashboard />} />
           <Route path="/settings" element={<Dashboard />} />
           <Route path="/learning-journey" element={<Dashboard activeRole="startup" />} />
+          <Route path="/msme/projects" element={<ProjectOverview />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

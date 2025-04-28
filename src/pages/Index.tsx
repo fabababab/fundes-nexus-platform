@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -17,7 +16,7 @@ const Index = () => {
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold mb-4 text-primary">Welcome to Fundes</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Connect MSMEs with impactful startups and investors to drive sustainable innovation
+            Connect MSMEs with impactful startups and donors to drive sustainable innovation
           </p>
         </div>
 
@@ -45,7 +44,7 @@ const Index = () => {
             <CardHeader>
               <CardTitle>For Startups</CardTitle>
               <CardDescription>
-                Connect with MSMEs and investors
+                Connect with MSMEs and donors
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -62,19 +61,19 @@ const Index = () => {
 
           <Card className="border-t-4 border-t-amber-500">
             <CardHeader>
-              <CardTitle>For Investors</CardTitle>
+              <CardTitle>For Donors</CardTitle>
               <CardDescription>
                 Discover sustainable investment opportunities
               </CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-gray-500">
-                Find promising startups aligned with your investment criteria and track portfolio performance.
+                Find promising startups aligned with your donation criteria and track portfolio impact.
               </p>
             </CardContent>
             <CardFooter>
               <Button className="w-full" onClick={() => handleNavigate("investor")}>
-                Investor Dashboard
+                Donor Dashboard
               </Button>
             </CardFooter>
           </Card>
@@ -101,7 +100,7 @@ const Index = () => {
 
         <div className="text-center mt-12">
           <p className="text-sm text-gray-500 mb-4">
-            Fundes connects MSMEs with impactful startups and investors to drive sustainable innovation.
+            Fundes connects MSMEs with impactful startups and donors to drive sustainable innovation.
           </p>
           <Button variant="outline" size="sm" onClick={() => handleNavigate("investor")}>
             Explore All Features
@@ -112,4 +111,3 @@ const Index = () => {
   );
 };
 export default Index;
-

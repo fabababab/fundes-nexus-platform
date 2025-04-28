@@ -33,9 +33,9 @@ const RoleSwitcherModal = ({ activeRole, onRoleChange }: RoleSwitcherModalProps)
     },
     {
       id: "investor",
-      name: "Investor View",
+      name: "Donor View",
       icon: <PiggyBank className="h-4 w-4" />,
-      description: "Track investments and discover opportunities"
+      description: "Track donations and discover opportunities"
     },
     {
       id: "fundes",

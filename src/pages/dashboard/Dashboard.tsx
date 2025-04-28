@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import StartupDashboard from "./StartupDashboard";
 import InvestorDashboard from "./InvestorDashboard";
@@ -60,11 +59,11 @@ const Dashboard = ({ activeRole: propActiveRole = "investor" }: DashboardProps) 
       case "startup":
         return "Startup Dashboard";
       case "investor":
-        return "Investor Dashboard";
+        return "Donor Dashboard";
       case "fundes":
         return "Fundes Dashboard";
       default:
-        return "Investor Dashboard";
+        return "Donor Dashboard";
     }
   };
 
@@ -80,4 +79,3 @@ const Dashboard = ({ activeRole: propActiveRole = "investor" }: DashboardProps) 
 };
 
 export default Dashboard;
-

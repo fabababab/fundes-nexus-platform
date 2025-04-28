@@ -18,7 +18,7 @@ const ChatBot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Hello! I'm your AI assistant. How can I help you today?",
+      text: "Hello! I'm your Impact Advisory AI assistant. I can help you with project eligibility, compliance requirements, and impact assessment. How can I assist you today?",
       isBot: true,
       timestamp: new Date(),
     },
@@ -40,11 +40,11 @@ const ChatBot = () => {
     setMessages((prev) => [...prev, newMessage]);
     setInput("");
 
-    // Simulate bot response
+    // Simulate bot response with donor-specific guidance
     setTimeout(() => {
       const botResponse: Message = {
         id: (Date.now() + 1).toString(),
-        text: "I'm a demo bot. In the future, I'll be connected to an AI service to provide real responses!",
+        text: "I understand you're looking for guidance. I can help you evaluate projects based on your organization's compliance requirements, impact goals, and investment restrictions. Please provide more details about your specific needs or constraints.",
         isBot: true,
         timestamp: new Date(),
       };
@@ -64,7 +64,7 @@ const ChatBot = () => {
 
   return (
     <DashboardLayout 
-      pageTitle="AI Assistant" 
+      pageTitle="Impact Advisory Assistant" 
       activeRole={activeRole} 
       onRoleChange={handleRoleChange}
     >
@@ -106,7 +106,7 @@ const ChatBot = () => {
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Type your message..."
+                placeholder="Ask about project eligibility, compliance, or impact assessment..."
                 className="flex-1"
               />
               <Button type="submit" size="icon">

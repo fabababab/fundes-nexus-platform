@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   Card,
@@ -151,41 +150,41 @@ const Portfolio = () => {
   const overallReturn = ((currentValue - totalInvested) / totalInvested) * 100;
 
   return (
-    <DashboardLayout activeRole={activeRole} onRoleChange={handleRoleChange} pageTitle="Portfolio">
+    <DashboardLayout activeRole={activeRole} onRoleChange={handleRoleChange} pageTitle="Impact Portfolio">
       <div className="space-y-6">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium">Total Invested</CardTitle>
+              <CardTitle className="text-sm font-medium">Total Impact Value</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{formatCurrency(totalInvested)}</div>
               <p className="text-xs text-muted-foreground">
-                Across {investments.length} startups
+                Across {investments.length} impact projects
               </p>
             </CardContent>
           </Card>
           
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium">Current Value</CardTitle>
+              <CardTitle className="text-sm font-medium">Current Impact</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{formatCurrency(currentValue)}</div>
               <p className="text-xs text-muted-foreground">
-                {overallReturn >= 0 ? "+" : ""}{overallReturn.toFixed(2)}% overall
+                {overallReturn >= 0 ? "+" : ""}{overallReturn.toFixed(2)}% social return
               </p>
             </CardContent>
           </Card>
           
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium">Available for Investment</CardTitle>
+              <CardTitle className="text-sm font-medium">Available for Impact</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{formatCurrency(750000)}</div>
               <p className="text-xs text-muted-foreground">
-                Ready to deploy
+                Ready to deploy for social impact
               </p>
             </CardContent>
           </Card>

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -7,12 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Search, FileText, Users, BookOpen, Mail, Download, PlusCircle } from "lucide-react";
 import DashboardLayout from "@/components/layout/DashboardLayoutRefactored";
+import { UserRole } from "@/types/common";
 
 const CompanyIntranet = () => {
-  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor" | "fundes">("company");
+  const [activeRole, setActiveRole] = useState<UserRole>("msme");
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleRoleChange = (role: "company" | "startup" | "investor" | "fundes") => {
+  const handleRoleChange = (role: UserRole) => {
     setActiveRole(role);
   };
 

@@ -1,3 +1,4 @@
+
 import React from "react";
 import { 
   SidebarProvider,
@@ -36,12 +37,13 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { UserRole } from "@/types/common";
 
 interface DashboardLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   menuItems?: any[];
-  activeRole: "startup" | "msme" | "investor" | "fundes";
-  onRoleChange: (role: "startup" | "msme" | "investor" | "fundes") => void;
+  activeRole: UserRole;
+  onRoleChange: (role: UserRole) => void;
   pageTitle: string;
 }
 

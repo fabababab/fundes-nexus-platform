@@ -7,14 +7,15 @@ import { useLocation } from "react-router-dom";
 import DashboardLayout from "../../components/layout/DashboardLayoutRefactored";
 import FundesDashboard from "../fundes/FundesDashboard";
 import MSMEDashboard from "./MSMEDashboard";
+import { UserRole } from "@/types/common";
 
 interface DashboardProps {
-  activeRole?: "startup" | "msme" | "investor" | "fundes";
+  activeRole?: UserRole;
 }
 
 const Dashboard = ({ activeRole: propActiveRole = "investor" }: DashboardProps) => {
   const location = useLocation();
-  const [activeRole, setActiveRole] = useState<"startup" | "msme" | "investor" | "fundes">(
+  const [activeRole, setActiveRole] = useState<UserRole>(
     location.state?.initialRole || propActiveRole
   );
   
@@ -25,14 +26,14 @@ const Dashboard = ({ activeRole: propActiveRole = "investor" }: DashboardProps) 
     }
   }, [propActiveRole]);
 
-  const handleRoleChange = (newRole: "company" | "startup" | "investor" | "fundes") => {
+  const handleRoleChange = (newRole: UserRole) => {
     console.log("Role changing in Dashboard from", activeRole, "to", newRole);
     setActiveRole(newRole);
   };
 
   const renderDashboardContent = () => {
     if (location.pathname === "/learning-journey") {
-      return <LearningJourney activeRole={activeRole as "startup" | "msme" | "investor"} onRoleChange={handleRoleChange} />;
+      return <LearningJourney activeRole={activeRole} onRoleChange={handleRoleChange} />;
     }
     
     switch (activeRole) {

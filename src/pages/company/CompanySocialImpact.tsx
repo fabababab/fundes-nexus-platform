@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,12 +6,13 @@ import { Progress } from "@/components/ui/progress";
 import { Search, Heart, FilterX, DollarSign, Users, Target, Globe } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import DashboardLayout from "@/components/layout/DashboardLayoutRefactored";
+import { UserRole } from "@/types/common";
 
 const CompanySocialImpact = () => {
-  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor" | "fundes">("company");
+  const [activeRole, setActiveRole] = useState<UserRole>("msme");
   const [searchTerm, setSearchTerm] = useState("");
   
-  const handleRoleChange = (role: "company" | "startup" | "investor" | "fundes") => {
+  const handleRoleChange = (role: UserRole) => {
     setActiveRole(role);
   };
 

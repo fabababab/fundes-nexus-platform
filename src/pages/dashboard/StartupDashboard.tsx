@@ -4,10 +4,11 @@ import { Briefcase, GraduationCap, Lightbulb, MessageSquare, Target, Users, Char
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { StartupCommunityFeed } from "@/components/community/StartupCommunityFeed";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { UserRole } from "@/types/common";
 
 interface StartupDashboardProps {
-  activeRole: "startup" | "msme" | "investor";
-  onRoleChange: (role: "startup" | "msme" | "investor") => void;
+  activeRole: UserRole;
+  onRoleChange: (role: UserRole) => void;
 }
 
 const StartupDashboard: React.FC<StartupDashboardProps> = ({ activeRole, onRoleChange }) => {

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -7,12 +6,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { BarChartHorizontal, Circle, Download, LineChart, Recycle, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import DashboardLayout from "@/components/layout/DashboardLayoutRefactored";
+import { UserRole } from "@/types/common";
 
 const CompanyESGDashboard = () => {
-  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor" | "fundes">("company");
+  const [activeRole, setActiveRole] = useState<UserRole>("msme");
   const [timeframe, setTimeframe] = useState<"quarterly" | "yearly" | "monthly">("quarterly");
 
-  const handleRoleChange = (role: "company" | "startup" | "investor" | "fundes") => {
+  const handleRoleChange = (role: UserRole) => {
     setActiveRole(role);
   };
 

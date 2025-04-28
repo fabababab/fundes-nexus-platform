@@ -18,10 +18,11 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import MSMEChatbot from "./components/MSMEChatbot";
+import { UserRole } from "@/types/common";
 
 interface MSMEDashboardProps {
-  activeRole: "startup" | "msme" | "investor";
-  onRoleChange: (role: "startup" | "msme" | "investor") => void;
+  activeRole: UserRole;
+  onRoleChange: (role: UserRole) => void;
 }
 
 const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange }) => {

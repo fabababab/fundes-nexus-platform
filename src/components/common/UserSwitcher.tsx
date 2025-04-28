@@ -10,17 +10,18 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Building2, Briefcase, PiggyBank, ChevronDown } from "lucide-react";
+import { UserRole } from "@/types/common";
 
 interface UserSwitcherProps {
-  activeRole: "company" | "startup" | "investor";
-  onRoleChange: (role: "company" | "startup" | "investor") => void;
+  activeRole: UserRole;
+  onRoleChange: (role: UserRole) => void;
 }
 
 const UserSwitcher = ({ activeRole, onRoleChange }: UserSwitcherProps) => {
   const roles = [
     {
-      id: "company",
-      name: "Company",
+      id: "msme",
+      name: "MSME",
       icon: <Building2 className="mr-2 h-4 w-4" />,
     },
     {
@@ -57,7 +58,7 @@ const UserSwitcher = ({ activeRole, onRoleChange }: UserSwitcherProps) => {
         {roles.map((role) => (
           <DropdownMenuItem
             key={role.id}
-            onClick={() => onRoleChange(role.id as "company" | "startup" | "investor")}
+            onClick={() => onRoleChange(role.id as UserRole)}
             className={activeRole === role.id ? "bg-accent" : ""}
           >
             <div className="flex items-center">

@@ -6,6 +6,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
+import { UserRole } from "@/types/common";
 
 interface Message {
   id: string;
@@ -24,7 +25,7 @@ const ChatBot = () => {
     },
   ]);
   const [input, setInput] = useState("");
-  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor">("investor");
+  const [activeRole, setActiveRole] = useState<UserRole>("investor");
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
   const handleSend = () => {
@@ -52,7 +53,7 @@ const ChatBot = () => {
     }, 1000);
   };
 
-  const handleRoleChange = (newRole: "company" | "startup" | "investor") => {
+  const handleRoleChange = (newRole: UserRole) => {
     setActiveRole(newRole);
   };
 

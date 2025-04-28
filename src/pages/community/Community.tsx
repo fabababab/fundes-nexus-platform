@@ -3,11 +3,12 @@ import React, { useState } from "react";
 import { StartupCommunityFeed } from "@/components/community/StartupCommunityFeed";
 import DashboardLayout from "@/components/layout/DashboardLayoutRefactored";
 import MSMECommunity from "./MSMECommunity";
+import { UserRole } from "@/types/common";
 
 const Community: React.FC = () => {
-  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor" | "fundes">("startup");
+  const [activeRole, setActiveRole] = useState<UserRole>("startup");
 
-  const handleRoleChange = (newRole: "company" | "startup" | "investor" | "fundes") => {
+  const handleRoleChange = (newRole: UserRole) => {
     setActiveRole(newRole);
   };
 
@@ -15,9 +16,9 @@ const Community: React.FC = () => {
     <DashboardLayout 
       activeRole={activeRole} 
       onRoleChange={handleRoleChange}
-      pageTitle={activeRole === "company" ? "MSME Community" : "Startup Community"}
+      pageTitle={activeRole === "msme" ? "MSME Community" : "Startup Community"}
     >
-      {activeRole === "company" ? (
+      {activeRole === "msme" ? (
         <MSMECommunity />
       ) : (
         <div className="space-y-6">

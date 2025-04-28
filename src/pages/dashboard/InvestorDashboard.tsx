@@ -2,10 +2,11 @@
 import React from "react";
 import { Briefcase, PiggyBank, Star, TrendingUp, FileSpreadsheet, Users2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { UserRole } from "@/types/common";
 
 interface InvestorDashboardProps {
-  activeRole: "company" | "startup" | "investor";
-  onRoleChange: (role: "company" | "startup" | "investor") => void;
+  activeRole: UserRole;
+  onRoleChange: (role: UserRole) => void;
 }
 
 const InvestorDashboard: React.FC<InvestorDashboardProps> = ({ activeRole, onRoleChange }) => {

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -185,7 +184,6 @@ const DiscoverProjects = () => {
     }).format(amount);
   };
 
-  // Get unique values for filters
   const sectors = Array.from(new Set(projects.map(project => project.sector)));
   const sizes = ["Small", "Medium", "Large"];
   const regions = Array.from(new Set(projects.map(project => project.region)));
@@ -497,7 +495,10 @@ const DiscoverProjects = () => {
                     variant="outline" 
                     className="mt-4"
                     onClick={() => {
-                      document.querySelector('[data-value="all"]')?.click();
+                      const allTabTrigger = document.querySelector('[data-value="all"]') as HTMLElement;
+                      if (allTabTrigger) {
+                        allTabTrigger.click();
+                      }
                     }}
                   >
                     Browse Projects

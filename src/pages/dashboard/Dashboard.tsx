@@ -1,16 +1,12 @@
 
 import React, { useState, useEffect } from "react";
-import CompanyDashboard from "./CompanyDashboard";
 import StartupDashboard from "./StartupDashboard";
 import InvestorDashboard from "./InvestorDashboard";
 import LearningJourney from "../learning/LearningJourney";
 import { useLocation } from "react-router-dom";
 import DashboardLayout from "../../components/layout/DashboardLayoutRefactored";
 import FundesDashboard from "../fundes/FundesDashboard";
-
-interface DashboardProps {
-  activeRole?: "company" | "startup" | "investor" | "fundes";
-}
+import MSMEDashboard from "./MSMEDashboard";
 
 const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => {
   const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor" | "fundes">(initialRole);
@@ -36,7 +32,7 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
     
     switch (activeRole) {
       case "company":
-        return <CompanyDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
+        return <MSMEDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
       case "startup":
         return <StartupDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
       case "investor":
@@ -55,7 +51,7 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
     
     switch (activeRole) {
       case "company":
-        return "Company Dashboard";
+        return "MSME Dashboard";
       case "startup":
         return "Startup Dashboard";
       case "investor":

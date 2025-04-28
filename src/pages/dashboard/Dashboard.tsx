@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import StartupDashboard from "./StartupDashboard";
 import InvestorDashboard from "./InvestorDashboard";
@@ -8,11 +7,14 @@ import DashboardLayout from "../../components/layout/DashboardLayoutRefactored";
 import FundesDashboard from "../fundes/FundesDashboard";
 import MSMEDashboard from "./MSMEDashboard";
 
+interface DashboardProps {
+  activeRole?: "company" | "startup" | "investor" | "fundes";
+}
+
 const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => {
   const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor" | "fundes">(initialRole);
   const location = useLocation();
   
-  // Update activeRole when initialRole prop changes
   useEffect(() => {
     if (initialRole !== activeRole) {
       console.log("Initial role changed:", initialRole);

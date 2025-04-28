@@ -25,6 +25,7 @@ import CompanySocialImpact from "./pages/company/CompanySocialImpact";
 import CompanyProjectRoom from "./pages/company/CompanyProjectRoom";
 import MSMEDashboard from "./pages/dashboard/MSMEDashboard";
 import ProjectOverview from "./pages/msme/ProjectOverview";
+import DiscoverProjects from "./pages/projects/DiscoverProjects";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/discover-startups" element={<DiscoverStartups />} />
+          <Route path="/discover-projects" element={<DiscoverProjects />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/events" element={<Events />} />
           <Route path="/messages" element={<Messages />} />

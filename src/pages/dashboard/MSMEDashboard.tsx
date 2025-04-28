@@ -1,3 +1,4 @@
+
 import React from "react";
 import { 
   BarChart4, 
@@ -103,7 +104,7 @@ const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange 
               Track and manage your ESG goals, including circularity metrics and education progress.
             </p>
             <Button asChild className="w-full mt-2">
-              <Link to="/company/esg">View ESG Dashboard</Link>
+              <Link to="/msme/esg">View ESG Dashboard</Link>
             </Button>
           </CardContent>
         </Card>
@@ -118,7 +119,7 @@ const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange 
               Share information and educational content with your suppliers and distributors.
             </p>
             <Button asChild className="w-full mt-2">
-              <Link to="/company/intranet">Access Intranet</Link>
+              <Link to="/msme/intranet">Access Intranet</Link>
             </Button>
           </CardContent>
         </Card>
@@ -133,7 +134,7 @@ const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange 
               Browse and vet potential suppliers or distributors aligned with your ESG goals.
             </p>
             <Button asChild className="w-full mt-2">
-              <Link to="/company/partners">Discover Partners</Link>
+              <Link to="/msme/partners">Discover Partners</Link>
             </Button>
           </CardContent>
         </Card>
@@ -148,22 +149,22 @@ const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange 
               Discover and fund social impact initiatives aligned with your corporate values.
             </p>
             <Button asChild className="w-full mt-2">
-              <Link to="/company/impact">View Initiatives</Link>
+              <Link to="/msme/impact">View Initiatives</Link>
             </Button>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-base font-medium">Project Room</CardTitle>
-            <FileCheck className="h-5 w-5 text-cyan-600" />
+            <CardTitle className="text-base font-medium">Project Community</CardTitle>
+            <MessageSquare className="h-5 w-5 text-cyan-600" />
           </CardHeader>
           <CardContent className="space-y-2">
             <p className="text-sm text-muted-foreground">
-              Collaborate with partners on shared projects with communication and file sharing.
+              Connect and collaborate with other MSMEs on shared projects and initiatives.
             </p>
             <Button asChild className="w-full mt-2">
-              <Link to="/company/projects">Open Project Room</Link>
+              <Link to="/community">Join Community</Link>
             </Button>
           </CardContent>
         </Card>

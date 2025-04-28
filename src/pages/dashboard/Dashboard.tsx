@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import StartupDashboard from "./StartupDashboard";
 import InvestorDashboard from "./InvestorDashboard";
@@ -11,16 +12,18 @@ interface DashboardProps {
   activeRole?: "company" | "startup" | "investor" | "fundes";
 }
 
-const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => {
-  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor" | "fundes">(initialRole);
+const Dashboard = ({ activeRole: propActiveRole = "investor" }: DashboardProps) => {
   const location = useLocation();
+  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor" | "fundes">(
+    location.state?.initialRole || propActiveRole
+  );
   
   useEffect(() => {
-    if (initialRole !== activeRole) {
-      console.log("Initial role changed:", initialRole);
-      setActiveRole(initialRole);
+    if (propActiveRole !== activeRole && !location.state?.initialRole) {
+      console.log("Initial role changed:", propActiveRole);
+      setActiveRole(propActiveRole);
     }
-  }, [initialRole]);
+  }, [propActiveRole]);
 
   const handleRoleChange = (newRole: "company" | "startup" | "investor" | "fundes") => {
     console.log("Role changing in Dashboard from", activeRole, "to", newRole);
@@ -77,3 +80,4 @@ const Dashboard = ({ activeRole: initialRole = "investor" }: DashboardProps) => 
 };
 
 export default Dashboard;
+

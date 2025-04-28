@@ -2,16 +2,16 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-
 const Index = () => {
   const navigate = useNavigate();
-  
   const handleNavigate = (role: "company" | "startup" | "investor" | "fundes") => {
-    navigate("/dashboard", { state: { initialRole: role } });
+    navigate("/dashboard", {
+      state: {
+        initialRole: role
+      }
+    });
   };
-
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-purple-50 to-white p-4">
+  return <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-purple-50 to-white p-4">
       <div className="w-full max-w-4xl">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold mb-4 text-primary">Welcome to Fundes</h1>
@@ -42,7 +42,7 @@ const Index = () => {
 
           <Card className="border-t-4 border-t-green-500">
             <CardHeader>
-              <CardTitle>For Startups</CardTitle>
+              <CardTitle>For Companies</CardTitle>
               <CardDescription>
                 Connect with MSMEs and donors
               </CardDescription>
@@ -107,7 +107,6 @@ const Index = () => {
           </Button>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
 export default Index;

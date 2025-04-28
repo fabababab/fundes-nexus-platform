@@ -9,12 +9,12 @@ import FundesDashboard from "../fundes/FundesDashboard";
 import MSMEDashboard from "./MSMEDashboard";
 
 interface DashboardProps {
-  activeRole?: "company" | "startup" | "investor" | "fundes";
+  activeRole?: "startup" | "msme" | "investor" | "fundes";
 }
 
 const Dashboard = ({ activeRole: propActiveRole = "investor" }: DashboardProps) => {
   const location = useLocation();
-  const [activeRole, setActiveRole] = useState<"company" | "startup" | "investor" | "fundes">(
+  const [activeRole, setActiveRole] = useState<"startup" | "msme" | "investor" | "fundes">(
     location.state?.initialRole || propActiveRole
   );
   
@@ -32,13 +32,13 @@ const Dashboard = ({ activeRole: propActiveRole = "investor" }: DashboardProps) 
 
   const renderDashboardContent = () => {
     if (location.pathname === "/learning-journey") {
-      return <LearningJourney activeRole={activeRole as "company" | "startup" | "investor"} onRoleChange={handleRoleChange} />;
+      return <LearningJourney activeRole={activeRole as "startup" | "msme" | "investor"} onRoleChange={handleRoleChange} />;
     }
     
     switch (activeRole) {
-      case "company":
-        return <MSMEDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
       case "startup":
+        return <MSMEDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
+      case "msme":
         return <StartupDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
       case "investor":
         return <InvestorDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
@@ -55,9 +55,9 @@ const Dashboard = ({ activeRole: propActiveRole = "investor" }: DashboardProps) 
     }
     
     switch (activeRole) {
-      case "company":
-        return "MSME Dashboard";
       case "startup":
+        return "MSME Dashboard";
+      case "msme":
         return "Startup Dashboard";
       case "investor":
         return "Donor Dashboard";

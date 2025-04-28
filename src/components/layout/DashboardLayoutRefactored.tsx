@@ -40,8 +40,8 @@ import { cn } from "@/lib/utils";
 interface DashboardLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   menuItems?: any[];
-  activeRole: "company" | "startup" | "investor" | "fundes";
-  onRoleChange: (role: "company" | "startup" | "investor" | "fundes") => void;
+  activeRole: "startup" | "msme" | "investor" | "fundes";
+  onRoleChange: (role: "startup" | "msme" | "investor" | "fundes") => void;
   pageTitle: string;
 }
 
@@ -73,7 +73,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     { title: "AI Assistant", icon: Bot, href: "/chatbot", badge: "" },
   ];
 
-  const startupNavItems = [
+  const msmeNavItems = [
     { title: "Dashboard", icon: Briefcase, href: "/dashboard", badge: "" },
     { title: "Learning Journey", icon: GraduationCap, href: "/learning-journey", badge: "2" },
     { title: "Mentoring", icon: Users, href: "/network", badge: "" },
@@ -83,22 +83,22 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     { title: "Resources", icon: FileText, href: "/database", badge: "" },
   ];
 
-  const companyNavItems = [
+  const startupNavItems = [
     { title: "Dashboard", icon: Building2, href: "/dashboard", badge: "" },
     { title: "Impact Analytics", icon: BarChartHorizontal, href: "/analytics", badge: "2" },
     { title: "Partnerships", icon: Users, href: "/network", badge: "" },
     { title: "CSR Goals", icon: CircleDot, href: "/documents", badge: "" },
-    { title: "Startups", icon: Briefcase, href: "/discover-startups", badge: "" },
+    { title: "MSMEs", icon: Briefcase, href: "/discover-startups", badge: "" },
   ];
 
   const getNavItems = () => {
     switch (activeRole) {
       case "investor":
         return investorNavItems;
+      case "msme":
+        return msmeNavItems;
       case "startup":
         return startupNavItems;
-      case "company":
-        return companyNavItems;
       case "fundes":
         return fundesNavItems;
       default:
@@ -108,9 +108,9 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 
   const getRoleAccentColor = () => {
     switch (activeRole) {
-      case "company":
-        return "border-b-[#0EA5E9]";
       case "startup":
+        return "border-b-[#0EA5E9]";
+      case "msme":
         return "border-b-[#F2FCE2]";
       case "investor":
         return "border-b-[#9b87f5]";

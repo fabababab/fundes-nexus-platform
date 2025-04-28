@@ -20,8 +20,8 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import MSMEChatbot from "./components/MSMEChatbot";
 
 interface MSMEDashboardProps {
-  activeRole: "company" | "startup" | "investor";
-  onRoleChange: (role: "company" | "startup" | "investor") => void;
+  activeRole: "startup" | "msme" | "investor";
+  onRoleChange: (role: "startup" | "msme" | "investor") => void;
 }
 
 const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange }) => {

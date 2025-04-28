@@ -6,8 +6,8 @@ import { StartupCommunityFeed } from "@/components/community/StartupCommunityFee
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface StartupDashboardProps {
-  activeRole: "company" | "startup" | "investor";
-  onRoleChange: (role: "company" | "startup" | "investor") => void;
+  activeRole: "startup" | "msme" | "investor";
+  onRoleChange: (role: "startup" | "msme" | "investor") => void;
 }
 
 const StartupDashboard: React.FC<StartupDashboardProps> = ({ activeRole, onRoleChange }) => {

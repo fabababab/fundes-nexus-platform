@@ -53,9 +53,7 @@ const Index = () => {
               </p>
             </CardContent>
             <CardFooter>
-              <Button className="w-full" onClick={() => handleNavigate("startup")}>
-                Startup Dashboard
-              </Button>
+              <Button className="w-full" onClick={() => handleNavigate("startup")}>Companies Dashboard</Button>
             </CardFooter>
           </Card>
 

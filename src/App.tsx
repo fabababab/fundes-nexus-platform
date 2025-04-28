@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -53,7 +54,7 @@ const App = () => (
           <Route path="/msme/intranet" element={<CompanyIntranet />} />
           <Route path="/msme/partners" element={<CompanyPartnerDiscovery />} />
           <Route path="/msme/impact" element={<CompanySocialImpact />} />
-          <Route path="/msme/projects" element={<ProjectRoom />} />
+          <Route path="/msme/projects" element={<CompanyProjectRoom />} />
           
           <Route path="/analytics" element={<Dashboard />} />
           <Route path="/network" element={<Dashboard />} />
@@ -62,7 +63,7 @@ const App = () => (
           <Route path="/database" element={<Dashboard />} />
           <Route path="/settings" element={<Dashboard />} />
           <Route path="/learning-journey" element={<Dashboard activeRole="startup" />} />
-          <Route path="/msme/projects" element={<ProjectOverview />} />
+          <Route path="/msme/project-overview" element={<ProjectOverview />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

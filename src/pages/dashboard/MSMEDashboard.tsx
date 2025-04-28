@@ -9,7 +9,8 @@ import {
   FileCheck,
   Search,
   Bot,
-  MessageSquare
+  MessageSquare,
+  Folder
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -80,14 +81,14 @@ const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-base font-medium">Project Overview</CardTitle>
-            <folder className="h-5 w-5 text-blue-600" />
+            <Folder className="h-5 w-5 text-blue-600" />
           </CardHeader>
           <CardContent className="space-y-2">
             <p className="text-sm text-muted-foreground">
               View active FUNDES projects, apply to participate, or recommend other MSMEs.
             </p>
             <Button asChild className="w-full mt-2">
-              <Link to="/msme/projects">View Projects</Link>
+              <Link to="/msme/project-overview">View Projects</Link>
             </Button>
           </CardContent>
         </Card>

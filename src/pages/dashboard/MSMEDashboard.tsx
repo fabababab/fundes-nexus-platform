@@ -26,10 +26,14 @@ interface MSMEDashboardProps {
 }
 
 const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange }) => {
+  const isMSME = activeRole === "msme";
+  const dashboardTitle = isMSME ? "MSME Dashboard" : "Companies Dashboard";
+  const baseRoute = isMSME ? "/msme" : "/company";
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">MSME Dashboard</h1>
+        <h1 className="text-3xl font-bold">{dashboardTitle}</h1>
         <Dialog>
           <DialogTrigger asChild>
             <Button variant="default" className="flex gap-2">
@@ -78,7 +82,7 @@ const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange 
         </Card>
       </div>
 
-      <h2 className="text-2xl font-bold mt-8 mb-4">MSME Features</h2>
+      <h2 className="text-2xl font-bold mt-8 mb-4">{isMSME ? "MSME" : "Companies"} Features</h2>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -90,7 +94,7 @@ const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange 
               View active FUNDES projects, apply to participate, or recommend other MSMEs.
             </p>
             <Button asChild className="w-full mt-2">
-              <Link to="/msme/project-overview">View Projects</Link>
+              <Link to={`${baseRoute}/project-overview`}>View Projects</Link>
             </Button>
           </CardContent>
         </Card>
@@ -105,7 +109,7 @@ const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange 
               Track and manage your ESG goals, including circularity metrics and education progress.
             </p>
             <Button asChild className="w-full mt-2">
-              <Link to="/msme/esg">View ESG Dashboard</Link>
+              <Link to={`${baseRoute}/esg`}>View ESG Dashboard</Link>
             </Button>
           </CardContent>
         </Card>
@@ -120,7 +124,7 @@ const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange 
               Share information and educational content with your suppliers and distributors.
             </p>
             <Button asChild className="w-full mt-2">
-              <Link to="/msme/intranet">Access Intranet</Link>
+              <Link to={`${baseRoute}/intranet`}>Access Intranet</Link>
             </Button>
           </CardContent>
         </Card>
@@ -135,7 +139,7 @@ const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange 
               Browse and vet potential suppliers or distributors aligned with your ESG goals.
             </p>
             <Button asChild className="w-full mt-2">
-              <Link to="/msme/partners">Discover Partners</Link>
+              <Link to={`${baseRoute}/partners`}>Discover Partners</Link>
             </Button>
           </CardContent>
         </Card>
@@ -150,7 +154,7 @@ const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange 
               Discover and fund social impact initiatives aligned with your corporate values.
             </p>
             <Button asChild className="w-full mt-2">
-              <Link to="/msme/impact">View Initiatives</Link>
+              <Link to={`${baseRoute}/impact`}>View Initiatives</Link>
             </Button>
           </CardContent>
         </Card>

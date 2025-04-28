@@ -5,7 +5,7 @@ import DashboardLayout from "../../components/layout/DashboardLayoutRefactored";
 import MSMEDashboard from "./MSMEDashboard";
 import InvestorDashboard from "./InvestorDashboard";
 import LearningJourney from "../learning/LearningJourney";
-import CompanyDashboard from "./MSMEDashboard"; // Reusing the MSME Dashboard for Company view
+import CompanyDashboard from "./MSMEDashboard"; // We're temporarily reusing MSMEDashboard for Company view
 import FundesDashboard from "../fundes/FundesDashboard";
 import { UserRole } from "@/types/common";
 

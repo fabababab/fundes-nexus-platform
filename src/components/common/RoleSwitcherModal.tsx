@@ -21,25 +21,25 @@ interface RoleSwitcherModalProps {
 const RoleSwitcherModal = ({ activeRole, onRoleChange }: RoleSwitcherModalProps) => {
   const roles = [
     {
-      id: "company",
+      id: "company" as UserRole,
       name: "Companies View",
       icon: <Building2 className="h-4 w-4" />,
       description: "Access corporate partnership and innovation tools"
     },
     {
-      id: "msme",
+      id: "msme" as UserRole,
       name: "MSME View",
       icon: <Briefcase className="h-4 w-4" />,
       description: "Manage your MSME journey and connections"
     },
     {
-      id: "investor",
+      id: "investor" as UserRole,
       name: "Donors View",
       icon: <PiggyBank className="h-4 w-4" />,
       description: "Track donations and discover opportunities"
     },
     {
-      id: "fundes",
+      id: "fundes" as UserRole,
       name: "Fundes View",
       icon: <Target className="h-4 w-4" />,
       description: "Comprehensive ecosystem management and insights"
@@ -68,7 +68,7 @@ const RoleSwitcherModal = ({ activeRole, onRoleChange }: RoleSwitcherModalProps)
               className="flex items-center justify-start gap-3 p-4 h-auto"
               onClick={() => {
                 console.log("Role changed to:", role.id);
-                onRoleChange(role.id as UserRole);
+                onRoleChange(role.id);
               }}
             >
               {role.icon}

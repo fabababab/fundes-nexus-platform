@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -49,7 +50,14 @@ const App = () => (
           <Route path="/fundes/events" element={<FundesEvents />} />
           <Route path="/fundes/tasks" element={<FundesTasks />} />
           
-          {/* MSME routes (formerly Company routes) */}
+          {/* Company routes */}
+          <Route path="/company/esg" element={<CompanyESGDashboard />} />
+          <Route path="/company/intranet" element={<CompanyIntranet />} />
+          <Route path="/company/partners" element={<CompanyPartnerDiscovery />} />
+          <Route path="/company/impact" element={<CompanySocialImpact />} />
+          <Route path="/company/projects" element={<CompanyProjectRoom />} />
+          
+          {/* MSME routes */}
           <Route path="/msme/esg" element={<CompanyESGDashboard />} />
           <Route path="/msme/intranet" element={<CompanyIntranet />} />
           <Route path="/msme/partners" element={<CompanyPartnerDiscovery />} />
@@ -62,7 +70,7 @@ const App = () => (
           <Route path="/investments" element={<Dashboard />} />
           <Route path="/database" element={<Dashboard />} />
           <Route path="/settings" element={<Dashboard />} />
-          <Route path="/learning-journey" element={<Dashboard activeRole="startup" />} />
+          <Route path="/learning-journey" element={<Dashboard activeRole="msme" />} />
           <Route path="/msme/project-overview" element={<ProjectOverview />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -21,7 +21,7 @@ const RoleSwitcherModal = ({ activeRole, onRoleChange }: RoleSwitcherModalProps)
   const roles = [
     {
       id: "company",
-      name: "Company View",
+      name: "MSME View",
       icon: <Building2 className="h-4 w-4" />,
       description: "Access corporate partnership and innovation tools"
     },

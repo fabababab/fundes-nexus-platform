@@ -8,11 +8,16 @@ import { UserRole } from "@/types/common";
 const Index = () => {
   const navigate = useNavigate();
   const handleNavigate = (role: UserRole) => {
-    navigate("/dashboard", {
-      state: {
-        initialRole: role
-      }
-    });
+    if (role === "fundes") {
+      // Direct routing to fundes dashboard
+      navigate("/fundes/feed");
+    } else {
+      navigate("/dashboard", {
+        state: {
+          initialRole: role
+        }
+      });
+    }
   };
   
   return (

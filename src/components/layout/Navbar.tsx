@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { UserRole } from "@/types/common";
@@ -80,9 +79,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   // Combine all items
   const allNavItems = [...navItems, ...fundesItems];
 
-  // Render desktop nav item
+  // Render desktop nav item - removed hover:bg-gray-100
   const renderNavItem = (item: typeof navItems[0], index: number) => (
-    <Link to={item.route} className="relative p-2 hover:bg-gray-100 rounded-full" key={index}>
+    <Link to={item.route} className="relative p-2 rounded-full" key={index}>
       {item.icon}
       {item.badge && (
         <span className={`absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full ${item.badgeColor} text-xs text-white`}>
@@ -92,9 +91,9 @@ export const Navbar: React.FC<NavbarProps> = ({
     </Link>
   );
 
-  // Render mobile nav item with labels
+  // Render mobile nav item with labels - removed hover:bg-gray-100
   const renderMobileNavItem = (item: typeof navItems[0], index: number) => (
-    <Link to={item.route} className="flex items-center p-3 hover:bg-gray-100 rounded-md" key={index}>
+    <Link to={item.route} className="flex items-center p-3 rounded-md" key={index}>
       <div className="relative mr-3">
         {item.icon}
         {item.badge && (
@@ -119,7 +118,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center space-x-2">
             <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
               <SheetTrigger asChild>
-                <button className="p-2 hover:bg-gray-100 rounded-full">
+                <button className="p-2 rounded-full">
                   <Menu className="h-5 w-5 text-navy-blue" />
                 </button>
               </SheetTrigger>
@@ -137,11 +136,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             </Sheet>
             
             {/* App grid menu button */}
-            <button className="p-2 hover:bg-gray-100 rounded-full" onClick={() => setSidebarOpen(true)}>
+            <button className="p-2 rounded-full" onClick={() => setSidebarOpen(true)}>
               <Grid3X3 className="h-5 w-5 text-navy-blue" />
             </button>
             
-            <button className="p-2 hover:bg-gray-100 rounded-full">
+            <button className="p-2 rounded-full">
               <User className="h-5 w-5 text-navy-blue" />
             </button>
           </div>
@@ -156,7 +155,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 updateThemeFromRole(role);
               }} />
               
-              <button className="ml-2 p-2 hover:bg-gray-100 rounded-full">
+              <button className="ml-2 p-2 rounded-full">
                 <User className="h-5 w-5 text-navy-blue" />
               </button>
             </div>

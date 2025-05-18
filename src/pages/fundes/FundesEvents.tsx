@@ -456,13 +456,13 @@ const FundesEvents = () => {
                         className="pl-8 w-64"
                       />
                     </div>
-                    <Select value={selectedEventType || ""} onValueChange={(value) => setSelectedEventType(value || null)}>
+                    <Select value={selectedEventType || "all"} onValueChange={(value) => setSelectedEventType(value === "all" ? null : value)}>
                       <SelectTrigger className="w-36">
                         <SelectValue placeholder="Filter by type" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectItem value="">All types</SelectItem>
+                          <SelectItem value="all">All types</SelectItem>
                           <SelectItem value="workshop">Workshop</SelectItem>
                           <SelectItem value="networking">Networking</SelectItem>
                           <SelectItem value="strategy">Strategy</SelectItem>

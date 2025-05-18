@@ -38,14 +38,14 @@ const Index = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-          <Card className="border-t-4 border-t-blue-500">
+          <Card className="border-t-4 border-t-blue-500 flex flex-col">
             <CardHeader>
               <CardTitle>For MSMEs</CardTitle>
               <CardDescription>
                 Find innovative solutions aligned with your goals
               </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="flex-grow">
               <p className="text-caption">
                 Discover partnerships, track your collaborations, and measure your impact on sustainability goals.
               </p>
@@ -57,14 +57,14 @@ const Index = () => {
             </CardFooter>
           </Card>
 
-          <Card className="border-t-4 border-t-emerald-500">
+          <Card className="border-t-4 border-t-emerald-500 flex flex-col">
             <CardHeader>
               <CardTitle>For Fundes</CardTitle>
               <CardDescription>
                 Manage ecosystem and initiatives
               </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="flex-grow">
               <p className="text-caption">
                 Oversee the entire ecosystem, manage projects, and track impact across all stakeholders.
               </p>
@@ -76,14 +76,14 @@ const Index = () => {
             </CardFooter>
           </Card>
 
-          <Card className="border-t-4 border-t-amber-500">
+          <Card className="border-t-4 border-t-amber-500 flex flex-col">
             <CardHeader>
               <CardTitle>For Donors</CardTitle>
               <CardDescription>
                 Discover sustainable investment opportunities
               </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="flex-grow">
               <p className="text-caption">
                 Find promising initiatives aligned with your donation criteria and track portfolio impact.
               </p>

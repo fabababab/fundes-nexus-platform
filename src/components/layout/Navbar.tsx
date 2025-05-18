@@ -82,23 +82,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   // Combine all items
   const allNavItems = [...navItems, ...fundesItems];
 
-  // Render desktop nav item
-  const renderNavItem = (item: typeof navItems[0], index: number) => {
-    return (
-      <Link to={item.route} className="flex items-center p-3 rounded-md" key={index}>
-        <div className="relative mr-2">
-          {item.icon}
-          {item.badge && (
-            <span className={`absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full ${item.badgeColor} text-xs text-white`}>
-              {item.badge}
-            </span>
-          )}
-        </div>
-        <span className="sr-only">{item.label}</span>
-      </Link>
-    );
-  };
-
   // Render mobile nav item with labels
   const renderMobileNavItem = (item: typeof navItems[0], index: number) => (
     <Link to={item.route} className="flex items-center p-3 rounded-md" key={index}>
@@ -157,10 +140,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           </div>
         ) : (
-          /* Desktop view - full navbar */
+          /* Desktop view - only show the essential buttons */
           <div className="navbar-items">
-            {allNavItems.map(renderNavItem)}
-            
             <div className="flex items-center ml-2">
               <AppsMenu 
                 activeRole={activeRole} 

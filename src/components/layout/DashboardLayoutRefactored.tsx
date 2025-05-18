@@ -52,6 +52,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   activeRole,
   onRoleChange,
   pageTitle,
+  menuItems: inheritedMenuItems, // Renamed to avoid conflict if menuItems prop is indeed used internally for something else
   ...props
 }: DashboardLayoutProps) => {
   
@@ -68,26 +69,18 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 
   const investorNavItems = [
     { title: "Dashboard", icon: PiggyBank, href: "/dashboard", badge: "" },
-    { title: "Discover Startups", icon: Search, href: "/discover-startups", badge: "" }, // Note: /discover-startups might need review if startups are fully removed
+    { title: "Discover Startups", icon: Search, href: "/discover-startups", badge: "" },
     { title: "Portfolio", icon: Briefcase, href: "/portfolio", badge: "1" },
     { title: "Performance", icon: BarChart4, href: "/analytics", badge: "" },
     { title: "AI Assistant", icon: Bot, href: "/chatbot", badge: "" },
   ];
 
   const msmeNavItems = [
-    { title: "Learning Modules", icon: GraduationCap, href: "/learning-journey", badge: "2" },
+    { title: "Learning Modules", icon: GraduationCap, href: "/msme/learning-modules", badge: "2" },
     { title: "Community Hub", icon: MessageSquare, href: "/community", badge: "5" },
     { title: "Project Overview", icon: FileText, href: "/msme/project-overview", badge: "" },
     { title: "AI Assistant", icon: Bot, href: "/chatbot", badge: "" },
   ];
-
-  // const companyNavItems = [ // Removed company navigation items
-  //   { title: "Dashboard", icon: Building2, href: "/dashboard", badge: "" },
-  //   { title: "Impact Analytics", icon: BarChartHorizontal, href: "/analytics", badge: "2" },
-  //   { title: "Partnerships", icon: Users, href: "/network", badge: "" },
-  //   { title: "CSR Goals", icon: CircleDot, href: "/documents", badge: "" },
-  //   { title: "MSMEs", icon: Briefcase, href: "/discover-startups", badge: "" },
-  // ];
 
   const getNavItems = () => {
     switch (activeRole) {
@@ -95,21 +88,17 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
         return investorNavItems;
       case "msme":
         return msmeNavItems;
-      // case "company": // Removed company case
-      //   return companyNavItems;
       case "fundes":
         return fundesNavItems;
-      default: // Default to investor or msme, or handle error
+      default:
         return investorNavItems; 
     }
   };
 
   const getRoleAccentColor = () => {
     switch (activeRole) {
-      // case "company": // Removed company case
-      //   return "border-b-[#0EA5E9]";
       case "msme":
-        return "border-b-[#F2FCE2]"; // Consider a more visible color if F2FCE2 is too light
+        return "border-b-[#F2FCE2]";
       case "investor":
         return "border-b-[#9b87f5]";
       case "fundes":
@@ -118,6 +107,8 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
         return "";
     }
   };
+
+  const currentNavItems = inheritedMenuItems && inheritedMenuItems.length > 0 ? inheritedMenuItems : getNavItems();
 
   return (
     <SidebarProvider>
@@ -128,10 +119,10 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
               <SidebarGroupLabel className="px-4 text-gray-500 text-sm">Navigation</SidebarGroupLabel>
               <SidebarGroupContent>
                 <SidebarMenu>
-                  {getNavItems().map((item) => (
+                  {currentNavItems.map((item: any) => (
                     <SidebarMenuItem key={item.title}>
                       <SidebarMenuButton asChild tooltip={item.title}>
-                        <Link to={item.href} className="relative flex items-center">
+                        <Link to={item.href || '#'} className="relative flex items-center">
                           <item.icon className="h-5 w-5 mr-2 text-gray-600" />
                           <span>{item.title}</span>
                           {item.badge && (

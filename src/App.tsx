@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -27,6 +28,7 @@ import FundesTasks from "./pages/fundes/FundesTasks";
 // import MSMEDashboard from "./pages/dashboard/MSMEDashboard"; // MSMEDashboard is rendered via Dashboard component
 import ProjectOverview from "./pages/msme/ProjectOverview";
 import DiscoverProjects from "./pages/projects/DiscoverProjects";
+import LearningModules from "./pages/msme/LearningModules"; // <-- Import the new page
 
 const queryClient = new QueryClient();
 
@@ -75,6 +77,7 @@ const App = () => (
           <Route path="/settings" element={<Dashboard />} />
           <Route path="/learning-journey" element={<Dashboard activeRole="msme" />} />
           <Route path="/msme/project-overview" element={<ProjectOverview />} />
+          <Route path="/msme/learning-modules" element={<LearningModules />} /> {/* <-- Add new route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

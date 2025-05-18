@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CompanyFeed from "../../components/feed/CompanyFeed";
@@ -49,12 +48,12 @@ const Feed = () => {
           </div>
 
           <TabsContent value="for-you">
-            {activeRole === "company" ? (
-              <CompanyFeed />
-            ) : activeRole === "msme" ? (
+            {activeRole === "msme" ? (
               <StartupFeed />
-            ) : (
+            ) : activeRole === "fundes" ? (
               <InvestorFeed />
+            ) : (
+              <StartupFeed />
             )}
           </TabsContent>
           

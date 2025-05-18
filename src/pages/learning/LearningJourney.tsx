@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Book, CheckCircle, Clock } from "lucide-react";
+import { Book, CheckCircle, Clock, List, BookText } from "lucide-react"; // Added List and BookText, ensure Book is kept
 import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
 import { UserRole } from "@/types/common";
 
@@ -13,27 +13,27 @@ const LearningJourney: React.FC<LearningJourneyProps> = ({ activeRole, onRoleCha
   const menuItems = [
     {
       title: "Dashboard",
-      icon: Book,
+      icon: Book, // Kept Book
       url: "#dashboard",
     },
     {
       title: "My Courses",
-      icon: Book,
+      icon: BookText, // Changed to BookText for variety from allowed list
       url: "#courses",
     },
     {
       title: "Community",
-      icon: Book,
+      icon: List, // Changed from potentially Users to List (allowed)
       url: "#community",
     },
     {
       title: "Resources",
-      icon: Book,
+      icon: List, // Changed to List for variety from allowed list
       url: "#resources",
     },
     {
       title: "Settings",
-      icon: Book,
+      icon: List, // Changed from potentially Settings to List (allowed)
       url: "#settings",
     },
   ];

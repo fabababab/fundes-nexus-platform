@@ -26,7 +26,8 @@ const FundesFeed: React.FC = () => {
         avatar: "/placeholder.svg"
       },
       likes: 12,
-      comments: 3
+      comments: 3,
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     },
     {
       id: "2",
@@ -41,7 +42,8 @@ const FundesFeed: React.FC = () => {
         avatar: "/placeholder.svg"
       },
       likes: 31,
-      comments: 8
+      comments: 8,
+      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     },
     {
       id: "3",
@@ -56,7 +58,8 @@ const FundesFeed: React.FC = () => {
         avatar: "/placeholder.svg"
       },
       likes: 45,
-      comments: 11
+      comments: 11,
+      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     },
     {
       id: "4",
@@ -71,7 +74,8 @@ const FundesFeed: React.FC = () => {
         avatar: "/placeholder.svg"
       },
       likes: 27,
-      comments: 15
+      comments: 15,
+      image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     }
   ];
 

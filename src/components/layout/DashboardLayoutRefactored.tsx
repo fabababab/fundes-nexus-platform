@@ -1,4 +1,3 @@
-
 import React from "react";
 import { 
   SidebarProvider,
@@ -62,7 +61,9 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     { title: "Strategic Initiatives", icon: Lightbulb, href: "/investments", badge: "" },
     { title: "Communications Hub", icon: MessageSquareText, href: "/fundes/communications", badge: "3" },
     { title: "Events Calendar", icon: CalendarDays, href: "/fundes/events", badge: "2" },
-    { title: "Task Management", icon: ListTodo, href: "/fundes/tasks", badge: "4" }
+    { title: "Task Management", icon: ListTodo, href: "/fundes/tasks", badge: "4" },
+    { title: "Feed", icon: Rss, href: "/fundes/feed", badge: "3" },
+    { title: "Messages", icon: MessageSquare, href: "/fundes/messages", badge: "2" }
   ];
 
   const investorNavItems = [

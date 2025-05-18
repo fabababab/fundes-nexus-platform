@@ -14,6 +14,8 @@ import LearningModules from "./pages/msme/LearningModules";
 import FundesCommunications from "./pages/fundes/FundesCommunications";
 import FundesEvents from "./pages/fundes/FundesEvents";
 import FundesTasks from "./pages/fundes/FundesTasks";
+import FundesFeed from "./pages/fundes/FundesFeed";
+import FundesMessages from "./pages/fundes/FundesMessages";
 
 // Import MSME-specific pages
 import MSMEFeed from "./pages/msme/MSMEFeed";
@@ -55,6 +57,8 @@ const App = () => (
           <Route path="/fundes/communications" element={<FundesCommunications />} />
           <Route path="/fundes/events" element={<FundesEvents />} />
           <Route path="/fundes/tasks" element={<FundesTasks />} />
+          <Route path="/fundes/feed" element={<FundesFeed />} />
+          <Route path="/fundes/messages" element={<FundesMessages />} />
           
           {/* Redirect old shared paths to role-specific paths */}
           <Route path="/feed" element={<Navigate to="/msme/feed" replace />} />

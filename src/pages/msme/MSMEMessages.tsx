@@ -80,8 +80,12 @@ const MSMEMessages: React.FC = () => {
       <div className="h-[calc(100vh-10rem)] flex border rounded-lg overflow-hidden bg-white">
         <div className="w-1/3 border-r">
           <ContactsList 
-            selectedId={selectedContact}
-            onSelect={(id) => setSelectedContact(id)}
+            filter="all"
+            search=""
+            onSelectContact={setSelectedContact}
+            selectedContactId={selectedContact || ""}
+            showUnreadOnly={false}
+            onContactInfoClick={() => {}}
           />
         </div>
         <div className="w-2/3">

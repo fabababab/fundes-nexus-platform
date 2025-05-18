@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Briefcase, PiggyBank, Star, TrendingUp, FileSpreadsheet, Users2 } from "lucide-react";
+import { Briefcase, CalendarClock } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { UserRole } from "@/types/common";
 
@@ -11,73 +11,26 @@ interface InvestorDashboardProps {
 
 const InvestorDashboard: React.FC<InvestorDashboardProps> = ({ activeRole, onRoleChange }) => {
   return (
-    <div className="space-y-6">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Portfolio Impact</CardTitle>
-            <PiggyBank className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">$2.42M</div>
-            <p className="text-xs text-muted-foreground">Impact value generated this month</p>
-          </CardContent>
-        </Card>
-        
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Projects</CardTitle>
-            <Briefcase className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">12</div>
-            <p className="text-xs text-muted-foreground">2 new this month</p>
-          </CardContent>
-        </Card>
-        
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Top Impact Leaders</CardTitle>
-            <Star className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">4</div>
-            <p className="text-xs text-muted-foreground">High social/environmental impact</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Average Impact ROI</CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">2.5x</div>
-            <p className="text-xs text-muted-foreground">Social return on investment</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Pipeline for Impact Deals</CardTitle>
-            <FileSpreadsheet className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">42</div>
-            <p className="text-xs text-muted-foreground">15 in assessment</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Impact Network</CardTitle>
-            <Users2 className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">180+</div>
-            <p className="text-xs text-muted-foreground">Across 35 countries</p>
-          </CardContent>
-        </Card>
+    <div className="flex flex-col items-center justify-center py-24 px-4 text-center">
+      <div className="rounded-full bg-soft-purple p-6 mb-6">
+        <CalendarClock className="h-12 w-12 text-primary-purple" />
+      </div>
+      <h2 className="text-3xl font-bold mb-4 text-dark-purple">Donor Dashboard Coming Soon</h2>
+      <p className="text-lg text-neutral-gray max-w-2xl mx-auto mb-8">
+        We're building an enhanced dashboard experience specifically designed for donors. 
+        Stay tuned for comprehensive impact metrics, portfolio management tools, and 
+        actionable insights to maximize the effectiveness of your contributions.
+      </p>
+      <div className="bg-soft-gray rounded-lg p-6 max-w-xl mx-auto">
+        <h3 className="font-semibold mb-2 text-secondary-purple">Features to expect:</h3>
+        <ul className="list-disc list-inside text-left space-y-2 text-gray-700">
+          <li>Real-time impact analytics from your funded projects</li>
+          <li>Portfolio diversification and management tools</li>
+          <li>MSME progress tracking and milestone alerts</li>
+          <li>Impact benchmarking against UN SDGs</li>
+          <li>Collaboration opportunities with other donors</li>
+          <li>Custom reporting and insights dashboard</li>
+        </ul>
       </div>
     </div>
   );

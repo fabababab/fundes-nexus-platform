@@ -55,6 +55,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   const navigate = useNavigate();
   
   const fundesNavItems = [
+    { title: "Feed", icon: Rss, href: "/fundes/feed", badge: "3" },
     { title: "Dashboard", icon: Target, href: "/fundes", badge: "" },
     { title: "Ecosystem Insights", icon: BarChart4, href: "/analytics", badge: "2" },
     { title: "Stakeholder Network", icon: Users, href: "/network", badge: "" },
@@ -62,7 +63,6 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     { title: "Communications Hub", icon: MessageSquareText, href: "/fundes/communications", badge: "3" },
     { title: "Events Calendar", icon: CalendarDays, href: "/fundes/events", badge: "2" },
     { title: "Task Management", icon: ListTodo, href: "/fundes/tasks", badge: "4" },
-    { title: "Feed", icon: Rss, href: "/fundes/feed", badge: "3" },
     { title: "Messages", icon: MessageSquare, href: "/fundes/messages", badge: "2" }
   ];
 
@@ -73,14 +73,13 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     { title: "Performance", icon: BarChart4, href: "/analytics", badge: "" },
   ];
 
-  // Updated MSME nav items to use MSME-specific routes
+  // Updated MSME nav items to put Feed first
   const msmeNavItems = [
-    { title: "Dashboard", icon: Target, href: "/msme", badge: "" },
+    { title: "Feed", icon: Rss, href: "/msme/feed", badge: "3" },
     { title: "Learning Modules", icon: GraduationCap, href: "/msme/learning-modules", badge: "2" },
     { title: "Community Hub", icon: MessageSquare, href: "/msme/community", badge: "5" },
     { title: "Project Overview", icon: FileText, href: "/msme/project-overview", badge: "" },
     { title: "AI Assistant", icon: Bot, href: "/msme/chatbot", badge: "" },
-    { title: "Feed", icon: Rss, href: "/msme/feed", badge: "3" },
     { title: "Events", icon: Calendar, href: "/msme/events", badge: "4" },
     { title: "Messages", icon: MessageSquareText, href: "/msme/messages", badge: "2" },
   ];
@@ -101,13 +100,13 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   const handleRoleChange = (newRole: UserRole) => {
     onRoleChange(newRole);
     
-    // Navigate to the appropriate dashboard when role changes
+    // Navigate to the appropriate page when role changes
     switch (newRole) {
       case "msme":
-        navigate("/msme");
+        navigate("/msme/feed");
         break;
       case "fundes":
-        navigate("/fundes");
+        navigate("/fundes/feed");
         break;
       case "investor":
         navigate("/dashboard");

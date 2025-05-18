@@ -2,11 +2,9 @@
 import React, { useState } from "react";
 import DashboardLayout from "@/components/layout/DashboardLayoutRefactored";
 import InvestorDashboard from "./InvestorDashboard";
-// import StartupDashboard from "./StartupDashboard"; // "startup" role is not in UserRole
-import MSMEDashboard from "./MSMEDashboard";
 import FundesDashboard from "../fundes/FundesDashboard";
 import { UserRole } from "@/types/common";
-// import StartupDashboardProps from './StartupDashboard'; // Assuming StartupDashboardProps type is not needed
+import { Navigate } from "react-router-dom";
 
 interface DashboardProps {
   activeRole?: UserRole;
@@ -24,13 +22,9 @@ const Dashboard: React.FC<DashboardProps> = ({ activeRole: initialActiveRole = "
       case "investor":
         return "Investor Dashboard";
       case "msme":
-        return "MSME Dashboard";
+        return "MSME Feed";  // Updated title
       case "fundes":
         return "Fundes Dashboard";
-      // case "company": // Removed as company role is removed
-      //   return "Company Dashboard";
-      // case "startup": // Removed as startup role is not in UserRole
-      // return "Startup Dashboard"; 
       default: {
         // Fallback for any unexpected role, though UserRole type should prevent this.
         const exhaustiveCheck: never = role;
@@ -39,6 +33,12 @@ const Dashboard: React.FC<DashboardProps> = ({ activeRole: initialActiveRole = "
     }
   };
 
+  // If MSME role is active, redirect to the feed page
+  if (activeRole === "msme") {
+    return <Navigate to="/msme/feed" replace />;
+  }
+
+  // For other roles, show their respective dashboards
   return (
     <DashboardLayout 
       activeRole={activeRole} 
@@ -47,10 +47,7 @@ const Dashboard: React.FC<DashboardProps> = ({ activeRole: initialActiveRole = "
     >
       <div className="container mx-auto py-6">
         {activeRole === "investor" && <InvestorDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />}
-        {/* {activeRole === "startup" && <StartupDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />} "startup" role is not valid */}
-        {activeRole === "msme" && <MSMEDashboard />}
         {activeRole === "fundes" && <FundesDashboard />}
-        
       </div>
     </DashboardLayout>
   );

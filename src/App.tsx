@@ -42,8 +42,8 @@ const App = () => (
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/discover-projects" element={<DiscoverProjects />} />
           
-          {/* MSME routes */}
-          <Route path="/msme" element={<Dashboard activeRole="msme" />} />
+          {/* MSME routes - redirect /msme to /msme/feed */}
+          <Route path="/msme" element={<Navigate to="/msme/feed" replace />} />
           <Route path="/msme/feed" element={<MSMEFeed />} />
           <Route path="/msme/chatbot" element={<MSMEChatBot />} />
           <Route path="/msme/events" element={<MSMEEvents />} />
@@ -53,7 +53,7 @@ const App = () => (
           <Route path="/msme/learning-modules" element={<LearningModules />} />
           
           {/* Fundes routes */}
-          <Route path="/fundes" element={<Dashboard activeRole="fundes" />} />
+          <Route path="/fundes" element={<Navigate to="/fundes/feed" replace />} />
           <Route path="/fundes/communications" element={<FundesCommunications />} />
           <Route path="/fundes/events" element={<FundesEvents />} />
           <Route path="/fundes/tasks" element={<FundesTasks />} />

@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
+import { SimpleDashboardLayout } from "@/components/layout/SimpleDashboardLayout";
 import EventCard from "@/components/events/EventCard";
 import { UserRole } from "@/types/common";
 import { Button } from "@/components/ui/button";
@@ -66,16 +66,16 @@ const MSMEEvents: React.FC = () => {
   ];
   
   return (
-    <DashboardLayout
+    <SimpleDashboardLayout
       activeRole={activeRole}
       onRoleChange={handleRoleChange}
       pageTitle="MSME Events"
     >
-      <div className="container mx-auto py-8">
+      <div className="py-8">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold mb-2 text-navy-blue">Upcoming MSME Events</h1>
-            <p className="text-lg text-neutral-gray">
+            <h1 className="page-title">Upcoming MSME Events</h1>
+            <p className="page-subtitle">
               Workshops, networking opportunities, and training sessions tailored for MSMEs.
             </p>
           </div>
@@ -91,7 +91,7 @@ const MSMEEvents: React.FC = () => {
           ))}
         </div>
       </div>
-    </DashboardLayout>
+    </SimpleDashboardLayout>
   );
 };
 

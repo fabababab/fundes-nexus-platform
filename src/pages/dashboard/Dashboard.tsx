@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import DashboardLayout from "@/components/layout/DashboardLayoutRefactored";
+import { SimpleDashboardLayout } from "@/components/layout/SimpleDashboardLayout";
 import InvestorDashboard from "./InvestorDashboard";
 import FundesDashboard from "../fundes/FundesDashboard";
 import { UserRole } from "@/types/common";
@@ -40,16 +40,16 @@ const Dashboard: React.FC<DashboardProps> = ({ activeRole: initialActiveRole = "
 
   // For other roles, show their respective dashboards
   return (
-    <DashboardLayout 
+    <SimpleDashboardLayout 
       activeRole={activeRole} 
       onRoleChange={handleRoleChange}
       pageTitle={getPageTitle(activeRole)}
     >
-      <div className="container mx-auto py-6">
+      <div className="py-6">
         {activeRole === "investor" && <InvestorDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />}
         {activeRole === "fundes" && <FundesDashboard />}
       </div>
-    </DashboardLayout>
+    </SimpleDashboardLayout>
   );
 };
 

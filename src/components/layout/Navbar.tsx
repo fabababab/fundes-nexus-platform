@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { UserRole } from "@/types/common";
-import { MessageSquare, Rss, Calendar, User, Database, BarChart4, Menu } from "lucide-react";
+import { MessageSquare, Rss, Calendar, User, Database, BarChart4, Menu, Grid3X3 } from "lucide-react";
 import { AppsMenu } from "./AppsMenu";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -19,6 +19,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onRoleChange
 }) => {
   const isMobile = useIsMobile();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   
   // Helper function to get role-specific routes
   const getRoleSpecificRoute = (baseRoute: string): string => {
@@ -106,10 +107,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           <h1 className="navbar-brand">{pageTitle}</h1>
         </div>
         
-        {/* Mobile view - hamburger menu */}
+        {/* Mobile view - hamburger menu and apps grid button */}
         {isMobile ? (
           <div className="flex items-center space-x-2">
-            <Sheet>
+            <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
               <SheetTrigger asChild>
                 <button className="p-2 hover:bg-gray-100 rounded-full">
                   <Menu className="h-5 w-5 text-navy-blue" />
@@ -120,10 +121,15 @@ export const Navbar: React.FC<NavbarProps> = ({
                   {allNavItems.map(renderMobileNavItem)}
                 </div>
                 <div className="mt-6">
-                  <AppsMenu activeRole={activeRole} onRoleChange={onRoleChange} />
+                  <AppsMenu activeRole={activeRole} onRoleChange={onRoleChange} isMobileSidebar={true} />
                 </div>
               </SheetContent>
             </Sheet>
+            
+            {/* App grid menu button */}
+            <button className="p-2 hover:bg-gray-100 rounded-full" onClick={() => setSidebarOpen(true)}>
+              <Grid3X3 className="h-5 w-5 text-navy-blue" />
+            </button>
             
             <button className="p-2 hover:bg-gray-100 rounded-full">
               <User className="h-5 w-5 text-navy-blue" />

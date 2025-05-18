@@ -28,6 +28,7 @@ import { Link } from "react-router-dom";
 interface AppsMenuProps {
   activeRole: UserRole;
   onRoleChange: (role: UserRole) => void;
+  isMobileSidebar?: boolean;
 }
 
 interface AppIcon {
@@ -39,7 +40,8 @@ interface AppIcon {
 
 export const AppsMenu: React.FC<AppsMenuProps> = ({ 
   activeRole,
-  onRoleChange
+  onRoleChange,
+  isMobileSidebar = false
 }) => {
   const msmeApps: AppIcon[] = [
     { name: "Feed", icon: Rss, path: "/msme/feed", color: "text-bright-blue" },
@@ -85,6 +87,48 @@ export const AppsMenu: React.FC<AppsMenuProps> = ({
     }
   };
 
+  // For mobile sidebar, we render the content directly
+  if (isMobileSidebar) {
+    return (
+      <div className="px-4 py-6">
+        <h3 className="text-sm font-medium text-gray-500 mb-4">Apps</h3>
+        <div className="grid grid-cols-3 gap-4 mb-6">
+          {getApps().map((app) => (
+            <Link key={app.name} to={app.path} className="app-icon">
+              <div className={`app-icon-image rounded-full bg-gray-100 flex items-center justify-center`}>
+                <app.icon className={`h-5 w-5 ${app.color}`} />
+              </div>
+              <span className="app-icon-label">{app.name}</span>
+            </Link>
+          ))}
+        </div>
+        
+        {/* Divider */}
+        <div className="my-6 border-t border-gray-200"></div>
+        
+        {/* View Switcher */}
+        <div className="grid gap-3">
+          <h3 className="text-sm font-medium text-gray-500">Switch View</h3>
+          <div className="grid gap-2">
+            {roleOptions.map((role) => (
+              <button
+                key={role.id}
+                className={`flex items-center p-2 rounded-md ${activeRole === role.id ? 'bg-gray-100' : 'hover:bg-gray-50'}`}
+                onClick={() => onRoleChange(role.id)}
+              >
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center ${role.color}`}>
+                  <role.icon className="h-4 w-4" />
+                </div>
+                <span className="ml-3 text-sm font-medium">{role.name}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // For desktop view, we use the dialog
   return (
     <Dialog>
       <DialogTrigger asChild>

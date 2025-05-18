@@ -23,9 +23,9 @@ import {
   Lightbulb,
   Target,
   FileText,
-  Building2,
-  BarChartHorizontal,
-  CircleDot,
+  // Building2, // Icon for Company, removed
+  // BarChartHorizontal, // Icon for Company, removed
+  // CircleDot, // Icon for Company, removed
   PiggyBank,
   Calendar,
   Rss,
@@ -68,7 +68,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 
   const investorNavItems = [
     { title: "Dashboard", icon: PiggyBank, href: "/dashboard", badge: "" },
-    { title: "Discover Startups", icon: Search, href: "/discover-startups", badge: "" },
+    { title: "Discover Startups", icon: Search, href: "/discover-startups", badge: "" }, // Note: /discover-startups might need review if startups are fully removed
     { title: "Portfolio", icon: Briefcase, href: "/portfolio", badge: "1" },
     { title: "Performance", icon: BarChart4, href: "/analytics", badge: "" },
     { title: "AI Assistant", icon: Bot, href: "/chatbot", badge: "" },
@@ -81,13 +81,13 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     { title: "AI Assistant", icon: Bot, href: "/chatbot", badge: "" },
   ];
 
-  const companyNavItems = [
-    { title: "Dashboard", icon: Building2, href: "/dashboard", badge: "" },
-    { title: "Impact Analytics", icon: BarChartHorizontal, href: "/analytics", badge: "2" },
-    { title: "Partnerships", icon: Users, href: "/network", badge: "" },
-    { title: "CSR Goals", icon: CircleDot, href: "/documents", badge: "" },
-    { title: "MSMEs", icon: Briefcase, href: "/discover-startups", badge: "" },
-  ];
+  // const companyNavItems = [ // Removed company navigation items
+  //   { title: "Dashboard", icon: Building2, href: "/dashboard", badge: "" },
+  //   { title: "Impact Analytics", icon: BarChartHorizontal, href: "/analytics", badge: "2" },
+  //   { title: "Partnerships", icon: Users, href: "/network", badge: "" },
+  //   { title: "CSR Goals", icon: CircleDot, href: "/documents", badge: "" },
+  //   { title: "MSMEs", icon: Briefcase, href: "/discover-startups", badge: "" },
+  // ];
 
   const getNavItems = () => {
     switch (activeRole) {
@@ -95,21 +95,21 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
         return investorNavItems;
       case "msme":
         return msmeNavItems;
-      case "company":
-        return companyNavItems;
+      // case "company": // Removed company case
+      //   return companyNavItems;
       case "fundes":
         return fundesNavItems;
-      default:
-        return investorNavItems;
+      default: // Default to investor or msme, or handle error
+        return investorNavItems; 
     }
   };
 
   const getRoleAccentColor = () => {
     switch (activeRole) {
-      case "company":
-        return "border-b-[#0EA5E9]";
+      // case "company": // Removed company case
+      //   return "border-b-[#0EA5E9]";
       case "msme":
-        return "border-b-[#F2FCE2]";
+        return "border-b-[#F2FCE2]"; // Consider a more visible color if F2FCE2 is too light
       case "investor":
         return "border-b-[#9b87f5]";
       case "fundes":
@@ -163,6 +163,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
               <h1 className="text-xl font-semibold">{pageTitle}</h1>
             </div>
             <div className="flex items-center space-x-3">
+              
               <Link to="/messages" className="relative rounded-full p-2 hover:bg-gray-100">
                 <MessageSquare className="h-5 w-5 text-gray-500" />
                 <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">

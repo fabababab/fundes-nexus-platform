@@ -23,7 +23,7 @@ const Index = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> {/* Updated lg:grid-cols-4 to lg:grid-cols-3 */}
           <Card className="border-t-4 border-t-blue-500">
             <CardHeader>
               <CardTitle>For MSMEs</CardTitle>
@@ -43,6 +43,8 @@ const Index = () => {
             </CardFooter>
           </Card>
 
+          {/* Removed "For Companies" Card */}
+          {/* 
           <Card className="border-t-4 border-t-green-500">
             <CardHeader>
               <CardTitle>For Companies</CardTitle>
@@ -58,7 +60,8 @@ const Index = () => {
             <CardFooter>
               <Button className="w-full" onClick={() => handleNavigate("company")}>Companies Dashboard</Button>
             </CardFooter>
-          </Card>
+          </Card> 
+          */}
 
           <Card className="border-t-4 border-t-amber-500">
             <CardHeader>
@@ -73,8 +76,11 @@ const Index = () => {
               </p>
             </CardContent>
             <CardFooter>
-              <Button className="w-full" onClick={() => handleNavigate("investor")}>
-                Donor Dashboard
+              <Button 
+                className="w-full bg-gray-300 hover:bg-gray-300 text-gray-500 cursor-not-allowed" 
+                disabled
+              >
+                Coming Soon
               </Button>
             </CardFooter>
           </Card>

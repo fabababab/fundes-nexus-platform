@@ -5,13 +5,15 @@ import { UserRole } from "@/types/common";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, Coins, ArrowLeft, HandCoins, BookOpen, WalletCards, BadgeDollarSign } from "lucide-react";
+import { CheckCircle, Coins, ArrowLeft, HandCoins, BookOpen, WalletCards, BadgeDollarSign, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { LearningChatbot } from "@/components/learning/LearningChatbot";
 
 const FinancialInclusionModule: React.FC = () => {
   const [activeRole] = useState<UserRole>("msme");
   const [activeLesson, setActiveLesson] = useState("overview");
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
   
   const handleRoleChange = (role: UserRole) => {
     console.log("Role change attempt to:", role);
@@ -273,12 +275,23 @@ const FinancialInclusionModule: React.FC = () => {
       pageTitle="Financial Inclusion Module"
     >
       <div className="py-4 md:py-6">
-        <div className="mb-6">
+        <div className="mb-6 relative">
           <Link to="/msme/learning-modules" className="flex items-center text-primary hover:underline mb-4">
             <ArrowLeft className="mr-1 h-4 w-4" /> Back to Learning Modules
           </Link>
           <h1 className="text-3xl font-bold mb-2">Financial Inclusion</h1>
           <p className="text-muted-foreground">Learn how to access and utilize financial services to grow your business.</p>
+          
+          {/* Chatbot toggle button in top right */}
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="absolute top-0 right-0 flex items-center gap-2"
+            onClick={() => setIsChatbotOpen(!isChatbotOpen)}
+          >
+            <MessageSquare className="h-4 w-4" />
+            AI Assistant
+          </Button>
           
           <div className="mt-4">
             <div className="flex justify-between text-sm text-muted-foreground mb-2">
@@ -323,6 +336,16 @@ const FinancialInclusionModule: React.FC = () => {
             </Card>
           </div>
         </div>
+        
+        {/* Chatbot component */}
+        {isChatbotOpen && (
+          <div className="fixed bottom-4 right-4 w-80 h-96 bg-background border rounded-lg shadow-lg overflow-hidden z-50">
+            <LearningChatbot 
+              moduleTitle="Financial Inclusion"
+              onClose={() => setIsChatbotOpen(false)} 
+            />
+          </div>
+        )}
       </div>
     </SimpleDashboardLayout>
   );

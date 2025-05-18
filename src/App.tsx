@@ -13,6 +13,8 @@ import DiscoverProjects from "./pages/projects/DiscoverProjects";
 import ProjectOverview from "./pages/msme/ProjectOverview";
 import LearningModules from "./pages/msme/LearningModules";
 import FinancialInclusionModule from "./pages/msme/learning/FinancialInclusionModule";
+import FinancialLiteracyModule from "./pages/msme/learning/FinancialLiteracyModule";
+import CocaColaModule from "./pages/msme/learning/CocaColaModule";
 import FundesCommunications from "./pages/fundes/FundesCommunications";
 import FundesEvents from "./pages/fundes/FundesEvents";
 import FundesTasks from "./pages/fundes/FundesTasks";
@@ -57,6 +59,8 @@ const App = () => (
             <Route path="/msme/project-overview" element={<ProjectOverview />} />
             <Route path="/msme/learning-modules" element={<LearningModules />} />
             <Route path="/msme/learning-modules/financial-inclusion" element={<FinancialInclusionModule />} />
+            <Route path="/msme/learning-modules/financial-literacy" element={<FinancialLiteracyModule />} />
+            <Route path="/msme/learning-modules/coca-cola" element={<CocaColaModule />} />
             
             {/* Fundes routes */}
             <Route path="/fundes" element={<Navigate to="/fundes/feed" replace />} />

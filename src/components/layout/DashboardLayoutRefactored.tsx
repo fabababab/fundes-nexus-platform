@@ -1,3 +1,4 @@
+
 import React from "react";
 import { 
   SidebarProvider,
@@ -23,9 +24,6 @@ import {
   Lightbulb,
   Target,
   FileText,
-  // Building2, // Icon for Company, removed
-  // BarChartHorizontal, // Icon for Company, removed
-  // CircleDot, // Icon for Company, removed
   PiggyBank,
   Calendar,
   Rss,
@@ -75,11 +73,15 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     { title: "AI Assistant", icon: Bot, href: "/chatbot", badge: "" },
   ];
 
+  // Updated MSME nav items to use MSME-specific routes
   const msmeNavItems = [
     { title: "Learning Modules", icon: GraduationCap, href: "/msme/learning-modules", badge: "2" },
-    { title: "Community Hub", icon: MessageSquare, href: "/community", badge: "5" },
+    { title: "Community Hub", icon: MessageSquare, href: "/msme/community", badge: "5" },
     { title: "Project Overview", icon: FileText, href: "/msme/project-overview", badge: "" },
-    { title: "AI Assistant", icon: Bot, href: "/chatbot", badge: "" },
+    { title: "AI Assistant", icon: Bot, href: "/msme/chatbot", badge: "" },
+    { title: "Feed", icon: Rss, href: "/msme/feed", badge: "3" },
+    { title: "Events", icon: Calendar, href: "/msme/events", badge: "4" },
+    { title: "Messages", icon: MessageSquareText, href: "/msme/messages", badge: "2" },
   ];
 
   const getNavItems = () => {
@@ -109,6 +111,14 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   };
 
   const currentNavItems = inheritedMenuItems && inheritedMenuItems.length > 0 ? inheritedMenuItems : getNavItems();
+
+  // Helper function to get role-specific routes for header icons
+  const getRoleSpecificRoute = (baseRoute: string): string => {
+    if (activeRole === "msme") {
+      return `/msme${baseRoute}`;
+    }
+    return baseRoute;
+  };
 
   return (
     <SidebarProvider>
@@ -155,19 +165,19 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
             </div>
             <div className="flex items-center space-x-3">
               
-              <Link to="/messages" className="relative rounded-full p-2 hover:bg-gray-100">
+              <Link to={getRoleSpecificRoute("/messages")} className="relative rounded-full p-2 hover:bg-gray-100">
                 <MessageSquare className="h-5 w-5 text-gray-500" />
                 <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
                   2
                 </span>
               </Link>
-              <Link to="/feed" className="relative rounded-full p-2 hover:bg-gray-100">
+              <Link to={getRoleSpecificRoute("/feed")} className="relative rounded-full p-2 hover:bg-gray-100">
                 <Rss className="h-5 w-5 text-gray-500" />
                 <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-green-500 text-xs text-white">
                   4
                 </span>
               </Link>
-              <Link to="/events" className="relative rounded-full p-2 hover:bg-gray-100">
+              <Link to={getRoleSpecificRoute("/events")} className="relative rounded-full p-2 hover:bg-gray-100">
                 <Calendar className="h-5 w-5 text-gray-500" />
                 <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
                   3

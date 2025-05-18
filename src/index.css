@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Georgia&family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -108,7 +107,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-off-white text-foreground font-sans;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -144,6 +143,10 @@
   
   .bg-dark-navy {
     background-color: #1D477E; /* Dark navy from the color palette */
+  }
+  
+  .bg-off-white {
+    background-color: #F4F4F4; /* Off white from the color palette */
   }
   
   .text-navy-blue {

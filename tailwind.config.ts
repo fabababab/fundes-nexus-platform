@@ -63,7 +63,7 @@ const config = {
         'light-purple': '#D6BCFA',
         'soft-gray': '#F1F0FB',
         'soft-purple': '#E5DEFF',
-        // New colors from the palette image
+        // Colors from the palette image
         'navy-blue': '#1C3A83',
         'light-blue': '#AFBBDF',
         'bright-blue': '#2261EB',

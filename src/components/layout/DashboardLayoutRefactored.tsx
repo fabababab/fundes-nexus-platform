@@ -32,7 +32,7 @@ import {
   CalendarDays,
   ListTodo
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { UserRole } from "@/types/common";
 
@@ -50,16 +50,16 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   activeRole,
   onRoleChange,
   pageTitle,
-  menuItems: inheritedMenuItems, // Renamed to avoid conflict if menuItems prop is indeed used internally for something else
+  menuItems: inheritedMenuItems,
   ...props
 }: DashboardLayoutProps) => {
+  const navigate = useNavigate();
   
   const fundesNavItems = [
     { title: "Dashboard", icon: Target, href: "/fundes", badge: "" },
     { title: "Ecosystem Insights", icon: BarChart4, href: "/analytics", badge: "2" },
     { title: "Stakeholder Network", icon: Users, href: "/network", badge: "" },
     { title: "Strategic Initiatives", icon: Lightbulb, href: "/investments", badge: "" },
-    { title: "Community", icon: MessageSquare, href: "/community", badge: "5" },
     { title: "Communications Hub", icon: MessageSquareText, href: "/fundes/communications", badge: "3" },
     { title: "Events Calendar", icon: CalendarDays, href: "/fundes/events", badge: "2" },
     { title: "Task Management", icon: ListTodo, href: "/fundes/tasks", badge: "4" }
@@ -67,14 +67,14 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 
   const investorNavItems = [
     { title: "Dashboard", icon: PiggyBank, href: "/dashboard", badge: "" },
-    { title: "Discover Startups", icon: Search, href: "/discover-startups", badge: "" },
+    { title: "Discover Projects", icon: Search, href: "/discover-projects", badge: "" },
     { title: "Portfolio", icon: Briefcase, href: "/portfolio", badge: "1" },
     { title: "Performance", icon: BarChart4, href: "/analytics", badge: "" },
-    { title: "AI Assistant", icon: Bot, href: "/chatbot", badge: "" },
   ];
 
   // Updated MSME nav items to use MSME-specific routes
   const msmeNavItems = [
+    { title: "Dashboard", icon: Target, href: "/msme", badge: "" },
     { title: "Learning Modules", icon: GraduationCap, href: "/msme/learning-modules", badge: "2" },
     { title: "Community Hub", icon: MessageSquare, href: "/msme/community", badge: "5" },
     { title: "Project Overview", icon: FileText, href: "/msme/project-overview", badge: "" },
@@ -97,6 +97,25 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     }
   };
 
+  const handleRoleChange = (newRole: UserRole) => {
+    onRoleChange(newRole);
+    
+    // Navigate to the appropriate dashboard when role changes
+    switch (newRole) {
+      case "msme":
+        navigate("/msme");
+        break;
+      case "fundes":
+        navigate("/fundes");
+        break;
+      case "investor":
+        navigate("/dashboard");
+        break;
+      default:
+        navigate("/dashboard");
+    }
+  };
+
   const getRoleAccentColor = () => {
     switch (activeRole) {
       case "msme":
@@ -116,6 +135,8 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   const getRoleSpecificRoute = (baseRoute: string): string => {
     if (activeRole === "msme") {
       return `/msme${baseRoute}`;
+    } else if (activeRole === "fundes") {
+      return `/fundes${baseRoute}`;
     }
     return baseRoute;
   };
@@ -183,7 +204,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                   3
                 </span>
               </Link>
-              <RoleSwitcherModal activeRole={activeRole} onRoleChange={onRoleChange} />
+              <RoleSwitcherModal activeRole={activeRole} onRoleChange={handleRoleChange} />
             </div>
           </header>
           

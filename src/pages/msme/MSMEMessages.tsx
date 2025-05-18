@@ -5,6 +5,18 @@ import ContactsList from "@/pages/messages/ContactsList";
 import MessageThread from "@/pages/messages/MessageThread";
 import { UserRole } from "@/types/common";
 
+// Define the Contact type based on what ContactsList expects
+interface Contact {
+  id: string;
+  name: string;
+  avatar: string;
+  status: string;
+  lastMessage: string;
+  timestamp: string;
+  unread: number;
+  role?: string;
+}
+
 const MSMEMessages: React.FC = () => {
   // MSME role is fixed for this page
   const [activeRole] = useState<UserRole>("msme");
@@ -16,7 +28,7 @@ const MSMEMessages: React.FC = () => {
   };
 
   // MSME-specific contacts
-  const msmeContacts = [
+  const msmeContacts: Contact[] = [
     {
       id: "1",
       name: "FUNDES Support",
@@ -68,7 +80,6 @@ const MSMEMessages: React.FC = () => {
       <div className="h-[calc(100vh-10rem)] flex border rounded-lg overflow-hidden bg-white">
         <div className="w-1/3 border-r">
           <ContactsList 
-            contacts={msmeContacts}
             selectedId={selectedContact}
             onSelect={(id) => setSelectedContact(id)}
           />

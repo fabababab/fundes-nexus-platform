@@ -24,7 +24,7 @@ const MSMEEvents: React.FC = () => {
       location: "Virtual",
       attendees: 42,
       category: "Training",
-      type: "Virtual",
+      type: "Virtual" as const,
       isRegistered: false
     },
     {
@@ -36,7 +36,7 @@ const MSMEEvents: React.FC = () => {
       location: "Regional Conference Center",
       attendees: 78,
       category: "Conference",
-      type: "In Person",
+      type: "In Person" as const,
       isRegistered: true
     },
     {
@@ -48,7 +48,7 @@ const MSMEEvents: React.FC = () => {
       location: "Community Business Hub",
       attendees: 35,
       category: "Networking",
-      type: "In Person",
+      type: "In Person" as const,
       isRegistered: false
     },
     {
@@ -60,7 +60,7 @@ const MSMEEvents: React.FC = () => {
       location: "Virtual",
       attendees: 28,
       category: "Training",
-      type: "Virtual",
+      type: "Virtual" as const,
       isRegistered: false
     }
   ];

@@ -1,33 +1,19 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import Dashboard from "./pages/dashboard/Dashboard";
-import Events from "./pages/events/Events";
 import NotFound from "./pages/NotFound";
-// import DiscoverStartups from "./pages/startups/DiscoverStartups"; // Assuming this is not needed if we remove company features, or keep if used elsewhere
 import Portfolio from "./pages/portfolio/Portfolio";
-import Messages from "./pages/messages/Messages";
-import Feed from "./pages/feed/Feed";
-import ChatBot from "./pages/chatbot/ChatBot";
-import Community from "./pages/community/Community";
-// import Fundes from "./pages/fundes/Fundes"; // This seems to be an old import, Fundes uses Dashboard
+import DiscoverProjects from "./pages/projects/DiscoverProjects";
+import ProjectOverview from "./pages/msme/ProjectOverview";
+import LearningModules from "./pages/msme/LearningModules";
 import FundesCommunications from "./pages/fundes/FundesCommunications";
 import FundesEvents from "./pages/fundes/FundesEvents";
 import FundesTasks from "./pages/fundes/FundesTasks";
-// Company component imports are removed as files will be deleted
-// import CompanyESGDashboard from "./pages/company/CompanyESGDashboard";
-// import CompanyIntranet from "./pages/company/CompanyIntranet";
-// import CompanyPartnerDiscovery from "./pages/company/CompanyPartnerDiscovery";
-// import CompanySocialImpact from "./pages/company/CompanySocialImpact";
-// import CompanyProjectRoom from "./pages/company/CompanyProjectRoom";
-
-// import MSMEDashboard from "./pages/dashboard/MSMEDashboard"; // MSMEDashboard is rendered via Dashboard component
-import ProjectOverview from "./pages/msme/ProjectOverview";
-import DiscoverProjects from "./pages/projects/DiscoverProjects";
-import LearningModules from "./pages/msme/LearningModules"; // <-- Import the new page
 
 // Import MSME-specific pages
 import MSMEFeed from "./pages/msme/MSMEFeed";
@@ -46,34 +32,13 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          
+          {/* Default Dashboard - redirects based on role preference */}
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/discover-projects" element={<DiscoverProjects />} />
+          
+          {/* Investor routes */}
           <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/messages" element={<Messages />} />
-          <Route path="/feed" element={<Feed />} />
-          <Route path="/chatbot" element={<ChatBot />} />
-          <Route path="/community" element={<Community />} />
-          <Route path="/fundes" element={<Dashboard activeRole="fundes" />} />
-          <Route path="/fundes/communications" element={<FundesCommunications />} />
-          <Route path="/fundes/events" element={<FundesEvents />} />
-          <Route path="/fundes/tasks" element={<FundesTasks />} />
-          
-          {/* Company routes are removed */}
-          {/* 
-          <Route path="/company/esg" element={<CompanyESGDashboard />} />
-          <Route path="/company/intranet" element={<CompanyIntranet />} />
-          <Route path="/company/partners" element={<CompanyPartnerDiscovery />} />
-          <Route path="/company/impact" element={<CompanySocialImpact />} />
-          <Route path="/company/projects" element={<CompanyProjectRoom />} /> 
-          */}
-          
-          {/* MSME routes that depended on company components are removed */}
-          {/* <Route path="/msme/esg" element={<CompanyESGDashboard />} />  // Already removed */}
-          {/* <Route path="/msme/intranet" element={<CompanyIntranet />} /> */}
-          {/* <Route path="/msme/partners" element={<CompanyPartnerDiscovery />} /> */}
-          {/* <Route path="/msme/impact" element={<CompanySocialImpact />} /> */}
-          {/* <Route path="/msme/projects" element={<CompanyProjectRoom />} /> */}
+          <Route path="/discover-projects" element={<DiscoverProjects />} />
           
           {/* MSME routes */}
           <Route path="/msme" element={<Dashboard activeRole="msme" />} />
@@ -82,16 +47,31 @@ const App = () => (
           <Route path="/msme/events" element={<MSMEEvents />} />
           <Route path="/msme/messages" element={<MSMEMessages />} />
           <Route path="/msme/community" element={<MSMECommunityPage />} />
-          
-          <Route path="/analytics" element={<Dashboard />} />
-          <Route path="/network" element={<Dashboard />} />
-          <Route path="/documents" element={<Dashboard />} />
-          <Route path="/investments" element={<Dashboard />} />
-          <Route path="/database" element={<Dashboard />} />
-          <Route path="/settings" element={<Dashboard />} />
-          <Route path="/learning-journey" element={<Dashboard activeRole="msme" />} />
           <Route path="/msme/project-overview" element={<ProjectOverview />} />
-          <Route path="/msme/learning-modules" element={<LearningModules />} /> {/* <-- Add new route */}
+          <Route path="/msme/learning-modules" element={<LearningModules />} />
+          
+          {/* Fundes routes */}
+          <Route path="/fundes" element={<Dashboard activeRole="fundes" />} />
+          <Route path="/fundes/communications" element={<FundesCommunications />} />
+          <Route path="/fundes/events" element={<FundesEvents />} />
+          <Route path="/fundes/tasks" element={<FundesTasks />} />
+          
+          {/* Redirect old shared paths to role-specific paths */}
+          <Route path="/feed" element={<Navigate to="/msme/feed" replace />} />
+          <Route path="/chatbot" element={<Navigate to="/msme/chatbot" replace />} />
+          <Route path="/events" element={<Navigate to="/msme/events" replace />} />
+          <Route path="/messages" element={<Navigate to="/msme/messages" replace />} />
+          <Route path="/community" element={<Navigate to="/msme/community" replace />} />
+          
+          {/* Redirect unassigned routes to appropriate role sections */}
+          <Route path="/analytics" element={<Navigate to="/fundes" replace />} />
+          <Route path="/network" element={<Navigate to="/fundes" replace />} />
+          <Route path="/documents" element={<Navigate to="/msme" replace />} />
+          <Route path="/investments" element={<Navigate to="/fundes" replace />} />
+          <Route path="/database" element={<Navigate to="/fundes" replace />} />
+          <Route path="/settings" element={<Navigate to="/msme" replace />} />
+          <Route path="/learning-journey" element={<Navigate to="/msme/learning-modules" replace />} />
+          
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

@@ -22,6 +22,7 @@ import {
   PiggyBank,
   Briefcase,
   Grid3X3,
+  Database,
   ChevronDown
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
@@ -66,12 +67,12 @@ export const AppsMenu: React.FC<AppsMenuProps> = ({
     { name: "Messages", icon: MessageSquareText, path: "/msme/messages", color: "text-green-600" },
   ];
   
+  // Updated Fundes apps with correct routing and specialized apps
   const fundesApps: AppIcon[] = [
     { name: "Feed", icon: Rss, path: "/fundes/feed", color: "text-bright-blue" },
-    { name: "Dashboard", icon: Target, path: "/fundes", color: "text-purple-600" },
-    { name: "Analytics", icon: BarChart4, path: "/analytics", color: "text-green-600" },
-    { name: "Network", icon: Users, path: "/network", color: "text-navy-blue" },
-    { name: "Initiatives", icon: Lightbulb, path: "/investments", color: "text-yellow-600" },
+    { name: "Dashboard", icon: Target, path: "/fundes", color: "text-green-700" },
+    { name: "User Stats", icon: BarChart4, path: "/fundes/user-statistics", color: "text-purple-600" },
+    { name: "MSME Database", icon: Database, path: "/fundes/msme-database", color: "text-navy-blue" },
     { name: "Communications", icon: MessageSquareText, path: "/fundes/communications", color: "text-indigo-500" },
     { name: "Events", icon: Calendar, path: "/fundes/events", color: "text-red-500" },
     { name: "Messages", icon: MessageSquare, path: "/fundes/messages", color: "text-blue-500" },

@@ -1,4 +1,3 @@
-
 import React from "react";
 import {
   Dialog,
@@ -23,7 +22,7 @@ import {
   Briefcase,
   Grid3X3
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface AppsMenuProps {
   activeRole: UserRole;
@@ -43,6 +42,8 @@ export const AppsMenu: React.FC<AppsMenuProps> = ({
   onRoleChange,
   isMobileSidebar = false
 }) => {
+  const navigate = useNavigate();
+  
   const msmeApps: AppIcon[] = [
     { name: "Feed", icon: Rss, path: "/msme/feed", color: "text-bright-blue" },
     { name: "Learning", icon: GraduationCap, path: "/msme/learning-modules", color: "text-green-500" },
@@ -90,7 +91,15 @@ export const AppsMenu: React.FC<AppsMenuProps> = ({
   const handleRoleChange = (role: UserRole) => {
     console.log("Changing role to:", role);
     onRoleChange(role);
-    // Close the dialog after changing roles (if needed)
+    
+    // Navigate to the appropriate route based on role
+    if (role === "fundes") {
+      navigate("/fundes/feed");
+    } else if (role === "msme") {
+      navigate("/msme/feed");
+    } else if (role === "investor") {
+      navigate("/dashboard");
+    }
   };
 
   // For mobile sidebar, we render the content directly

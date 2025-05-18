@@ -21,7 +21,8 @@ import {
   Search,
   PiggyBank,
   Briefcase,
-  Grid3X3
+  Grid3X3,
+  ChevronDown
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
@@ -37,6 +38,15 @@ interface AppIcon {
   icon: React.ElementType;
   path: string;
   color: string;
+}
+
+interface RoleOption {
+  id: UserRole;
+  name: string;
+  icon: React.ElementType;
+  color: string;
+  comingSoon?: boolean;
+  disabled?: boolean;
 }
 
 export const AppsMenu: React.FC<AppsMenuProps> = ({ 
@@ -75,10 +85,10 @@ export const AppsMenu: React.FC<AppsMenuProps> = ({
   ];
 
   // Role switcher options
-  const roleOptions = [
+  const roleOptions: RoleOption[] = [
     { id: "msme" as UserRole, name: "MSME View", icon: Briefcase, color: "text-navy-blue bg-pale-blue" },
     { id: "fundes" as UserRole, name: "Fundes View", icon: Target, color: "text-green-700 bg-green-100" },
-    { id: "investor" as UserRole, name: "Donor View", icon: PiggyBank, color: "text-purple-700 bg-purple-100", comingSoon: true },
+    { id: "investor" as UserRole, name: "Donor View", icon: PiggyBank, color: "text-purple-700 bg-purple-100", comingSoon: true, disabled: true },
   ];
   
   const getApps = () => {
@@ -91,6 +101,11 @@ export const AppsMenu: React.FC<AppsMenuProps> = ({
   };
 
   const handleRoleChange = (role: UserRole) => {
+    // Skip if the role is disabled
+    if (roleOptions.find(option => option.id === role)?.disabled) {
+      return;
+    }
+    
     console.log("Changing role to:", role);
     onRoleChange(role);
     
@@ -130,8 +145,11 @@ export const AppsMenu: React.FC<AppsMenuProps> = ({
             {roleOptions.map((role) => (
               <button
                 key={role.id}
-                className={`flex items-center p-2 rounded-md ${activeRole === role.id ? 'bg-gray-100' : 'hover:bg-gray-50'}`}
+                className={`flex items-center p-2 rounded-md ${
+                  activeRole === role.id ? 'bg-gray-100' : 'hover:bg-gray-50'
+                } ${role.disabled ? 'opacity-60 cursor-not-allowed' : ''}`}
                 onClick={() => handleRoleChange(role.id)}
+                disabled={role.disabled}
               >
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center ${role.color}`}>
                   <role.icon className="h-4 w-4" />
@@ -181,8 +199,11 @@ export const AppsMenu: React.FC<AppsMenuProps> = ({
             {roleOptions.map((role) => (
               <button
                 key={role.id}
-                className={`flex items-center p-2 rounded-md ${activeRole === role.id ? 'bg-gray-100' : 'hover:bg-gray-50'}`}
+                className={`flex items-center p-2 rounded-md ${
+                  activeRole === role.id ? 'bg-gray-100' : 'hover:bg-gray-50'
+                } ${role.disabled ? 'opacity-60 cursor-not-allowed' : ''}`}
                 onClick={() => handleRoleChange(role.id)}
+                disabled={role.disabled}
               >
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center ${role.color}`}>
                   <role.icon className="h-4 w-4" />

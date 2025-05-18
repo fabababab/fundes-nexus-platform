@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
+import { SimpleDashboardLayout } from "@/components/layout/SimpleDashboardLayout";
 import ContactsList from "@/pages/messages/ContactsList";
 import MessageThread from "@/pages/messages/MessageThread";
 import { UserRole } from "@/types/common";
@@ -16,7 +16,7 @@ const FundesMessages: React.FC = () => {
   };
 
   return (
-    <DashboardLayout
+    <SimpleDashboardLayout
       activeRole={activeRole}
       onRoleChange={handleRoleChange}
       pageTitle="Fundes Messages"
@@ -36,7 +36,7 @@ const FundesMessages: React.FC = () => {
           <MessageThread contactId={selectedContact} />
         </div>
       </div>
-    </DashboardLayout>
+    </SimpleDashboardLayout>
   );
 };
 

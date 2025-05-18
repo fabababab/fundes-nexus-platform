@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
+import { SimpleDashboardLayout } from "@/components/layout/SimpleDashboardLayout";
 import { UserRole } from "@/types/common";
 import FeedItem from "@/components/feed/FeedItem";
 
@@ -76,7 +76,7 @@ const MSMEFeed: React.FC = () => {
   ];
 
   return (
-    <DashboardLayout
+    <SimpleDashboardLayout
       activeRole={activeRole}
       onRoleChange={handleRoleChange}
       pageTitle="MSME Feed"
@@ -93,7 +93,7 @@ const MSMEFeed: React.FC = () => {
           ))}
         </div>
       </div>
-    </DashboardLayout>
+    </SimpleDashboardLayout>
   );
 };
 

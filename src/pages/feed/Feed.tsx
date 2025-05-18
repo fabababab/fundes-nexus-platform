@@ -1,9 +1,10 @@
+
 import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CompanyFeed from "../../components/feed/CompanyFeed";
 import StartupFeed from "../../components/feed/StartupFeed";
 import InvestorFeed from "../../components/feed/InvestorFeed";
-import DashboardLayout from "../../components/layout/DashboardLayoutRefactored";
+import { SimpleDashboardLayout } from "@/components/layout/SimpleDashboardLayout";
 import { UserRole } from "@/types/common";
 import { CalendarClock } from "lucide-react";
 
@@ -15,7 +16,7 @@ const Feed = () => {
   };
 
   return (
-    <DashboardLayout activeRole={activeRole} onRoleChange={handleRoleChange} pageTitle="Feed">
+    <SimpleDashboardLayout activeRole={activeRole} onRoleChange={handleRoleChange} pageTitle="Feed">
       {activeRole === "investor" ? (
         <div className="flex flex-col items-center justify-center py-24 px-4 text-center">
           <div className="rounded-full bg-soft-purple p-6 mb-6">
@@ -110,7 +111,7 @@ const Feed = () => {
           </TabsContent>
         </Tabs>
       )}
-    </DashboardLayout>
+    </SimpleDashboardLayout>
   );
 };
 

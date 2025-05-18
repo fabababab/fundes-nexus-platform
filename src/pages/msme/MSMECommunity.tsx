@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
+import { SimpleDashboardLayout } from "@/components/layout/SimpleDashboardLayout";
 import { UserRole } from "@/types/common";
 
 // We'll reuse the existing MSMECommunity component content
@@ -15,13 +15,13 @@ const MSMECommunityPage: React.FC = () => {
   };
 
   return (
-    <DashboardLayout
+    <SimpleDashboardLayout
       activeRole={activeRole}
       onRoleChange={handleRoleChange}
       pageTitle="MSME Community"
     >
       <MSMECommunityContent />
-    </DashboardLayout>
+    </SimpleDashboardLayout>
   );
 };
 

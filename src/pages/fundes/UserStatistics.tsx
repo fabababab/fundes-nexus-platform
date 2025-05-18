@@ -1,13 +1,15 @@
-
 import React, { useState } from "react";
 import { SimpleDashboardLayout } from "@/components/layout/SimpleDashboardLayout";
 import { UserRole } from "@/types/common";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const UserStatistics: React.FC = () => {
   const [activeRole] = useState<UserRole>("fundes");
+  const isMobile = useIsMobile();
   
   const handleRoleChange = (role: UserRole) => {
     // In a real app, this might navigate or change global state
@@ -16,11 +18,11 @@ const UserStatistics: React.FC = () => {
 
   // Mock data for frequently asked questions by topic
   const faqData = [
-    { topic: 'Financial Literacy', count: 156, percentage: 35 },
-    { topic: 'Coca-Cola Project', count: 98, percentage: 22 },
-    { topic: 'Sustainable Practices', count: 87, percentage: 19 },
-    { topic: 'Business Operations', count: 67, percentage: 15 },
-    { topic: 'Digital Transformation', count: 42, percentage: 9 },
+    { topic: 'Financial Literacy', count: 156, percentage: 35, topQuestion: "How do I create a financial statement for my small business?" },
+    { topic: 'Coca-Cola Project', count: 98, percentage: 22, topQuestion: "What are the eligibility criteria for the Coca-Cola sustainability program?" },
+    { topic: 'Sustainable Practices', count: 87, percentage: 19, topQuestion: "How can I reduce packaging waste in my production process?" },
+    { topic: 'Business Operations', count: 67, percentage: 15, topQuestion: "What are the best practices for inventory management for small retailers?" },
+    { topic: 'Digital Transformation', count: 42, percentage: 9, topQuestion: "How do I create a digital presence for my local business?" },
   ];
 
   // Mock data for user engagement
@@ -60,46 +62,46 @@ const UserStatistics: React.FC = () => {
       onRoleChange={handleRoleChange}
       pageTitle="User Statistics"
     >
-      <div className="container mx-auto py-8">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-6">
+      <div className="container mx-auto py-4 md:py-8 px-2 md:px-4">
+        <div className="grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-4 md:mb-6">
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-lg">Total MSMEs</CardTitle>
+              <CardTitle className="text-base md:text-lg">Total MSMEs</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">487</div>
+              <div className="text-2xl md:text-3xl font-bold">487</div>
               <p className="text-xs text-muted-foreground">+12% from last month</p>
             </CardContent>
           </Card>
           
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-lg">Active Users (30d)</CardTitle>
+              <CardTitle className="text-base md:text-lg">Active Users (30d)</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">342</div>
+              <div className="text-2xl md:text-3xl font-bold">342</div>
               <p className="text-xs text-muted-foreground">70% of total MSMEs</p>
             </CardContent>
           </Card>
           
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-lg">AI Assistant Usage</CardTitle>
+              <CardTitle className="text-base md:text-lg">AI Assistant Usage</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">1,258</div>
+              <div className="text-2xl md:text-3xl font-bold">1,258</div>
               <p className="text-xs text-muted-foreground">Queries this month</p>
             </CardContent>
           </Card>
         </div>
         
-        <div className="grid gap-6 md:grid-cols-2 mb-6">
+        <div className="grid gap-4 md:gap-6 grid-cols-1 lg:grid-cols-2 mb-4 md:mb-6">
           <Card>
             <CardHeader>
-              <CardTitle>FAQ Topics Distribution</CardTitle>
+              <CardTitle className="text-base md:text-lg">FAQ Topics Distribution</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="h-80">
+              <div className="h-64 md:h-80">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
@@ -108,7 +110,7 @@ const UserStatistics: React.FC = () => {
                       cy="50%"
                       labelLine={false}
                       label={renderCustomizedLabel}
-                      outerRadius={80}
+                      outerRadius={isMobile ? 60 : 80}
                       fill="#8884d8"
                       dataKey="percentage"
                     >
@@ -117,7 +119,7 @@ const UserStatistics: React.FC = () => {
                       ))}
                     </Pie>
                     <Tooltip />
-                    <Legend />
+                    <Legend wrapperStyle={isMobile ? { fontSize: '0.75rem' } : {}} />
                   </PieChart>
                 </ResponsiveContainer>
               </div>
@@ -126,25 +128,25 @@ const UserStatistics: React.FC = () => {
           
           <Card>
             <CardHeader>
-              <CardTitle>User Engagement (Last 5 Months)</CardTitle>
+              <CardTitle className="text-base md:text-lg">User Engagement (Last 5 Months)</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="h-80">
+              <div className="h-64 md:h-80">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
                     data={userEngagementData}
                     margin={{
                       top: 20,
-                      right: 30,
-                      left: 20,
+                      right: isMobile ? 0 : 30,
+                      left: isMobile ? -20 : 20, // Adjusted for smaller screens
                       bottom: 5,
                     }}
                   >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="month" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
+                    <XAxis dataKey="month" tick={{ fontSize: isMobile ? 10 : 12 }} />
+                    <YAxis tick={{ fontSize: isMobile ? 10 : 12 }} />
+                    <Tooltip wrapperStyle={isMobile ? { fontSize: '0.75rem' } : {}}/>
+                    <Legend wrapperStyle={isMobile ? { fontSize: '0.75rem' } : {}} />
                     <Bar dataKey="messages" name="Messages" fill="#8884d8" />
                     <Bar dataKey="users" name="Active Users" fill="#82ca9d" />
                   </BarChart>
@@ -157,51 +159,48 @@ const UserStatistics: React.FC = () => {
         <div className="grid gap-6">
           <Card>
             <CardHeader>
-              <CardTitle>Frequently Asked Questions</CardTitle>
+              <CardTitle className="text-base md:text-lg">Frequently Asked Questions</CardTitle>
             </CardHeader>
             <CardContent>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Topic</TableHead>
-                    <TableHead>Queries</TableHead>
-                    <TableHead>Distribution (%)</TableHead>
-                    <TableHead>Top Question</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  <TableRow>
-                    <TableCell>Financial Literacy</TableCell>
-                    <TableCell>156</TableCell>
-                    <TableCell>35%</TableCell>
-                    <TableCell>"How do I create a financial statement for my small business?"</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>Coca-Cola Project</TableCell>
-                    <TableCell>98</TableCell>
-                    <TableCell>22%</TableCell>
-                    <TableCell>"What are the eligibility criteria for the Coca-Cola sustainability program?"</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>Sustainable Practices</TableCell>
-                    <TableCell>87</TableCell>
-                    <TableCell>19%</TableCell>
-                    <TableCell>"How can I reduce packaging waste in my production process?"</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>Business Operations</TableCell>
-                    <TableCell>67</TableCell>
-                    <TableCell>15%</TableCell>
-                    <TableCell>"What are the best practices for inventory management for small retailers?"</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>Digital Transformation</TableCell>
-                    <TableCell>42</TableCell>
-                    <TableCell>9%</TableCell>
-                    <TableCell>"How do I create a digital presence for my local business?"</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
+              {isMobile ? (
+                <Accordion type="single" collapsible className="w-full">
+                  {faqData.map((faq, index) => (
+                    <AccordionItem value={`item-${index}`} key={faq.topic}>
+                      <AccordionTrigger className="text-sm hover:no-underline">
+                        <div className="flex flex-col text-left">
+                           <span>{faq.topic}</span>
+                           <span className="text-xs text-muted-foreground">{faq.count} queries</span>
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="text-xs">
+                        <p className="mb-1"><strong>Distribution:</strong> {faq.percentage}%</p>
+                        <p><strong>Top Question:</strong> {faq.topQuestion}</p>
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              ) : (
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="w-[25%]">Topic</TableHead>
+                      <TableHead className="w-[10%] text-center">Queries</TableHead>
+                      <TableHead className="w-[15%] text-center">Distribution (%)</TableHead>
+                      <TableHead>Top Question</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {faqData.map((faq) => (
+                      <TableRow key={faq.topic}>
+                        <TableCell className="font-medium">{faq.topic}</TableCell>
+                        <TableCell className="text-center">{faq.count}</TableCell>
+                        <TableCell className="text-center">{faq.percentage}%</TableCell>
+                        <TableCell>{faq.topQuestion}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              )}
             </CardContent>
           </Card>
         </div>

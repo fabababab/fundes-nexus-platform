@@ -1,4 +1,3 @@
-
 import React from "react";
 import { 
   SidebarProvider,
@@ -76,12 +75,8 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   ];
 
   const msmeNavItems = [
-    { title: "Dashboard", icon: Briefcase, href: "/dashboard", badge: "" },
     { title: "Learning Journey", icon: GraduationCap, href: "/learning-journey", badge: "2" },
-    { title: "Mentoring", icon: Users, href: "/network", badge: "" },
     { title: "Community", icon: MessageSquare, href: "/community", badge: "5" },
-    { title: "Funding", icon: Lightbulb, href: "/investments", badge: "" },
-    { title: "Goals", icon: Target, href: "/documents", badge: "" },
     { title: "Resources", icon: FileText, href: "/database", badge: "" },
   ];
 

@@ -142,6 +142,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         ) : (
           /* Desktop view - only show the essential buttons */
           <div className="navbar-items">
+            {/* Changed Grid3X3 to use AppsMenu component */}
             <div className="flex items-center ml-2">
               <AppsMenu 
                 activeRole={activeRole} 

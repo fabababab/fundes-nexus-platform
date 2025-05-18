@@ -1,13 +1,15 @@
 
 import React, { useState } from "react";
-import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
+import Navbar from "@/components/layout/Navbar";
 import { UserRole } from "@/types/common";
 import FeedItem from "@/components/feed/FeedItem";
 
 const FundesFeed: React.FC = () => {
   // Fundes role is fixed for this page
-  const [activeRole] = useState<UserRole>("fundes");
+  const [activeRole, setActiveRole] = useState<UserRole>("fundes");
+  
   const handleRoleChange = (role: UserRole) => {
+    setActiveRole(role);
     // In a real app, this might navigate or change global state
     console.log("Role change attempt to:", role);
   };
@@ -80,12 +82,14 @@ const FundesFeed: React.FC = () => {
   ];
 
   return (
-    <DashboardLayout
-      activeRole={activeRole}
-      onRoleChange={handleRoleChange}
-      pageTitle="Fundes Feed"
-    >
-      <div className="container mx-auto py-8">
+    <div className="min-h-screen bg-background">
+      <Navbar 
+        activeRole={activeRole} 
+        onRoleChange={handleRoleChange}
+        pageTitle="Fundes Feed"  
+      />
+      
+      <div className="container mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold mb-6 text-dark-purple">Fundes Organization Feed</h1>
         <p className="text-lg text-neutral-gray mb-8">
           Stay updated with the latest initiatives, impact reports, and program developments.
@@ -97,7 +101,7 @@ const FundesFeed: React.FC = () => {
           ))}
         </div>
       </div>
-    </DashboardLayout>
+    </div>
   );
 };
 

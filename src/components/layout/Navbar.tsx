@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { UserRole } from "@/types/common";
-import { MessageSquare, Rss, Calendar, User } from "lucide-react";
+import { MessageSquare, Rss, Calendar, User, Database, BarChart4 } from "lucide-react";
 import { AppsMenu } from "./AppsMenu";
 
 interface NavbarProps {
@@ -54,6 +54,18 @@ export const Navbar: React.FC<NavbarProps> = ({
               3
             </span>
           </Link>
+
+          {activeRole === "fundes" && (
+            <>
+              <Link to="/fundes/user-statistics" className="relative p-2 hover:bg-gray-100 rounded-full">
+                <BarChart4 className="h-5 w-5 text-navy-blue" />
+              </Link>
+              
+              <Link to="/fundes/msme-database" className="relative p-2 hover:bg-gray-100 rounded-full">
+                <Database className="h-5 w-5 text-navy-blue" />
+              </Link>
+            </>
+          )}
           
           <div className="flex items-center ml-2">
             <AppsMenu activeRole={activeRole} onRoleChange={onRoleChange} />

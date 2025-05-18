@@ -6,12 +6,14 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { UserRole } from "@/types/common";
-import { Send } from "lucide-react";
+import { Send, MessageSquare } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface Message {
   id: string;
   text: string;
   isBot: boolean;
+  isHumanSupport?: boolean;
   timestamp: Date;
 }
 
@@ -25,9 +27,11 @@ const MSMEChatBot = () => {
     },
   ]);
   const [input, setInput] = useState("");
+  const [isWaitingForHuman, setIsWaitingForHuman] = useState(false);
   // MSME role is fixed for this page
   const [activeRole] = useState<UserRole>("msme");
   const scrollRef = React.useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
 
   const handleSend = () => {
     if (!input.trim()) return;
@@ -59,6 +63,28 @@ const MSMEChatBot = () => {
     console.log("Role change attempt to:", newRole);
   };
 
+  const handleHumanSupportRequest = () => {
+    if (isWaitingForHuman) return;
+    
+    setIsWaitingForHuman(true);
+    const supportMessage: Message = {
+      id: Date.now().toString(),
+      text: "Connecting you with a FUNDES consultant. Please wait while we process your request.",
+      isBot: true,
+      isHumanSupport: true,
+      timestamp: new Date(),
+    };
+    setMessages((prev) => [...prev, supportMessage]);
+
+    // Simulate consultant connection
+    setTimeout(() => {
+      toast({
+        title: "Support Request Sent",
+        description: "A FUNDES consultant will contact you shortly via email.",
+      });
+    }, 2000);
+  };
+
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -73,6 +99,20 @@ const MSMEChatBot = () => {
     >
       <div className="container mx-auto max-w-4xl p-4">
         <Card className="h-[calc(100vh-180px)] flex flex-col">
+          <div className="flex items-center justify-between p-4 border-b">
+            <h2 className="font-semibold">AI Assistant</h2>
+            {!isWaitingForHuman && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleHumanSupportRequest}
+                className="flex gap-2"
+              >
+                <MessageSquare className="h-4 w-4" />
+                Speak to Consultant
+              </Button>
+            )}
+          </div>
           <ScrollArea ref={scrollRef} className="flex-1 p-4">
             <div className="space-y-4">
               {messages.map((message) => (
@@ -85,7 +125,9 @@ const MSMEChatBot = () => {
                   <div
                     className={`max-w-[80%] rounded-lg p-3 ${
                       message.isBot
-                        ? "bg-secondary text-secondary-foreground"
+                        ? message.isHumanSupport
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-secondary text-secondary-foreground"
                         : "bg-primary text-primary-foreground"
                     }`}
                   >
@@ -111,8 +153,9 @@ const MSMEChatBot = () => {
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask about business operations, financial literacy, or sustainability practices..."
                 className="flex-1"
+                disabled={isWaitingForHuman}
               />
-              <Button type="submit" size="icon">
+              <Button type="submit" size="icon" disabled={isWaitingForHuman}>
                 <Send className="h-4 w-4" />
               </Button>
             </form>

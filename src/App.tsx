@@ -16,6 +16,8 @@ import FundesEvents from "./pages/fundes/FundesEvents";
 import FundesTasks from "./pages/fundes/FundesTasks";
 import FundesFeed from "./pages/fundes/FundesFeed";
 import FundesMessages from "./pages/fundes/FundesMessages";
+import UserStatistics from "./pages/fundes/UserStatistics";
+import MSMEDatabase from "./pages/fundes/MSMEDatabase";
 
 // Import MSME-specific pages
 import MSMEFeed from "./pages/msme/MSMEFeed";
@@ -59,6 +61,8 @@ const App = () => (
           <Route path="/fundes/tasks" element={<FundesTasks />} />
           <Route path="/fundes/feed" element={<FundesFeed />} />
           <Route path="/fundes/messages" element={<FundesMessages />} />
+          <Route path="/fundes/user-statistics" element={<UserStatistics />} />
+          <Route path="/fundes/msme-database" element={<MSMEDatabase />} />
           
           {/* Redirect old shared paths to role-specific paths */}
           <Route path="/feed" element={<Navigate to="/msme/feed" replace />} />

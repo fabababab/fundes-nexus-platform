@@ -77,7 +77,6 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   const msmeNavItems = [
     { title: "Learning Modules", icon: GraduationCap, href: "/learning-journey", badge: "2" },
     { title: "Community Hub", icon: MessageSquare, href: "/community", badge: "5" },
-    { title: "Project Resources", icon: FileText, href: "/database", badge: "" },
     { title: "Project Overview", icon: FileText, href: "/msme/project-overview", badge: "" },
     { title: "AI Assistant", icon: Bot, href: "/chatbot", badge: "" },
   ];

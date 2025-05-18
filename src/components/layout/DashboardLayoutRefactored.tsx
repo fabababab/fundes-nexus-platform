@@ -18,7 +18,7 @@ import {
   Search,
   Briefcase,
   BarChart4,
-  Book,
+  GraduationCap,
   Users,
   MessageSquare,
   Lightbulb,
@@ -33,8 +33,7 @@ import {
   Bot,
   MessageSquareText,
   CalendarDays,
-  ListTodo,
-  LayoutDashboard
+  ListTodo
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -77,13 +76,13 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   ];
 
   const msmeNavItems = [
-    // Removed "Dashboard", "Funding", "Goals" as requested
-    { title: "Learning Modules", icon: Book, href: "/learning-journey", badge: "2" }, // Renamed from Learning Journey
-    { title: "Project Overview", icon: LayoutDashboard, href: "/msme/project-overview", badge: "" }, // Added new item
+    { title: "Dashboard", icon: Briefcase, href: "/dashboard", badge: "" },
+    { title: "Learning Journey", icon: GraduationCap, href: "/learning-journey", badge: "2" },
     { title: "Mentoring", icon: Users, href: "/network", badge: "" },
     { title: "Community", icon: MessageSquare, href: "/community", badge: "5" },
-    { title: "Project Resources", icon: FileText, href: "/database", badge: "" }, // Renamed from Resources
-    { title: "AI Assistant", icon: Bot, href: "/chatbot", badge: "" }, // Added new item
+    { title: "Funding", icon: Lightbulb, href: "/investments", badge: "" },
+    { title: "Goals", icon: Target, href: "/documents", badge: "" },
+    { title: "Resources", icon: FileText, href: "/database", badge: "" },
   ];
 
   const companyNavItems = [
@@ -130,13 +129,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
         <Sidebar>
           <SidebarContent>
             <SidebarGroup>
-              {/* Removed "Navigation" text and added Fundeo logo */}
-              <Link to="/feed" className="mx-4 my-3 flex items-center">
-                <div className="flex items-center justify-center bg-primary-purple rounded-lg p-1.5 mr-2">
-                  <FileText className="h-5 w-5 text-white" />
-                </div>
-                <span className="text-lg font-semibold text-dark-purple">Fundeo</span>
-              </Link>
+              <SidebarGroupLabel className="px-4 text-gray-500 text-sm">Navigation</SidebarGroupLabel>
               <SidebarGroupContent>
                 <SidebarMenu>
                   {getNavItems().map((item) => (

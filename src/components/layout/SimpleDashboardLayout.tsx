@@ -49,7 +49,7 @@ export const SimpleDashboardLayout: React.FC<DashboardLayoutProps> = ({
         onRoleChange={handleRoleChange}
       />
       
-      <main className={cn("flex-1 p-6 app-container", className)} {...props}>
+      <main className={cn("flex-1 p-4 md:p-6 app-container", className)} {...props}>
         {children}
       </main>
     </div>

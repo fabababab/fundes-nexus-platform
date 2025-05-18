@@ -33,15 +33,12 @@ const ProjectOverview = () => {
       onRoleChange={handleRoleChange}
       pageTitle="Project Overview"
     >
-      <div className="container mx-auto py-8 space-y-6">
-        <div className="flex justify-between items-center">
-          {/* Page title is handled by SimpleDashboardLayout */}
-        </div>
-        <p className="text-lg text-neutral-gray mb-8">
+      <div className="py-4 md:py-8">
+        <p className="text-body text-neutral-gray mb-6">
           Explore available projects and manage your ongoing initiatives.
         </p>
         
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-4 md:gap-6 md:grid-cols-2">
           {mockProjects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

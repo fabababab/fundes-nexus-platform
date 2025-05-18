@@ -4,6 +4,9 @@ import { SimpleDashboardLayout } from "@/components/layout/SimpleDashboardLayout
 import ContactsList from "@/pages/messages/ContactsList";
 import MessageThread from "@/pages/messages/MessageThread";
 import { UserRole } from "@/types/common";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 
 // Define the Contact type based on what ContactsList expects
 interface Contact {
@@ -21,10 +24,23 @@ const MSMEMessages: React.FC = () => {
   // MSME role is fixed for this page
   const [activeRole] = useState<UserRole>("msme");
   const [selectedContact, setSelectedContact] = useState<string | null>("1");
+  const isMobile = useIsMobile();
+  const [showMessageThread, setShowMessageThread] = useState<boolean>(!isMobile);
   
   const handleRoleChange = (role: UserRole) => {
     // In a real app, this might navigate or change global state
     console.log("Role change attempt to:", role);
+  };
+
+  const handleSelectContact = (contactId: string) => {
+    setSelectedContact(contactId);
+    if (isMobile) {
+      setShowMessageThread(true);
+    }
+  };
+
+  const handleBackToList = () => {
+    setShowMessageThread(false);
   };
 
   // MSME-specific contacts
@@ -77,20 +93,58 @@ const MSMEMessages: React.FC = () => {
       onRoleChange={handleRoleChange}
       pageTitle="MSME Messages"
     >
-      <div className="h-[calc(100vh-10rem)] flex border rounded-lg overflow-hidden bg-white">
-        <div className="w-1/3 border-r">
-          <ContactsList 
-            filter="all"
-            search=""
-            onSelectContact={setSelectedContact}
-            selectedContactId={selectedContact || ""}
-            showUnreadOnly={false}
-            onContactInfoClick={() => {}}
-          />
-        </div>
-        <div className="w-2/3">
-          <MessageThread contactId={selectedContact} />
-        </div>
+      <div className="h-[calc(100vh-8rem)] md:h-[calc(100vh-10rem)] flex border rounded-lg overflow-hidden bg-white">
+        {/* Mobile: Show either contacts list or message thread */}
+        {isMobile ? (
+          <>
+            {!showMessageThread ? (
+              <div className="w-full">
+                <ContactsList 
+                  filter="all"
+                  search=""
+                  onSelectContact={handleSelectContact}
+                  selectedContactId={selectedContact || ""}
+                  showUnreadOnly={false}
+                  onContactInfoClick={() => {}}
+                />
+              </div>
+            ) : (
+              <div className="w-full flex flex-col">
+                <div className="p-2 border-b">
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    onClick={handleBackToList}
+                    className="flex items-center gap-2"
+                  >
+                    <ArrowLeft className="h-4 w-4" />
+                    <span>Back to contacts</span>
+                  </Button>
+                </div>
+                <div className="flex-1">
+                  <MessageThread contactId={selectedContact} />
+                </div>
+              </div>
+            )}
+          </>
+        ) : (
+          // Desktop: Show both side by side
+          <>
+            <div className="w-1/3 border-r">
+              <ContactsList 
+                filter="all"
+                search=""
+                onSelectContact={setSelectedContact}
+                selectedContactId={selectedContact || ""}
+                showUnreadOnly={false}
+                onContactInfoClick={() => {}}
+              />
+            </div>
+            <div className="w-2/3">
+              <MessageThread contactId={selectedContact} />
+            </div>
+          </>
+        )}
       </div>
     </SimpleDashboardLayout>
   );

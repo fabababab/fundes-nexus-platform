@@ -14,16 +14,18 @@ const Index = () => {
       }
     });
   };
-  return <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-purple-50 to-white p-4">
+  
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-purple-50 to-white p-4">
       <div className="w-full max-w-4xl">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-4 text-primary">Welcome to Fundeo</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <h1 className="text-display text-primary mb-4">Welcome to Fundeo</h1>
+          <p className="text-body text-gray-600 max-w-2xl mx-auto">
             Connect MSMEs with impactful companies and donors to drive sustainable innovation
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           <Card className="border-t-4 border-t-blue-500">
             <CardHeader>
               <CardTitle>For MSMEs</CardTitle>
@@ -32,7 +34,7 @@ const Index = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-500 text-sm">
+              <p className="text-caption">
                 Discover partnerships, track your collaborations, and measure your impact on sustainability goals.
               </p>
             </CardContent>
@@ -51,7 +53,7 @@ const Index = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-gray-500">
+              <p className="text-caption">
                 Oversee the entire ecosystem, manage projects, and track impact across all stakeholders.
               </p>
             </CardContent>
@@ -70,7 +72,7 @@ const Index = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-gray-500">
+              <p className="text-caption">
                 Find promising initiatives aligned with your donation criteria and track portfolio impact.
               </p>
             </CardContent>
@@ -85,8 +87,8 @@ const Index = () => {
           </Card>
         </div>
 
-        <div className="text-center mt-12">
-          <p className="text-sm text-gray-500 mb-4">
+        <div className="text-center mt-8 md:mt-12">
+          <p className="text-caption mb-4">
             Fundeo connects MSMEs with impactful companies and donors to drive sustainable innovation.
           </p>
           <Button variant="outline" size="sm" onClick={() => handleNavigate("investor")}>
@@ -94,6 +96,7 @@ const Index = () => {
           </Button>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
 export default Index;

@@ -81,13 +81,13 @@ const MSMEFeed: React.FC = () => {
       onRoleChange={handleRoleChange}
       pageTitle="MSME Feed"
     >
-      <div className="container mx-auto py-8">
-        <h1 className="text-3xl font-bold mb-6 text-dark-purple">MSME Community Feed</h1>
-        <p className="text-lg text-neutral-gray mb-8">
+      <div className="py-4 md:py-8">
+        <h1 className="text-h2 text-dark-purple mb-3">MSME Community Feed</h1>
+        <p className="text-body text-neutral-gray mb-6">
           Stay updated with the latest news, opportunities, and achievements from the MSME community.
         </p>
         
-        <div className="space-y-6">
+        <div className="space-y-4 md:space-y-6">
           {msmeFeedItems.map((item) => (
             <FeedItem key={item.id} item={item} />
           ))}

@@ -1,3 +1,4 @@
+
 import React from "react";
 import { 
   SidebarProvider,
@@ -75,9 +76,9 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   ];
 
   const msmeNavItems = [
-    { title: "Learning Journey", icon: GraduationCap, href: "/learning-journey", badge: "2" },
-    { title: "Community", icon: MessageSquare, href: "/community", badge: "5" },
-    { title: "Resources", icon: FileText, href: "/database", badge: "" },
+    { title: "Learning Modules", icon: GraduationCap, href: "/learning-journey", badge: "2" },
+    { title: "Community Hub", icon: MessageSquare, href: "/community", badge: "5" },
+    { title: "Project Resources", icon: FileText, href: "/database", badge: "" },
   ];
 
   const companyNavItems = [
@@ -194,3 +195,4 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 };
 
 export default DashboardLayout;
+

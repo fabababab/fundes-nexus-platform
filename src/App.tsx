@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,22 +7,24 @@ import Index from "./pages/Index";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Events from "./pages/events/Events";
 import NotFound from "./pages/NotFound";
-import DiscoverStartups from "./pages/startups/DiscoverStartups";
+// import DiscoverStartups from "./pages/startups/DiscoverStartups"; // Assuming this is not needed if we remove company features, or keep if used elsewhere
 import Portfolio from "./pages/portfolio/Portfolio";
 import Messages from "./pages/messages/Messages";
 import Feed from "./pages/feed/Feed";
 import ChatBot from "./pages/chatbot/ChatBot";
 import Community from "./pages/community/Community";
-import Fundes from "./pages/fundes/Fundes";
+// import Fundes from "./pages/fundes/Fundes"; // This seems to be an old import, Fundes uses Dashboard
 import FundesCommunications from "./pages/fundes/FundesCommunications";
 import FundesEvents from "./pages/fundes/FundesEvents";
 import FundesTasks from "./pages/fundes/FundesTasks";
-import CompanyESGDashboard from "./pages/company/CompanyESGDashboard";
-import CompanyIntranet from "./pages/company/CompanyIntranet";
-import CompanyPartnerDiscovery from "./pages/company/CompanyPartnerDiscovery";
-import CompanySocialImpact from "./pages/company/CompanySocialImpact";
-import CompanyProjectRoom from "./pages/company/CompanyProjectRoom";
-import MSMEDashboard from "./pages/dashboard/MSMEDashboard";
+// Company component imports are removed as files will be deleted
+// import CompanyESGDashboard from "./pages/company/CompanyESGDashboard";
+// import CompanyIntranet from "./pages/company/CompanyIntranet";
+// import CompanyPartnerDiscovery from "./pages/company/CompanyPartnerDiscovery";
+// import CompanySocialImpact from "./pages/company/CompanySocialImpact";
+// import CompanyProjectRoom from "./pages/company/CompanyProjectRoom";
+
+// import MSMEDashboard from "./pages/dashboard/MSMEDashboard"; // MSMEDashboard is rendered via Dashboard component
 import ProjectOverview from "./pages/msme/ProjectOverview";
 import DiscoverProjects from "./pages/projects/DiscoverProjects";
 
@@ -50,19 +51,21 @@ const App = () => (
           <Route path="/fundes/events" element={<FundesEvents />} />
           <Route path="/fundes/tasks" element={<FundesTasks />} />
           
-          {/* Company routes */}
+          {/* Company routes are removed */}
+          {/* 
           <Route path="/company/esg" element={<CompanyESGDashboard />} />
           <Route path="/company/intranet" element={<CompanyIntranet />} />
           <Route path="/company/partners" element={<CompanyPartnerDiscovery />} />
           <Route path="/company/impact" element={<CompanySocialImpact />} />
-          <Route path="/company/projects" element={<CompanyProjectRoom />} />
+          <Route path="/company/projects" element={<CompanyProjectRoom />} /> 
+          */}
           
-          {/* MSME routes */}
-          {/* <Route path="/msme/esg" element={<CompanyESGDashboard />} />  // This line is removed */}
-          <Route path="/msme/intranet" element={<CompanyIntranet />} />
-          <Route path="/msme/partners" element={<CompanyPartnerDiscovery />} />
-          <Route path="/msme/impact" element={<CompanySocialImpact />} />
-          <Route path="/msme/projects" element={<CompanyProjectRoom />} />
+          {/* MSME routes that depended on company components are removed */}
+          {/* <Route path="/msme/esg" element={<CompanyESGDashboard />} />  // Already removed */}
+          {/* <Route path="/msme/intranet" element={<CompanyIntranet />} /> */}
+          {/* <Route path="/msme/partners" element={<CompanyPartnerDiscovery />} /> */}
+          {/* <Route path="/msme/impact" element={<CompanySocialImpact />} /> */}
+          {/* <Route path="/msme/projects" element={<CompanyProjectRoom />} /> */}
           
           <Route path="/analytics" element={<Dashboard />} />
           <Route path="/network" element={<Dashboard />} />
@@ -80,4 +83,3 @@ const App = () => (
 );
 
 export default App;
-

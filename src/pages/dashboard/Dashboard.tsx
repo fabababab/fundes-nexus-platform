@@ -1,11 +1,8 @@
-
-import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import DashboardLayout from "../../components/layout/DashboardLayoutRefactored";
-import MSMEDashboard from "./MSMEDashboard";
+import React, { useState } from "react";
+import DashboardLayout from "@/components/layout/DashboardLayoutRefactored";
 import InvestorDashboard from "./InvestorDashboard";
-import LearningJourney from "../learning/LearningJourney";
-import CompanyDashboard from "./MSMEDashboard"; // We're temporarily reusing MSMEDashboard for Company view
+import StartupDashboard from "./StartupDashboard";
+import MSMEDashboard from "./MSMEDashboard";
 import FundesDashboard from "../fundes/FundesDashboard";
 import { UserRole } from "@/types/common";
 
@@ -13,69 +10,39 @@ interface DashboardProps {
   activeRole?: UserRole;
 }
 
-const Dashboard = ({ activeRole: propActiveRole = "investor" }: DashboardProps) => {
-  const location = useLocation();
-  const [activeRole, setActiveRole] = useState<UserRole>(
-    location.state?.initialRole || propActiveRole
-  );
-  
-  useEffect(() => {
-    if (propActiveRole !== activeRole && !location.state?.initialRole) {
-      console.log("Initial role changed:", propActiveRole);
-      setActiveRole(propActiveRole);
-    }
-  }, [propActiveRole]);
+const Dashboard: React.FC<DashboardProps> = ({ activeRole: initialActiveRole = "msme" }) => {
+  const [activeRole, setActiveRole] = useState<UserRole>(initialActiveRole);
 
-  const handleRoleChange = (newRole: UserRole) => {
-    console.log("Role changing in Dashboard from", activeRole, "to", newRole);
-    setActiveRole(newRole);
+  const handleRoleChange = (role: UserRole) => {
+    setActiveRole(role);
+    // Potentially navigate or clear state based on role change
+    // For example, if navigating to a different base path for each role:
+    // navigate(`/${role}/dashboard`); 
+    // However, current setup uses one Dashboard component rendering role-specific views.
   };
 
-  const renderDashboardContent = () => {
-    if (location.pathname === "/learning-journey") {
-      return <LearningJourney activeRole={activeRole} onRoleChange={handleRoleChange} />;
-    }
-    
-    switch (activeRole) {
-      case "msme":
-        return <MSMEDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
-      case "company":
-        return <CompanyDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
-      case "investor":
-        return <InvestorDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
-      case "fundes":
-        return <FundesDashboard activeRole={activeRole} />;
-      default:
-        return <InvestorDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />;
-    }
-  };
-
-  const getPageTitle = () => {
-    if (location.pathname === "/learning-journey") {
-      return "Learning Journey";
-    }
-    
-    switch (activeRole) {
-      case "msme":
-        return "MSME Dashboard";
-      case "company":
-        return "Companies Dashboard";
-      case "investor":
-        return "Donors Dashboard";
-      case "fundes":
-        return "Fundes Dashboard";
-      default:
-        return "Donors Dashboard";
-    }
-  };
+  // If UserSwitcher is used within DashboardLayout and calls onRoleChange,
+  // this component will still try to switch.
+  // If "company" is removed from UserRole type (which is read-only), then it's fine.
+  // Otherwise, UserSwitcher might still allow selecting "company".
 
   return (
-    <DashboardLayout 
-      activeRole={activeRole} 
-      onRoleChange={handleRoleChange}
-      pageTitle={getPageTitle()}
-    >
-      {renderDashboardContent()}
+    <DashboardLayout activeRole={activeRole} onRoleChange={handleRoleChange}>
+      <div className="container mx-auto py-6">
+        {/* Consider moving UserSwitcher or role-based title logic here if needed */}
+        {/* Example: <h1 className="text-2xl font-bold mb-4">Welcome to your {activeRole} dashboard!</h1> */}
+        
+        {activeRole === "investor" && <InvestorDashboard />}
+        {activeRole === "startup" && <StartupDashboard />}
+        {activeRole === "msme" && <MSMEDashboard />} {/* MSMEDashboard no longer needs activeRole/onRoleChange */}
+        {/* {activeRole === "company" && <MSMEDashboard activeRole={activeRole} onRoleChange={handleRoleChange} />} Removed company case */}
+        {activeRole === "fundes" && <FundesDashboard />}
+        
+        {/* Fallback or placeholder if no specific dashboard matches activeRole, though UserRole type should ensure a match */}
+        {/* {!["investor", "startup", "msme", "fundes"].includes(activeRole) && (
+          <div>Please select a role to view the dashboard.</div>
+        )} */}
+      </div>
     </DashboardLayout>
   );
 };

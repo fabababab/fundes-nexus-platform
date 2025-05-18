@@ -1,13 +1,13 @@
+
 import React from "react";
 import { 
   BarChart4, 
-  Building2, 
   Users, 
   Target,
-  BookOpen,
-  Globe,
-  FileCheck,
-  Search,
+  // BookOpen, // Icon for Partner Intranet (removed)
+  // Globe, // Icon for Social Impact (removed)
+  // FileCheck, // Not used
+  // Search, // Icon for Partner Discovery (removed)
   Bot,
   MessageSquare,
   Folder
@@ -17,17 +17,17 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import MSMEChatbot from "./components/MSMEChatbot";
-import { UserRole } from "@/types/common";
+// import { UserRole } from "@/types/common"; // UserRole no longer needed here
 
-interface MSMEDashboardProps {
-  activeRole: UserRole;
-  onRoleChange: (role: UserRole) => void;
-}
+// Props are no longer needed as this dashboard is now MSME-specific
+// interface MSMEDashboardProps {
+//   activeRole: UserRole;
+//   onRoleChange: (role: UserRole) => void;
+// }
 
-const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange }) => {
-  const isMSME = activeRole === "msme";
-  const dashboardTitle = isMSME ? "MSME Dashboard" : "Companies Dashboard";
-  const baseRoute = isMSME ? "/msme" : "/company";
+const MSMEDashboard: React.FC = () => {
+  const dashboardTitle = "MSME Dashboard";
+  // const baseRoute = "/msme"; // No longer needed for complex routing, direct links used
 
   return (
     <div className="space-y-6">
@@ -81,7 +81,7 @@ const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange 
         </Card>
       </div>
 
-      <h2 className="text-2xl font-bold mt-8 mb-4">{isMSME ? "MSME" : "Companies"} Features</h2>
+      <h2 className="text-2xl font-bold mt-8 mb-4">MSME Features</h2>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -93,29 +93,15 @@ const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange 
               View active FUNDES projects, apply to participate, or recommend other MSMEs.
             </p>
             <Button asChild className="w-full mt-2">
-              <Link to={`${baseRoute}/project-overview`}>View Projects</Link>
+              <Link to="/msme/project-overview">View Projects</Link>
             </Button>
           </CardContent>
         </Card>
 
-        {/* Conditionally render ESG Goals Dashboard card only if NOT MSME (i.e., for Company role) */}
-        {!isMSME && (
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-base font-medium">ESG Goals Dashboard</CardTitle>
-              <Target className="h-5 w-5 text-blue-600" />
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <p className="text-sm text-muted-foreground">
-                Track and manage your ESG goals, including circularity metrics and education progress.
-              </p>
-              <Button asChild className="w-full mt-2">
-                <Link to={`${baseRoute}/esg`}>View ESG Dashboard</Link>
-              </Button>
-            </CardContent>
-          </Card>
-        )}
+        {/* ESG Goals Dashboard card for Company role was here, removed as Company pages are deleted */}
 
+        {/* Partner Intranet card removed as CompanyIntranet.tsx is deleted */}
+        {/* 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-base font-medium">Partner Intranet</CardTitle>
@@ -126,11 +112,14 @@ const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange 
               Share information and educational content with your suppliers and distributors.
             </p>
             <Button asChild className="w-full mt-2">
-              <Link to={`${baseRoute}/intranet`}>Access Intranet</Link>
+              <Link to="/msme/intranet">Access Intranet</Link>
             </Button>
           </CardContent>
-        </Card>
+        </Card> 
+        */}
 
+        {/* Partner Discovery card removed as CompanyPartnerDiscovery.tsx is deleted */}
+        {/*
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-base font-medium">Partner Discovery</CardTitle>
@@ -141,11 +130,14 @@ const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange 
               Browse and vet potential suppliers or distributors aligned with your ESG goals.
             </p>
             <Button asChild className="w-full mt-2">
-              <Link to={`${baseRoute}/partners`}>Discover Partners</Link>
+              <Link to="/msme/partners">Discover Partners</Link>
             </Button>
           </CardContent>
         </Card>
+        */}
 
+        {/* Social Impact card removed as CompanySocialImpact.tsx is deleted */}
+        {/*
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-base font-medium">Social Impact</CardTitle>
@@ -156,10 +148,11 @@ const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange 
               Discover and fund social impact initiatives aligned with your corporate values.
             </p>
             <Button asChild className="w-full mt-2">
-              <Link to={`${baseRoute}/impact`}>View Initiatives</Link>
+              <Link to="/msme/impact">View Initiatives</Link>
             </Button>
           </CardContent>
         </Card>
+        */}
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">

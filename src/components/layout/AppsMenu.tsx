@@ -1,4 +1,3 @@
-
 import React from "react";
 import {
   Dialog,
@@ -67,10 +66,9 @@ export const AppsMenu: React.FC<AppsMenuProps> = ({
     { name: "Messages", icon: MessageSquareText, path: "/msme/messages", color: "text-green-600" },
   ];
   
-  // Updated Fundes apps with correct routing and specialized apps
+  // Removed the Dashboard entry from the fundesApps array
   const fundesApps: AppIcon[] = [
     { name: "Feed", icon: Rss, path: "/fundes/feed", color: "text-bright-blue" },
-    { name: "Dashboard", icon: Target, path: "/fundes", color: "text-green-700" },
     { name: "User Stats", icon: BarChart4, path: "/fundes/user-statistics", color: "text-purple-600" },
     { name: "MSME Database", icon: Database, path: "/fundes/msme-database", color: "text-navy-blue" },
     { name: "Communications", icon: MessageSquareText, path: "/fundes/communications", color: "text-indigo-500" },

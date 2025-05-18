@@ -63,14 +63,14 @@ const config = {
         'light-purple': '#D6BCFA',
         'soft-gray': '#F1F0FB',
         'soft-purple': '#E5DEFF',
-        // Colors from the palette using CSS variables
-        'navy-blue': 'var(--navy-blue)',
-        'light-blue': 'var(--light-blue)',
-        'bright-blue': 'var(--bright-blue)',
-        'mint-green': 'var(--mint-green)',
-        'pale-blue': 'var(--pale-blue)',
-        'dark-navy': 'var(--dark-navy)',
-        'off-white': 'var(--off-white)',
+        // Define colors with explicit hex values for proper opacity support
+        'navy-blue': '#1C3A83',
+        'light-blue': '#AFBBDF',
+        'bright-blue': '#2261EB',
+        'mint-green': '#5EEAD4',
+        'pale-blue': '#C7E6F6',
+        'dark-navy': '#1D477E',
+        'off-white': '#F4F4F4',
       },
       spacing: {
         // Add spacing tokens from CSS variables

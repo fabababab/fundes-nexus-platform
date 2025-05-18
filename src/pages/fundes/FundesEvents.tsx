@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, MoreHorizontal, Clock, MapPin, Users, PlusCircle, Search, Filter, CheckCircle2, X } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -24,7 +25,7 @@ import {
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { format, addDays, addMonths, startOfDay, isSameDay } from "date-fns";
-import DashboardLayout from "@/components/layout/DashboardLayoutRefactored";
+import { SimpleDashboardLayout } from "@/components/layout/SimpleDashboardLayout";
 import { UserRole } from "@/types/common";
 
 interface Event {
@@ -193,7 +194,7 @@ const FundesEvents = () => {
   ).slice(0, 5);
 
   return (
-    <DashboardLayout
+    <SimpleDashboardLayout
       activeRole={activeRole}
       onRoleChange={handleRoleChange}
       pageTitle="Event & Workshop Scheduler"
@@ -532,7 +533,7 @@ const FundesEvents = () => {
           </TabsContent>
         </Tabs>
       </div>
-    </DashboardLayout>
+    </SimpleDashboardLayout>
   );
 };
 

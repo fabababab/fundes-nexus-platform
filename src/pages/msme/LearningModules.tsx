@@ -15,7 +15,7 @@ const LearningModules: React.FC = () => {
   const learningJourneys = [
     {
       title: "Financial Literacy",
-      description: "An AI-powered journey to enhance your financial understanding and decision-making skills.",
+      description: "Overcome tax fears, open your first bank account, and discover how formal finance helps your business grow.",
       progress: 0, // Example progress
       completed: false,
       icon: BookText,

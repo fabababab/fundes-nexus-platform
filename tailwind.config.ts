@@ -63,6 +63,14 @@ const config = {
         'light-purple': '#D6BCFA',
         'soft-gray': '#F1F0FB',
         'soft-purple': '#E5DEFF',
+        // New colors from the palette image
+        'navy-blue': '#1C3A83',
+        'light-blue': '#AFBBDF',
+        'bright-blue': '#2261EB',
+        'mint-green': '#5EEAD4',
+        'pale-blue': '#C7E6F6',
+        'dark-navy': '#1D477E',
+        'off-white': '#F4F4F4',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -70,7 +78,9 @@ const config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       fontFamily: {
-        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        // Update font family definitions
+        sans: ['Inter var', 'Helvetica Neue', ...defaultTheme.fontFamily.sans],
+        georgia: ['Georgia', 'serif'],
       },
       keyframes: {
         'accordion-down': {

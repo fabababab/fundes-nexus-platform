@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Georgia&family=Inter:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -49,6 +52,15 @@
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* New color variables from the color palette */
+    --navy-blue: 219 56% 29%;
+    --light-blue: 228 32% 74%;
+    --bright-blue: 220 81% 53%;
+    --mint-green: 164 51% 62%;
+    --pale-blue: 199 58% 87%;
+    --dark-navy: 217 59% 29%;
+    --off-white: 0 0% 96%;
   }
 
   .dark {
@@ -96,6 +108,65 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-georgia;
+  }
+}
+
+/* Custom utility classes */
+@layer utilities {
+  .font-georgia {
+    font-family: 'Georgia', serif;
+  }
+  
+  .bg-navy-blue {
+    background-color: #1C3A83; /* Navy blue from the color palette */
+  }
+  
+  .bg-light-blue {
+    background-color: #AFBBDF; /* Light blue from the color palette */
+  }
+  
+  .bg-bright-blue {
+    background-color: #2261EB; /* Bright blue from the color palette */
+  }
+  
+  .bg-mint-green {
+    background-color: #5EEAD4; /* Mint green from the color palette */
+  }
+  
+  .bg-pale-blue {
+    background-color: #C7E6F6; /* Pale blue from the color palette */
+  }
+  
+  .bg-dark-navy {
+    background-color: #1D477E; /* Dark navy from the color palette */
+  }
+  
+  .text-navy-blue {
+    color: #1C3A83;
+  }
+  
+  .text-light-blue {
+    color: #AFBBDF;
+  }
+  
+  .text-bright-blue {
+    color: #2261EB;
+  }
+  
+  .text-mint-green {
+    color: #5EEAD4;
+  }
+  
+  .text-pale-blue {
+    color: #C7E6F6;
+  }
+  
+  .text-dark-navy {
+    color: #1D477E;
   }
 }

@@ -29,13 +29,13 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
   const year = dateParts[2];
   
   return (
-    <Card className="overflow-hidden">
+    <Card className="overflow-hidden border-light-blue">
       <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/6 bg-slate-50 p-4 flex flex-col justify-center items-center">
+        <div className="md:w-1/6 bg-light-blue p-4 flex flex-col justify-center items-center">
           <div className="text-center">
-            <p className="text-sm text-gray-500 uppercase">{month}</p>
-            <p className="text-4xl font-bold">{day}</p>
-            <p className="text-sm text-gray-500">{year}</p>
+            <p className="text-sm text-navy-blue uppercase font-semibold">{month}</p>
+            <p className="text-4xl font-bold font-georgia text-navy-blue">{day}</p>
+            <p className="text-sm text-navy-blue">{year}</p>
           </div>
         </div>
         
@@ -43,54 +43,54 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
             <div className="space-y-4 flex-1">
               <div className="flex items-center gap-2 mb-2">
-                <Badge variant="outline" className="bg-slate-900 text-white rounded-md px-4 py-1 hover:bg-slate-800">
+                <Badge variant="outline" className="bg-navy-blue text-white rounded-md px-4 py-1 hover:bg-dark-navy">
                   {event.category}
                 </Badge>
-                <Badge variant="outline" className="bg-white text-slate-900 rounded-md px-3 py-1 border border-slate-200">
+                <Badge variant="outline" className="bg-white text-bright-blue rounded-md px-3 py-1 border border-light-blue">
                   {event.type === "Virtual" ? <Video className="mr-1 h-4 w-4" /> : <MapPin className="mr-1 h-4 w-4" />}
                   {event.type}
                 </Badge>
               </div>
               
-              <h3 className="text-2xl font-semibold">{event.title}</h3>
+              <h3 className="text-2xl font-georgia text-navy-blue">{event.title}</h3>
               
-              <div className="flex flex-col sm:flex-row gap-6 text-gray-500">
+              <div className="flex flex-col sm:flex-row gap-6 text-neutral-gray">
                 <div className="flex items-center">
-                  <Clock className="mr-2 h-4 w-4" />
+                  <Clock className="mr-2 h-4 w-4 text-bright-blue" />
                   {event.time}
                 </div>
                 <div className="flex items-center">
-                  <MapPin className="mr-2 h-4 w-4" />
+                  <MapPin className="mr-2 h-4 w-4 text-bright-blue" />
                   {event.location}
                 </div>
                 <div className="flex items-center">
-                  <Users className="mr-2 h-4 w-4" />
+                  <Users className="mr-2 h-4 w-4 text-bright-blue" />
                   {event.attendees} Attendees
                 </div>
               </div>
               
-              <p className="text-gray-500">{event.description}</p>
+              <p className="text-neutral-gray">{event.description}</p>
             </div>
             
             <div className="flex flex-col gap-4 mt-4 md:mt-0">
               {event.isRegistered ? (
                 <>
-                  <Badge variant="outline" className="bg-gray-100 text-slate-900 px-4 py-1 text-center rounded-md">
+                  <Badge variant="outline" className="bg-pale-blue text-navy-blue px-4 py-1 text-center rounded-md">
                     Registered
                   </Badge>
-                  <Button variant="outline" className="rounded-full border-2 border-slate-900 px-6 py-2 h-auto font-medium">
+                  <Button variant="outline" className="rounded-full border-2 border-navy-blue px-6 py-2 h-auto font-medium text-navy-blue hover:bg-light-blue/20">
                     View Details
                   </Button>
-                  <Button variant="ghost" className="px-6 py-2 h-auto font-medium">
+                  <Button variant="ghost" className="px-6 py-2 h-auto font-medium text-neutral-gray hover:text-bright-blue">
                     Cancel Registration
                   </Button>
                 </>
               ) : (
                 <>
-                  <Button className="rounded-full bg-slate-900 px-6 py-2 h-auto font-medium">
+                  <Button className="rounded-full bg-bright-blue hover:bg-navy-blue px-6 py-2 h-auto font-medium">
                     Register
                   </Button>
-                  <Button variant="outline" className="rounded-full border-2 border-slate-900 px-6 py-2 h-auto font-medium">
+                  <Button variant="outline" className="rounded-full border-2 border-navy-blue px-6 py-2 h-auto font-medium text-navy-blue hover:bg-light-blue/20">
                     View Details
                   </Button>
                 </>

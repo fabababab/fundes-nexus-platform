@@ -33,12 +33,13 @@ const ProjectOverview = () => {
       onRoleChange={handleRoleChange}
       pageTitle="Project Overview"
     >
-      <div className="py-4 md:py-8">
+      <div className="py-responsive">
+        <h1 className="text-h2 text-navy-blue mb-2">Project Overview</h1>
         <p className="text-body text-neutral-gray mb-6">
           Explore available projects and manage your ongoing initiatives.
         </p>
         
-        <div className="grid gap-4 md:gap-6 md:grid-cols-2">
+        <div className="grid gap-responsive md:grid-cols-2">
           {mockProjects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

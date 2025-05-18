@@ -98,6 +98,52 @@
   }
 }
 
+/* Custom scrollbar styles from App.css */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 3px;
+}
+
+/* Animation for page transitions from App.css */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+/* Focus styles for accessibility from App.css */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-bright-blue focus:ring-offset-2;
+}
+
 /* Global styles */
 .app-container {
   @apply w-full max-w-[1400px] mx-auto px-4 sm:px-6;
@@ -310,4 +356,14 @@
   .hidden-desktop {
     @apply block md:hidden;
   }
+  
+  /* Animation utilities */
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+  
+  .transition-shadow {
+    @apply transition-shadow duration-300;
+  }
 }
+

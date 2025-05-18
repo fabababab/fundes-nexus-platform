@@ -42,14 +42,14 @@ export const SimpleDashboardLayout: React.FC<DashboardLayoutProps> = ({
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col">
+    <div className="min-h-screen w-full flex flex-col bg-off-white">
       <Navbar 
         activeRole={activeRole}
         pageTitle={pageTitle}
         onRoleChange={handleRoleChange}
       />
       
-      <main className={cn("flex-1 p-4 md:p-6 app-container", className)} {...props}>
+      <main className={cn("flex-1 p-responsive app-container", className)} {...props}>
         {children}
       </main>
     </div>

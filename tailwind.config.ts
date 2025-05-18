@@ -78,9 +78,8 @@ const config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       fontFamily: {
-        // Update font family definitions
-        sans: ['Inter var', 'Helvetica Neue', ...defaultTheme.fontFamily.sans],
-        georgia: ['Georgia', 'serif'],
+        // Update font family definitions to use only Inter
+        sans: ['Inter', 'Helvetica Neue', ...defaultTheme.fontFamily.sans],
       },
       keyframes: {
         'accordion-down': {

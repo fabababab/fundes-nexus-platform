@@ -74,7 +74,7 @@ const MSMEEvents: React.FC = () => {
       <div className="container mx-auto py-8">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8">
           <div>
-            <h1 className="text-3xl font-georgia font-bold mb-2 text-navy-blue">Upcoming MSME Events</h1>
+            <h1 className="text-3xl font-bold mb-2 text-navy-blue">Upcoming MSME Events</h1>
             <p className="text-lg text-neutral-gray">
               Workshops, networking opportunities, and training sessions tailored for MSMEs.
             </p>

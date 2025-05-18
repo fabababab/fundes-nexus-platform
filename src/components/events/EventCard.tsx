@@ -34,7 +34,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
         <div className="md:w-1/6 bg-light-blue p-4 flex flex-col justify-center items-center">
           <div className="text-center">
             <p className="text-sm text-navy-blue uppercase font-semibold">{month}</p>
-            <p className="text-4xl font-bold font-georgia text-navy-blue">{day}</p>
+            <p className="text-4xl font-bold text-navy-blue">{day}</p>
             <p className="text-sm text-navy-blue">{year}</p>
           </div>
         </div>
@@ -52,7 +52,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
                 </Badge>
               </div>
               
-              <h3 className="text-2xl font-georgia text-navy-blue">{event.title}</h3>
+              <h3 className="text-2xl text-navy-blue font-medium">{event.title}</h3>
               
               <div className="flex flex-col sm:flex-row gap-6 text-neutral-gray">
                 <div className="flex items-center">

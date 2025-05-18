@@ -1,59 +1,39 @@
 
-import React from "react";
-import { UserRole } from "@/types/common";
-import { useNavigate } from "react-router-dom";
-import { cn } from "@/lib/utils";
+import React, { ReactNode } from "react";
 import Navbar from "./Navbar";
+import { UserRole } from "@/types/common";
+import { useTheme } from "@/contexts/ThemeContext";
 
-interface DashboardLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
+interface SimpleDashboardLayoutProps {
+  children: ReactNode;
   activeRole: UserRole;
+  pageTitle?: string;
   onRoleChange: (role: UserRole) => void;
-  pageTitle: string;
 }
 
-export const SimpleDashboardLayout: React.FC<DashboardLayoutProps> = ({ 
+export const SimpleDashboardLayout: React.FC<SimpleDashboardLayoutProps> = ({
   children,
-  className = '',
   activeRole,
+  pageTitle = "Dashboard",
   onRoleChange,
-  pageTitle,
-  ...props
-}: DashboardLayoutProps) => {
-  const navigate = useNavigate();
+}) => {
+  const { updateThemeFromRole } = useTheme();
   
-  const handleRoleChange = (newRole: UserRole) => {
-    onRoleChange(newRole);
-    
-    // Navigate to the appropriate page when role changes
-    switch (newRole) {
-      case "msme":
-        navigate("/msme/feed");
-        break;
-      case "fundes":
-        navigate("/fundes/feed");
-        break;
-      case "investor":
-        navigate("/dashboard");
-        break;
-      default:
-        navigate("/dashboard");
-    }
-  };
+  // Update theme when role changes
+  React.useEffect(() => {
+    updateThemeFromRole(activeRole);
+  }, [activeRole, updateThemeFromRole]);
 
   return (
-    <div className="min-h-screen w-full flex flex-col bg-off-white">
-      <Navbar 
+    <div className="min-h-screen">
+      <Navbar
         activeRole={activeRole}
         pageTitle={pageTitle}
-        onRoleChange={handleRoleChange}
+        onRoleChange={onRoleChange}
       />
-      
-      <main className={cn("flex-1 p-responsive app-container", className)} {...props}>
+      <main className="app-container py-4">
         {children}
       </main>
     </div>
   );
 };
-
-export default SimpleDashboardLayout;

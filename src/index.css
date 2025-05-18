@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -36,16 +35,6 @@
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
-
-    /* Color palette */
-    --navy-blue: 219 56% 29%;
-    --light-blue: 228 32% 74%;
-    --bright-blue: 220 81% 53%;
-    --mint-green: 164 51% 62%;
-    --pale-blue: 199 58% 87%;
-    --dark-navy: 217 59% 29%;
-    --off-white: 0 0% 96%;
-    --neutral-gray: 217 10% 57%;
   }
 
   .dark {
@@ -60,7 +49,8 @@
   }
 
   body {
-    @apply bg-off-white text-foreground font-sans;
+    @apply bg-background text-foreground font-sans;
+    background-color: var(--color-background, #F4F4F4);
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -70,30 +60,43 @@
   /* Consistent typography system */
   .text-display {
     @apply text-3xl md:text-5xl font-bold leading-tight;
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
   }
 
   .text-h1 {
     @apply text-2xl md:text-4xl font-bold;
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
   }
 
   .text-h2 {
     @apply text-xl md:text-3xl font-semibold;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
   }
 
   .text-h3 {
     @apply text-lg md:text-2xl font-semibold;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
   }
 
   .text-h4 {
     @apply text-base md:text-xl font-medium;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
   }
 
   .text-body {
     @apply text-sm md:text-base;
+    font-size: var(--font-size-base);
   }
 
   .text-caption {
     @apply text-xs md:text-sm text-neutral-gray;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary, #8E9196);
   }
 }
 
@@ -148,41 +151,62 @@
 /* Layout containers */
 .app-container {
   @apply w-full max-w-[1400px] mx-auto px-4 sm:px-6;
+  padding-left: var(--spacing-4);
+  padding-right: var(--spacing-4);
 }
 
 /* Typography */
 .page-title {
   @apply text-xl md:text-2xl lg:text-3xl font-bold text-navy-blue mb-4;
+  color: var(--color-primary, #1C3A83);
+  margin-bottom: var(--spacing-4);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
 }
 
 .page-subtitle {
   @apply text-sm md:text-base lg:text-lg text-neutral-gray mb-6;
+  color: var(--color-text-secondary, #8E9196);
+  margin-bottom: var(--spacing-6);
 }
 
 /* Navbar styles */
 .navbar {
   @apply bg-white border-b-4 border-bright-blue sticky top-0 z-50;
+  border-bottom-color: var(--color-accent, #2261EB);
+  z-index: var(--z-index-sticky);
 }
 
 .navbar-container {
   @apply w-full max-w-[1400px] mx-auto px-4 flex items-center justify-between h-16;
+  height: 4rem;
+  padding-left: var(--spacing-4);
+  padding-right: var(--spacing-4);
 }
 
 .navbar-brand {
   @apply text-lg md:text-xl font-semibold text-navy-blue;
+  color: var(--color-primary, #1C3A83);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
 }
 
 .navbar-items {
   @apply flex items-center space-x-1 md:space-x-2;
+  gap: var(--spacing-2);
 }
 
 /* Apps grid modal styles */
 .apps-modal {
   @apply p-4 md:p-8 bg-white rounded-xl shadow-lg;
+  padding: var(--spacing-4) var(--spacing-8);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
 }
 
 .apps-grid {
   @apply grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8;
+  gap: var(--spacing-4) var(--spacing-8);
 }
 
 .app-icon {
@@ -191,10 +215,12 @@
 
 .app-icon-image {
   @apply w-8 h-8 md:w-12 md:h-12 mb-2;
+  margin-bottom: var(--spacing-2);
 }
 
 .app-icon-label {
   @apply text-xs md:text-sm text-center;
+  font-size: var(--font-size-xs);
 }
 
 /* ===== Component Styles ===== */
@@ -231,18 +257,37 @@
 /* Button variants */
 .btn-primary {
   @apply bg-navy-blue hover:bg-dark-navy text-white font-medium py-2 px-4 rounded-md transition-colors;
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-2) var(--spacing-4);
+  font-weight: var(--font-weight-medium);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
 }
 
 .btn-secondary {
   @apply bg-light-blue hover:bg-light-blue/90 text-navy-blue font-medium py-2 px-4 rounded-md transition-colors;
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-2) var(--spacing-4);
 }
 
 .btn-outline {
   @apply border border-navy-blue text-navy-blue hover:bg-navy-blue/10 font-medium py-2 px-4 rounded-md transition-colors;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-2) var(--spacing-4);
 }
 
 .btn-icon {
   @apply p-2 rounded-full hover:bg-gray-100 transition-colors;
+  border-radius: var(--radius-full);
+  padding: var(--spacing-2);
 }
 
 /* ===== Event Card Styles ===== */

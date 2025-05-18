@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { UserRole } from "@/types/common";
@@ -6,6 +5,7 @@ import { MessageSquare, Rss, Calendar, User, Database, BarChart4, Menu, Grid3X3 
 import { AppsMenu } from "./AppsMenu";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useTheme } from "@/contexts/ThemeContext";
 
 interface NavbarProps {
   activeRole: UserRole;
@@ -20,6 +20,12 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const isMobile = useIsMobile();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { updateThemeFromRole } = useTheme();
+  
+  // Update theme when role changes
+  React.useEffect(() => {
+    updateThemeFromRole(activeRole);
+  }, [activeRole, updateThemeFromRole]);
   
   // Helper function to get role-specific routes
   const getRoleSpecificRoute = (baseRoute: string): string => {
@@ -121,7 +127,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                   {allNavItems.map(renderMobileNavItem)}
                 </div>
                 <div className="mt-6">
-                  <AppsMenu activeRole={activeRole} onRoleChange={onRoleChange} isMobileSidebar={true} />
+                  <AppsMenu activeRole={activeRole} onRoleChange={(role) => {
+                    onRoleChange(role);
+                    updateThemeFromRole(role);
+                  }} isMobileSidebar={true} />
                 </div>
               </SheetContent>
             </Sheet>
@@ -141,7 +150,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             {allNavItems.map(renderNavItem)}
             
             <div className="flex items-center ml-2">
-              <AppsMenu activeRole={activeRole} onRoleChange={onRoleChange} />
+              <AppsMenu activeRole={activeRole} onRoleChange={(role) => {
+                onRoleChange(role);
+                updateThemeFromRole(role);
+              }} />
               
               <button className="ml-2 p-2 hover:bg-gray-100 rounded-full">
                 <User className="h-5 w-5 text-navy-blue" />

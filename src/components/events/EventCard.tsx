@@ -29,68 +29,66 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
   const year = dateParts[2];
   
   return (
-    <Card className="event-card">
+    <Card className="overflow-hidden transition-all duration-normal hover:shadow-md">
       <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/6 event-card-date">
-          <div className="text-center">
-            <p className="event-card-date-month">{month}</p>
-            <p className="event-card-date-day">{day}</p>
-            <p className="event-card-date-year">{year}</p>
-          </div>
+        <div className="md:w-[80px] bg-light-blue p-4 flex flex-col justify-center items-center text-center">
+          <p className="text-xs font-semibold text-navy-blue uppercase">{month}</p>
+          <p className="text-3xl font-bold text-navy-blue">{day}</p>
+          <p className="text-xs text-navy-blue">{year}</p>
         </div>
         
-        <div className="event-card-content flex-1">
-          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-            <div className="space-y-4 flex-1">
-              <div className="event-card-badges">
-                <Badge className="event-card-category-badge">
+        <div className="p-responsive flex-1">
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+            <div className="space-y-3 flex-1">
+              <div className="flex flex-wrap gap-2">
+                <Badge variant="default" className="bg-primary text-primary-foreground">
                   {event.category}
                 </Badge>
-                <Badge variant="outline" className="event-card-type-badge">
-                  {event.type === "Virtual" ? <Video className="mr-1 h-4 w-4" /> : <MapPin className="mr-1 h-4 w-4" />}
+                <Badge variant="outline" className="border-primary text-primary flex items-center gap-1">
+                  {event.type === "Virtual" ? <Video className="h-3 w-3" /> : <MapPin className="h-3 w-3" />}
                   {event.type}
                 </Badge>
               </div>
               
-              <h3 className="event-card-title">{event.title}</h3>
+              <h3 className="text-h4 text-primary">{event.title}</h3>
               
-              <div className="event-card-details">
-                <div className="event-card-detail">
-                  <Clock className="event-card-detail-icon" />
+              <div className="flex flex-col sm:flex-row gap-3 text-sm text-neutral-gray">
+                <div className="flex items-center">
+                  <Clock className="mr-2 h-4 w-4 text-accent" />
                   {event.time}
                 </div>
-                <div className="event-card-detail">
-                  <MapPin className="event-card-detail-icon" />
+                <div className="flex items-center">
+                  <MapPin className="mr-2 h-4 w-4 text-accent" />
                   {event.location}
                 </div>
-                <div className="event-card-detail">
-                  <Users className="event-card-detail-icon" />
+                <div className="flex items-center">
+                  <Users className="mr-2 h-4 w-4 text-accent" />
                   {event.attendees} Attendees
                 </div>
               </div>
               
-              <p className="event-card-description">{event.description}</p>
+              <p className="text-body text-neutral-gray">{event.description}</p>
             </div>
             
-            <div className="event-card-actions">
+            <div className="flex flex-col gap-2 min-w-[140px]">
               {event.isRegistered ? (
                 <>
-                  <Badge className="event-registered-badge">
+                  <Badge className="bg-pale-blue border-none text-primary justify-center py-1">
                     Registered
                   </Badge>
-                  <Button variant="outline" className="event-details-button">
+                  <Button variant="outline" className="border-primary text-primary">
                     View Details
                   </Button>
-                  <Button variant="ghost" className="event-cancel-button">
+                  <Button variant="ghost" className="text-neutral-gray hover:text-accent">
                     Cancel Registration
                   </Button>
                 </>
               ) : (
                 <>
-                  <Button className="event-register-button">
+                  <Button className="bg-accent hover:bg-primary">
                     Register
                   </Button>
-                  <Button variant="outline" className="event-details-button">
+                  <Button variant="outline" className="border-primary text-primary">
                     View Details
                   </Button>
                 </>

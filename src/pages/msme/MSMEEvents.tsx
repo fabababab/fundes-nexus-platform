@@ -71,21 +71,24 @@ const MSMEEvents: React.FC = () => {
       onRoleChange={handleRoleChange}
       pageTitle="MSME Events"
     >
-      <div className="py-4 md:py-8">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 md:mb-8">
+      <div className="py-responsive">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
           <div>
-            <h1 className="page-title">Upcoming MSME Events</h1>
-            <p className="page-subtitle">
+            <h1 className="text-h2 mb-2">Upcoming MSME Events</h1>
+            <p className="text-body text-neutral-gray">
               Workshops, networking opportunities, and training sessions tailored for MSMEs.
             </p>
           </div>
-          <Button className="mt-4 sm:mt-0 flex items-center gap-2 bg-navy-blue hover:bg-dark-navy">
-            <Calendar className="h-4 w-4 md:h-5 md:w-5" />
+          <Button 
+            className="mt-4 sm:mt-0 flex items-center gap-2"
+            variant="default"
+          >
+            <Calendar className="h-4 w-4" />
             <span>Sync Calendar</span>
           </Button>
         </div>
         
-        <div className="grid gap-4 md:gap-6 md:grid-cols-2">
+        <div className="grid gap-responsive grid-cols-1">
           {msmeEvents.map((event) => (
             <EventCard key={event.id} event={event} />
           ))}

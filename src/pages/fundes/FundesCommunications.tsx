@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import {
   MessageSquare,
@@ -38,7 +39,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
-import DashboardLayout from "@/components/layout/DashboardLayoutRefactored";
+import { SimpleDashboardLayout } from "@/components/layout/SimpleDashboardLayout";
 import { UserRole } from "@/types/common";
 
 interface Message {
@@ -232,7 +233,7 @@ const FundesCommunications = () => {
   );
 
   return (
-    <DashboardLayout
+    <SimpleDashboardLayout
       activeRole={activeRole}
       onRoleChange={handleRoleChange}
       pageTitle="Communications Hub"
@@ -481,7 +482,7 @@ const FundesCommunications = () => {
           </div>
         </Tabs>
       </div>
-    </DashboardLayout>
+    </SimpleDashboardLayout>
   );
 };
 

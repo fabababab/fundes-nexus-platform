@@ -87,6 +87,12 @@ export const AppsMenu: React.FC<AppsMenuProps> = ({
     }
   };
 
+  const handleRoleChange = (role: UserRole) => {
+    console.log("Changing role to:", role);
+    onRoleChange(role);
+    // Close the dialog after changing roles (if needed)
+  };
+
   // For mobile sidebar, we render the content directly
   if (isMobileSidebar) {
     return (
@@ -114,7 +120,7 @@ export const AppsMenu: React.FC<AppsMenuProps> = ({
               <button
                 key={role.id}
                 className={`flex items-center p-2 rounded-md ${activeRole === role.id ? 'bg-gray-100' : 'hover:bg-gray-50'}`}
-                onClick={() => onRoleChange(role.id)}
+                onClick={() => handleRoleChange(role.id)}
               >
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center ${role.color}`}>
                   <role.icon className="h-4 w-4" />
@@ -160,7 +166,7 @@ export const AppsMenu: React.FC<AppsMenuProps> = ({
               <button
                 key={role.id}
                 className={`flex items-center p-2 rounded-md ${activeRole === role.id ? 'bg-gray-100' : 'hover:bg-gray-50'}`}
-                onClick={() => onRoleChange(role.id)}
+                onClick={() => handleRoleChange(role.id)}
               >
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center ${role.color}`}>
                   <role.icon className="h-4 w-4" />

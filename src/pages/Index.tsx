@@ -24,6 +24,13 @@ const Index = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-purple-50 to-white p-4">
       <div className="w-full max-w-4xl">
         <div className="text-center mb-8">
+          <div className="flex justify-center mb-6">
+            <img 
+              src="/lovable-uploads/d76beacc-bb0e-4b16-8ed4-118efe6683df.png" 
+              alt="Fundeo Logo" 
+              className="h-16 md:h-20" 
+            />
+          </div>
           <h1 className="text-display text-primary mb-4">Welcome to Fundeo</h1>
           <p className="text-body text-gray-600 max-w-2xl mx-auto">
             Connect MSMEs with impactful companies and donors to drive sustainable innovation

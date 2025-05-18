@@ -101,6 +101,9 @@ export const Navbar: React.FC<NavbarProps> = ({
     <div className="navbar">
       <div className="navbar-container">
         <div className="flex items-center">
+          <Link to="/" className="mr-3">
+            <img src="/lovable-uploads/d76beacc-bb0e-4b16-8ed4-118efe6683df.png" alt="Fundeo Logo" className="h-8" />
+          </Link>
           <h1 className="navbar-brand">{pageTitle}</h1>
         </div>
         

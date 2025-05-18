@@ -29,6 +29,13 @@ import ProjectOverview from "./pages/msme/ProjectOverview";
 import DiscoverProjects from "./pages/projects/DiscoverProjects";
 import LearningModules from "./pages/msme/LearningModules"; // <-- Import the new page
 
+// Import MSME-specific pages
+import MSMEFeed from "./pages/msme/MSMEFeed";
+import MSMEChatBot from "./pages/msme/MSMEChatBot";
+import MSMEEvents from "./pages/msme/MSMEEvents";
+import MSMEMessages from "./pages/msme/MSMEMessages";
+import MSMECommunityPage from "./pages/msme/MSMECommunity";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -67,6 +74,14 @@ const App = () => (
           {/* <Route path="/msme/partners" element={<CompanyPartnerDiscovery />} /> */}
           {/* <Route path="/msme/impact" element={<CompanySocialImpact />} /> */}
           {/* <Route path="/msme/projects" element={<CompanyProjectRoom />} /> */}
+          
+          {/* MSME routes */}
+          <Route path="/msme" element={<Dashboard activeRole="msme" />} />
+          <Route path="/msme/feed" element={<MSMEFeed />} />
+          <Route path="/msme/chatbot" element={<MSMEChatBot />} />
+          <Route path="/msme/events" element={<MSMEEvents />} />
+          <Route path="/msme/messages" element={<MSMEMessages />} />
+          <Route path="/msme/community" element={<MSMECommunityPage />} />
           
           <Route path="/analytics" element={<Dashboard />} />
           <Route path="/network" element={<Dashboard />} />

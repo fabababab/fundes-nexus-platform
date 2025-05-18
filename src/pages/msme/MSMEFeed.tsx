@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
 import { UserRole } from "@/types/common";
-import { FeedItem } from "@/components/feed/FeedItem";
+import FeedItem from "@/components/feed/FeedItem";
 
 const MSMEFeed: React.FC = () => {
   // MSME role is fixed for this page
@@ -15,43 +15,63 @@ const MSMEFeed: React.FC = () => {
   const msmeFeedItems = [
     {
       id: "1",
-      author: "FUNDES Organization",
-      avatar: "/placeholder.svg",
+      title: "New Training Opportunity",
       content: "New sustainable supply chain training starting next month! MSMEs can apply now.",
-      timestamp: "2 hours ago",
+      type: "Event",
+      date: "2 hours ago",
+      category: "Training",
+      author: {
+        name: "FUNDES Organization",
+        title: "Program Manager",
+        avatar: "/placeholder.svg"
+      },
       likes: 24,
-      comments: 5,
-      isVerified: true,
+      comments: 5
     },
     {
       id: "2",
-      author: "Financial Literacy Program",
-      avatar: "/placeholder.svg",
+      title: "Financial Literacy Program",
       content: "Learn how to overcome tax fears and open your first business bank account with our new module.",
-      timestamp: "5 hours ago",
+      type: "Opportunity",
+      date: "5 hours ago",
+      category: "Education",
+      author: {
+        name: "Financial Literacy Team",
+        title: "Workshop Leader",
+        avatar: "/placeholder.svg"
+      },
       likes: 18,
-      comments: 3,
-      isVerified: true,
+      comments: 3
     },
     {
       id: "3",
-      author: "Coca-Cola Project",
-      avatar: "/placeholder.svg",
+      title: "Sustainability Initiative",
       content: "MSMEs participating in our sustainability initiative have reduced plastic waste by 35% collectively.",
-      timestamp: "1 day ago",
+      type: "Article",
+      date: "1 day ago",
+      category: "Sustainability",
+      author: {
+        name: "Coca-Cola Project",
+        title: "Project Lead",
+        avatar: "/placeholder.svg"
+      },
       likes: 42,
-      comments: 12,
-      isVerified: true,
+      comments: 12
     },
     {
       id: "4",
-      author: "Community Spotlight",
-      avatar: "/placeholder.svg",
+      title: "Community Spotlight",
       content: "Congratulations to Green Ventures for completing their sustainability certification!",
-      timestamp: "2 days ago",
+      type: "Network",
+      date: "2 days ago",
+      category: "Community",
+      author: {
+        name: "MSME Spotlight Team",
+        title: "Community Manager",
+        avatar: "/placeholder.svg"
+      },
       likes: 36,
-      comments: 8,
-      isVerified: false,
+      comments: 8
     }
   ];
 

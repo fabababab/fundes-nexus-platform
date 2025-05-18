@@ -1,8 +1,8 @@
 
 import React, { useState } from "react";
 import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
-import { ContactsList } from "@/pages/messages/ContactsList";
-import { MessageThread } from "@/pages/messages/MessageThread";
+import ContactsList from "@/pages/messages/ContactsList";
+import MessageThread from "@/pages/messages/MessageThread";
 import { UserRole } from "@/types/common";
 
 const MSMEMessages: React.FC = () => {

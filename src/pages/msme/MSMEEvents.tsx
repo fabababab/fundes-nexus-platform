@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
-import { EventCard } from "@/components/events/EventCard";
+import EventCard from "@/components/events/EventCard";
 import { UserRole } from "@/types/common";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "lucide-react";
@@ -24,6 +24,8 @@ const MSMEEvents: React.FC = () => {
       location: "Virtual",
       attendees: 42,
       category: "Training",
+      type: "Virtual",
+      isRegistered: false
     },
     {
       id: "2",
@@ -34,6 +36,8 @@ const MSMEEvents: React.FC = () => {
       location: "Regional Conference Center",
       attendees: 78,
       category: "Conference",
+      type: "In Person",
+      isRegistered: true
     },
     {
       id: "3",
@@ -44,6 +48,8 @@ const MSMEEvents: React.FC = () => {
       location: "Community Business Hub",
       attendees: 35,
       category: "Networking",
+      type: "In Person",
+      isRegistered: false
     },
     {
       id: "4",
@@ -54,6 +60,8 @@ const MSMEEvents: React.FC = () => {
       location: "Virtual",
       attendees: 28,
       category: "Training",
+      type: "Virtual",
+      isRegistered: false
     }
   ];
   

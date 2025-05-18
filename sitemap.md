@@ -27,7 +27,7 @@
 ## After Changes (Current Implementation)
 
 ### MSME-Specific Pages
-- `/msme` - MSME dashboard
+- `/msme` - MSME dashboard 
 - `/msme/feed` - MSME-specific feed
 - `/msme/chatbot` - MSME-specific AI assistant
 - `/msme/events` - MSME-specific events
@@ -46,10 +46,9 @@
 - `/dashboard` - Investor dashboard (when role is set to investor)
 - `/portfolio` - Investor portfolio
 - `/discover-startups` - Discover startups
-- Common pages (temporarily still shared)
 
-### Shared/Fallback Pages
-The following pages are still available as shared resources or fallbacks:
+### Removed Shared Pages
+The following shared pages have been removed:
 - `/feed`
 - `/chatbot`
 - `/events`
@@ -58,7 +57,7 @@ The following pages are still available as shared resources or fallbacks:
 
 ## Navigation System
 
-The navigation is now role-specific with:
+The navigation is now fully role-specific with:
 
 1. **Side Navigation**
    - Displays menu items specific to the current role

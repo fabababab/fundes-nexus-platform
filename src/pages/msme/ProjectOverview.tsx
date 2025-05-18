@@ -1,9 +1,7 @@
 
 import React, { useState } from "react";
 import { ProjectCard } from "@/components/msme/ProjectCard";
-// Card import is not used directly in this file anymore as ProjectCard handles its own card styling.
-// We will use DashboardLayout for the page structure.
-import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
+import { SimpleDashboardLayout } from "@/components/layout/SimpleDashboardLayout";
 import { UserRole } from "@/types/common";
 
 const mockProjects = [
@@ -30,17 +28,14 @@ const ProjectOverview = () => {
   };
 
   return (
-    <DashboardLayout
+    <SimpleDashboardLayout
       activeRole={activeRole}
       onRoleChange={handleRoleChange}
       pageTitle="Project Overview"
     >
       <div className="container mx-auto py-8 space-y-6">
         <div className="flex justify-between items-center">
-          {/* Page title is now handled by DashboardLayout, so we can remove this h1 if desired, 
-              or keep it as a secondary title if the design benefits from it. 
-              For consistency with LearningModules, we'll rely on DashboardLayout's title. */}
-          {/* <h1 className="text-3xl font-bold">Project Overview</h1> */}
+          {/* Page title is handled by SimpleDashboardLayout */}
         </div>
         <p className="text-lg text-neutral-gray mb-8">
           Explore available projects and manage your ongoing initiatives.
@@ -52,7 +47,7 @@ const ProjectOverview = () => {
           ))}
         </div>
       </div>
-    </DashboardLayout>
+    </SimpleDashboardLayout>
   );
 };
 

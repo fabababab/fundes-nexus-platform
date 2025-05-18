@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
+import { SimpleDashboardLayout } from "@/components/layout/SimpleDashboardLayout";
 import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
@@ -66,7 +66,7 @@ const MSMEChatBot = () => {
   }, [messages]);
 
   return (
-    <DashboardLayout 
+    <SimpleDashboardLayout 
       pageTitle="MSME Advisory Assistant" 
       activeRole={activeRole} 
       onRoleChange={handleRoleChange}
@@ -119,7 +119,7 @@ const MSMEChatBot = () => {
           </div>
         </Card>
       </div>
-    </DashboardLayout>
+    </SimpleDashboardLayout>
   );
 };
 

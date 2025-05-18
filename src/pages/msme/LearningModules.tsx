@@ -1,8 +1,8 @@
 
 import React, { useState } from "react";
-import { DashboardLayout } from "@/components/layout/DashboardLayoutRefactored";
+import { SimpleDashboardLayout } from "@/components/layout/SimpleDashboardLayout";
 import { UserRole } from "@/types/common";
-import { BookText, CheckCircle, Clock } from "lucide-react"; // Using BookText from allowed icons
+import { BookText, CheckCircle, Clock } from "lucide-react"; 
 
 const LearningModules: React.FC = () => {
   // MSME role is assumed for this page, onRoleChange can be a dummy
@@ -30,7 +30,7 @@ const LearningModules: React.FC = () => {
   ];
 
   return (
-    <DashboardLayout
+    <SimpleDashboardLayout
       activeRole={activeRole}
       onRoleChange={handleRoleChange}
       pageTitle="Learning Modules"
@@ -69,7 +69,7 @@ const LearningModules: React.FC = () => {
           ))}
         </div>
       </div>
-    </DashboardLayout>
+    </SimpleDashboardLayout>
   );
 };
 

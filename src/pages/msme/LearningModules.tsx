@@ -40,40 +40,40 @@ const LearningModules: React.FC = () => {
       pageTitle="Learning Modules"
     >
       <div className="py-responsive">
-        <h1 className="text-h2 text-navy-blue mb-2">AI-Powered Learning Modules</h1>
-        <p className="text-body text-neutral-gray mb-6">
+        <h1 className="text-h2 mb-2">AI-Powered Learning Modules</h1>
+        <p className="text-body mb-6">
           Embark on specialized learning journeys to boost your skills and knowledge.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-responsive">
           {learningJourneys.map((journey, index) => (
-            <Card key={index} className="card-base hover-scale transition-shadow duration-300">
+            <Card key={index} className="hover-scale transition-shadow duration-normal">
               <CardContent className="p-responsive">
                 <div className="flex items-center mb-4">
-                  <journey.icon className="h-6 w-6 md:h-8 md:w-8 text-primary-purple mr-3" />
-                  <h2 className="text-h4 text-navy-blue">{journey.title}</h2>
+                  <journey.icon className="h-6 w-6 md:h-8 md:w-8 text-primary mr-3" />
+                  <h2 className="text-h4">{journey.title}</h2>
                 </div>
                 
-                <p className="text-body text-neutral-gray mb-6">{journey.description}</p>
+                <p className="text-body mb-6">{journey.description}</p>
                 
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-caption text-neutral-gray">Progress: {journey.progress}%</span>
+                  <span className="text-caption">Progress: {journey.progress}%</span>
                   {journey.completed ? (
-                    <CheckCircle size={18} className="text-green-500" />
+                    <CheckCircle size={18} className="text-success" />
                   ) : (
-                    <Clock size={18} className="text-neutral-gray" />
+                    <Clock size={18} className="text-secondary" />
                   )}
                 </div>
                 
                 <Progress 
                   value={journey.progress} 
-                  className="h-2.5 mb-6 bg-soft-gray"
+                  className="h-2.5 mb-6 bg-muted"
                 />
                 
                 <Button 
                   className={cn(
                     "w-full",
-                    journey.completed ? "bg-secondary-purple" : "bg-primary-purple"
+                    journey.completed ? "bg-secondary hover:bg-secondary/90" : "bg-primary hover:bg-primary/90"
                   )}
                 >
                   {journey.completed ? "Review Journey" : "Continue Journey"}

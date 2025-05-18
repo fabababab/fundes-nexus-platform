@@ -1,13 +1,13 @@
 
 import React, { useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"; // Note: Tabs are imported but not used. Consider removing if not planned.
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // Note: CardHeader, CardTitle imported but not used.
+import { Input } from "@/components/ui/input"; // Note: Input imported but not used.
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Avatar } from "@/components/ui/avatar";
-import { Send, FileImage } from "lucide-react";
+import { Send, Plus } from "lucide-react"; // Changed FileImage to Plus
 
 interface Project {
   id: string;
@@ -107,7 +107,6 @@ const MSMECommunity: React.FC = () => {
   const handleProjectClick = (projectId: string) => {
     setActiveProject(projectId);
     
-    // Clear unread messages for this project
     setProjects(projects.map(project => 
       project.id === projectId 
         ? { ...project, unreadMessages: 0 }
@@ -115,16 +114,13 @@ const MSMECommunity: React.FC = () => {
     ));
   };
 
-  // Filter messages for the active project
   const activeProjectMessages = messages.filter(message => message.projectId === activeProject);
-  
-  // Get the active project data
   const currentProject = projects.find(project => project.id === activeProject);
 
   return (
-    <div className="flex h-[calc(100vh-9rem)] max-h-[calc(100vh-9rem)]">
+    <div className="flex flex-col md:flex-row h-[calc(100vh-9rem)] max-h-[calc(100vh-9rem)]">
       {/* Project sidebar */}
-      <div className="w-1/4 border-r pr-4 overflow-y-auto">
+      <div className="w-full md:w-1/3 lg:w-1/4 p-4 border-b md:border-b-0 md:border-r overflow-y-auto h-1/3 md:h-full flex-shrink-0">
         <h2 className="text-xl font-bold mb-4">Your Projects</h2>
         <div className="space-y-2">
           {projects.map((project) => (
@@ -147,9 +143,9 @@ const MSMECommunity: React.FC = () => {
       </div>
 
       {/* Messages area */}
-      <div className="flex-1 flex flex-col">
+      <div className="w-full md:flex-1 flex flex-col overflow-hidden h-2/3 md:h-full">
         {/* Project header */}
-        <div className="p-4 border-b">
+        <div className="p-4 border-b flex-shrink-0">
           <h3 className="text-lg font-bold">{currentProject?.name}</h3>
           <p className="text-sm text-muted-foreground">
             Community discussion for project participants
@@ -159,35 +155,38 @@ const MSMECommunity: React.FC = () => {
         {/* Messages list */}
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
           {activeProjectMessages.map((message) => (
-            <Card key={message.id} className={message.author === "Your Company" ? "ml-12" : ""}>
+            <Card key={message.id} className={message.author === "Your Company" ? "ml-4 sm:ml-12" : ""}>
               <CardContent className="p-3">
-                <div className="flex items-center mb-2">
-                  <Avatar className="h-6 w-6 mr-2">
+                <div className="flex items-start mb-2">
+                  <Avatar className="h-6 w-6 mr-2 flex-shrink-0">
                     <div className="bg-primary text-xs text-white flex items-center justify-center h-full w-full rounded-full">
                       {message.author.charAt(0)}
                     </div>
                   </Avatar>
-                  <div className="font-medium text-sm">{message.author}</div>
-                  <div className="text-xs text-muted-foreground ml-auto">{message.timestamp}</div>
+                  <div className="flex-1 min-w-0">
+                    <span className="font-medium text-sm block truncate">{message.author}</span> {/* Ensure author name can wrap or truncate */}
+                  </div>
+                  <div className="text-xs text-muted-foreground ml-auto pl-2 flex-shrink-0">{message.timestamp}</div>
                 </div>
-                <div className="text-sm">{message.content}</div>
+                <p className="text-sm whitespace-pre-wrap break-words">{message.content}</p> {/* Allow content to wrap */}
               </CardContent>
             </Card>
           ))}
         </div>
 
         {/* Message input */}
-        <div className="border-t p-4">
+        <div className="border-t p-4 flex-shrink-0">
           <form onSubmit={handleSendMessage} className="flex space-x-2">
             <Textarea 
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
               placeholder="Type your message..."
               className="min-h-[60px]"
+              rows={2} // Suggest a smaller initial size for mobile
             />
             <div className="flex flex-col justify-end space-y-2">
               <Button type="button" size="icon" variant="outline">
-                <FileImage className="h-4 w-4" />
+                <Plus className="h-4 w-4" /> {/* Replaced FileImage with Plus */}
               </Button>
               <Button type="submit" size="icon">
                 <Send className="h-4 w-4" />
@@ -201,3 +200,4 @@ const MSMECommunity: React.FC = () => {
 };
 
 export default MSMECommunity;
+

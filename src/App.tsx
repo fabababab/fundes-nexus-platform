@@ -12,6 +12,7 @@ import Portfolio from "./pages/portfolio/Portfolio";
 import DiscoverProjects from "./pages/projects/DiscoverProjects";
 import ProjectOverview from "./pages/msme/ProjectOverview";
 import LearningModules from "./pages/msme/LearningModules";
+import FinancialInclusionModule from "./pages/msme/learning/FinancialInclusionModule";
 import FundesCommunications from "./pages/fundes/FundesCommunications";
 import FundesEvents from "./pages/fundes/FundesEvents";
 import FundesTasks from "./pages/fundes/FundesTasks";
@@ -55,6 +56,7 @@ const App = () => (
             <Route path="/msme/community" element={<MSMECommunityPage />} />
             <Route path="/msme/project-overview" element={<ProjectOverview />} />
             <Route path="/msme/learning-modules" element={<LearningModules />} />
+            <Route path="/msme/learning-modules/financial-inclusion" element={<FinancialInclusionModule />} />
             
             {/* Fundes routes */}
             <Route path="/fundes" element={<Navigate to="/fundes/feed" replace />} />

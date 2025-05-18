@@ -2,11 +2,12 @@
 import React, { useState } from "react";
 import { SimpleDashboardLayout } from "@/components/layout/SimpleDashboardLayout";
 import { UserRole } from "@/types/common";
-import { BookText, CheckCircle, Clock } from "lucide-react"; 
+import { BookText, CheckCircle, Clock, Coins } from "lucide-react"; 
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 const LearningModules: React.FC = () => {
   // MSME role is assumed for this page, onRoleChange can be a dummy
@@ -23,6 +24,15 @@ const LearningModules: React.FC = () => {
       progress: 35, // Example progress
       completed: false,
       icon: BookText,
+      route: "/msme/learning-modules/financial-literacy"
+    },
+    {
+      title: "Financial Inclusion Basics",
+      description: "Learn the fundamentals of financial inclusion, how it benefits your business, and how to access inclusive financial services.",
+      progress: 0, // New module, no progress yet
+      completed: false,
+      icon: Coins,
+      route: "/msme/learning-modules/financial-inclusion"
     },
     {
       title: "Coca-Cola Project Onboarding",
@@ -30,6 +40,7 @@ const LearningModules: React.FC = () => {
       progress: 20, // Example progress
       completed: false,
       icon: BookText,
+      route: "/msme/learning-modules/coca-cola"
     },
   ];
 
@@ -75,8 +86,11 @@ const LearningModules: React.FC = () => {
                     "w-full",
                     journey.completed ? "bg-secondary hover:bg-secondary/90" : "bg-primary hover:bg-primary/90"
                   )}
+                  asChild
                 >
-                  {journey.completed ? "Review Journey" : "Continue Journey"}
+                  <Link to={journey.route}>
+                    {journey.progress > 0 ? "Continue Journey" : "Start Journey"}
+                  </Link>
                 </Button>
               </CardContent>
             </Card>

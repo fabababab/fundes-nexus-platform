@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -50,8 +49,6 @@
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-
-    /* ... keep existing code (dark mode variables) the same */
   }
 }
 
@@ -362,8 +359,9 @@
     @apply transition-transform duration-200 hover:scale-105;
   }
   
-  .transition-shadow {
-    @apply transition-shadow duration-300;
+  /* Fixed shadow transition - changed to avoid circular dependency */
+  .shadow-transition {
+    transition-property: box-shadow;
+    transition-duration: 300ms;
   }
 }
-

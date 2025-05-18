@@ -1,3 +1,4 @@
+
 import React from "react";
 import {
   Dialog,
@@ -23,6 +24,7 @@ import {
   Grid3X3
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import { Badge } from "@/components/ui/badge";
 
 interface AppsMenuProps {
   activeRole: UserRole;
@@ -76,7 +78,7 @@ export const AppsMenu: React.FC<AppsMenuProps> = ({
   const roleOptions = [
     { id: "msme" as UserRole, name: "MSME View", icon: Briefcase, color: "text-navy-blue bg-pale-blue" },
     { id: "fundes" as UserRole, name: "Fundes View", icon: Target, color: "text-green-700 bg-green-100" },
-    { id: "investor" as UserRole, name: "Donor View", icon: PiggyBank, color: "text-purple-700 bg-purple-100" },
+    { id: "investor" as UserRole, name: "Donor View", icon: PiggyBank, color: "text-purple-700 bg-purple-100", comingSoon: true },
   ];
   
   const getApps = () => {
@@ -135,6 +137,11 @@ export const AppsMenu: React.FC<AppsMenuProps> = ({
                   <role.icon className="h-4 w-4" />
                 </div>
                 <span className="ml-3 text-sm font-medium">{role.name}</span>
+                {role.comingSoon && (
+                  <Badge variant="outline" className="ml-2 text-xs bg-purple-50 text-purple-700 border-purple-200">
+                    coming soon
+                  </Badge>
+                )}
               </button>
             ))}
           </div>
@@ -181,6 +188,11 @@ export const AppsMenu: React.FC<AppsMenuProps> = ({
                   <role.icon className="h-4 w-4" />
                 </div>
                 <span className="ml-3 text-sm font-medium">{role.name}</span>
+                {role.comingSoon && (
+                  <Badge variant="outline" className="ml-2 text-xs bg-purple-50 text-purple-700 border-purple-200">
+                    coming soon
+                  </Badge>
+                )}
               </button>
             ))}
           </div>

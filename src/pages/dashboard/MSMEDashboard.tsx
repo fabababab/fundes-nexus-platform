@@ -1,4 +1,3 @@
-
 import React from "react";
 import { 
   BarChart4, 
@@ -99,20 +98,23 @@ const MSMEDashboard: React.FC<MSMEDashboardProps> = ({ activeRole, onRoleChange 
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-base font-medium">ESG Goals Dashboard</CardTitle>
-            <Target className="h-5 w-5 text-blue-600" />
-          </CardHeader>
-          <CardContent className="space-y-2">
-            <p className="text-sm text-muted-foreground">
-              Track and manage your ESG goals, including circularity metrics and education progress.
-            </p>
-            <Button asChild className="w-full mt-2">
-              <Link to={`${baseRoute}/esg`}>View ESG Dashboard</Link>
-            </Button>
-          </CardContent>
-        </Card>
+        {/* Conditionally render ESG Goals Dashboard card only if NOT MSME (i.e., for Company role) */}
+        {!isMSME && (
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-base font-medium">ESG Goals Dashboard</CardTitle>
+              <Target className="h-5 w-5 text-blue-600" />
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <p className="text-sm text-muted-foreground">
+                Track and manage your ESG goals, including circularity metrics and education progress.
+              </p>
+              <Button asChild className="w-full mt-2">
+                <Link to={`${baseRoute}/esg`}>View ESG Dashboard</Link>
+              </Button>
+            </CardContent>
+          </Card>
+        )}
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">

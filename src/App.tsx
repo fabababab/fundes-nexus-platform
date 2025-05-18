@@ -58,7 +58,7 @@ const App = () => (
           <Route path="/company/projects" element={<CompanyProjectRoom />} />
           
           {/* MSME routes */}
-          <Route path="/msme/esg" element={<CompanyESGDashboard />} />
+          {/* <Route path="/msme/esg" element={<CompanyESGDashboard />} />  // This line is removed */}
           <Route path="/msme/intranet" element={<CompanyIntranet />} />
           <Route path="/msme/partners" element={<CompanyPartnerDiscovery />} />
           <Route path="/msme/impact" element={<CompanySocialImpact />} />
@@ -80,3 +80,4 @@ const App = () => (
 );
 
 export default App;
+

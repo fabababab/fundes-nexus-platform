@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Clock, Users, Video } from "lucide-react";
@@ -29,75 +29,75 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
   const year = dateParts[2];
   
   return (
-    <Card className="overflow-hidden border-light-blue">
+    <Card className="event-card">
       <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/6 bg-light-blue p-4 flex flex-col justify-center items-center">
+        <div className="md:w-1/6 event-card-date">
           <div className="text-center">
-            <p className="text-sm text-navy-blue uppercase font-semibold">{month}</p>
-            <p className="text-4xl font-bold text-navy-blue">{day}</p>
-            <p className="text-sm text-navy-blue">{year}</p>
+            <p className="event-card-date-month">{month}</p>
+            <p className="event-card-date-day">{day}</p>
+            <p className="event-card-date-year">{year}</p>
           </div>
         </div>
         
-        <CardContent className="flex-1 p-6">
+        <div className="event-card-content flex-1">
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
             <div className="space-y-4 flex-1">
-              <div className="flex items-center gap-2 mb-2">
-                <Badge variant="outline" className="bg-navy-blue text-white rounded-md px-4 py-1 hover:bg-dark-navy">
+              <div className="event-card-badges">
+                <Badge className="event-card-category-badge">
                   {event.category}
                 </Badge>
-                <Badge variant="outline" className="bg-white text-bright-blue rounded-md px-3 py-1 border border-light-blue">
+                <Badge variant="outline" className="event-card-type-badge">
                   {event.type === "Virtual" ? <Video className="mr-1 h-4 w-4" /> : <MapPin className="mr-1 h-4 w-4" />}
                   {event.type}
                 </Badge>
               </div>
               
-              <h3 className="text-2xl text-navy-blue font-medium">{event.title}</h3>
+              <h3 className="event-card-title">{event.title}</h3>
               
-              <div className="flex flex-col sm:flex-row gap-6 text-neutral-gray">
-                <div className="flex items-center">
-                  <Clock className="mr-2 h-4 w-4 text-bright-blue" />
+              <div className="event-card-details">
+                <div className="event-card-detail">
+                  <Clock className="event-card-detail-icon" />
                   {event.time}
                 </div>
-                <div className="flex items-center">
-                  <MapPin className="mr-2 h-4 w-4 text-bright-blue" />
+                <div className="event-card-detail">
+                  <MapPin className="event-card-detail-icon" />
                   {event.location}
                 </div>
-                <div className="flex items-center">
-                  <Users className="mr-2 h-4 w-4 text-bright-blue" />
+                <div className="event-card-detail">
+                  <Users className="event-card-detail-icon" />
                   {event.attendees} Attendees
                 </div>
               </div>
               
-              <p className="text-neutral-gray">{event.description}</p>
+              <p className="event-card-description">{event.description}</p>
             </div>
             
-            <div className="flex flex-col gap-4 mt-4 md:mt-0">
+            <div className="event-card-actions">
               {event.isRegistered ? (
                 <>
-                  <Badge variant="outline" className="bg-pale-blue text-navy-blue px-4 py-1 text-center rounded-md">
+                  <Badge className="event-registered-badge">
                     Registered
                   </Badge>
-                  <Button variant="outline" className="rounded-full border-2 border-navy-blue px-6 py-2 h-auto font-medium text-navy-blue hover:bg-light-blue/20">
+                  <Button variant="outline" className="event-details-button">
                     View Details
                   </Button>
-                  <Button variant="ghost" className="px-6 py-2 h-auto font-medium text-neutral-gray hover:text-bright-blue">
+                  <Button variant="ghost" className="event-cancel-button">
                     Cancel Registration
                   </Button>
                 </>
               ) : (
                 <>
-                  <Button className="rounded-full bg-bright-blue hover:bg-navy-blue px-6 py-2 h-auto font-medium">
+                  <Button className="event-register-button">
                     Register
                   </Button>
-                  <Button variant="outline" className="rounded-full border-2 border-navy-blue px-6 py-2 h-auto font-medium text-navy-blue hover:bg-light-blue/20">
+                  <Button variant="outline" className="event-details-button">
                     View Details
                   </Button>
                 </>
               )}
             </div>
           </div>
-        </CardContent>
+        </div>
       </div>
     </Card>
   );

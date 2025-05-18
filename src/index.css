@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -36,7 +37,7 @@
 
     --radius: 0.5rem;
 
-    /* New color variables from the color palette */
+    /* Color palette */
     --navy-blue: 219 56% 29%;
     --light-blue: 228 32% 74%;
     --bright-blue: 220 81% 53%;
@@ -44,6 +45,7 @@
     --pale-blue: 199 58% 87%;
     --dark-navy: 217 59% 29%;
     --off-white: 0 0% 96%;
+    --neutral-gray: 217 10% 57%;
   }
 
   .dark {
@@ -95,7 +97,7 @@
   }
 }
 
-/* Custom scrollbar styles from App.css */
+/* Custom scrollbar styles */
 .custom-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
@@ -115,7 +117,7 @@
   border-radius: 3px;
 }
 
-/* Animation for page transitions from App.css */
+/* Animation for page transitions */
 .page-transition-enter {
   opacity: 0;
   transform: translateY(10px);
@@ -136,16 +138,19 @@
   transition: opacity 300ms;
 }
 
-/* Focus styles for accessibility from App.css */
+/* Focus styles for accessibility */
 .focus-ring {
   @apply focus:outline-none focus:ring-2 focus:ring-bright-blue focus:ring-offset-2;
 }
 
-/* Global styles */
+/* ===== Global Styles ===== */
+
+/* Layout containers */
 .app-container {
   @apply w-full max-w-[1400px] mx-auto px-4 sm:px-6;
 }
 
+/* Typography */
 .page-title {
   @apply text-xl md:text-2xl lg:text-3xl font-bold text-navy-blue mb-4;
 }
@@ -191,6 +196,8 @@
 .app-icon-label {
   @apply text-xs md:text-sm text-center;
 }
+
+/* ===== Component Styles ===== */
 
 /* Card styles */
 .card-base {
@@ -238,6 +245,83 @@
   @apply p-2 rounded-full hover:bg-gray-100 transition-colors;
 }
 
+/* ===== Event Card Styles ===== */
+.event-card {
+  @apply overflow-hidden border-light-blue rounded-lg bg-white shadow-sm transition-all duration-200 hover:shadow-md;
+}
+
+.event-card-date {
+  @apply bg-light-blue p-4 flex flex-col justify-center items-center text-center;
+}
+
+.event-card-date-month {
+  @apply text-sm text-navy-blue uppercase font-semibold;
+}
+
+.event-card-date-day {
+  @apply text-4xl font-bold text-navy-blue;
+}
+
+.event-card-date-year {
+  @apply text-sm text-navy-blue;
+}
+
+.event-card-content {
+  @apply p-6;
+}
+
+.event-card-badges {
+  @apply flex items-center gap-2 mb-2;
+}
+
+.event-card-category-badge {
+  @apply bg-navy-blue text-white rounded-md px-4 py-1;
+}
+
+.event-card-type-badge {
+  @apply bg-white text-bright-blue rounded-md px-3 py-1 border border-light-blue flex items-center;
+}
+
+.event-card-title {
+  @apply text-2xl text-navy-blue font-medium;
+}
+
+.event-card-details {
+  @apply flex flex-col sm:flex-row gap-6 text-neutral-gray;
+}
+
+.event-card-detail {
+  @apply flex items-center;
+}
+
+.event-card-detail-icon {
+  @apply mr-2 h-4 w-4 text-bright-blue;
+}
+
+.event-card-description {
+  @apply text-neutral-gray;
+}
+
+.event-card-actions {
+  @apply flex flex-col gap-4 mt-4 md:mt-0;
+}
+
+.event-registered-badge {
+  @apply bg-pale-blue text-navy-blue px-4 py-1 text-center rounded-md;
+}
+
+.event-details-button {
+  @apply rounded-full border-2 border-navy-blue px-6 py-2 h-auto font-medium text-navy-blue hover:bg-light-blue/20;
+}
+
+.event-register-button {
+  @apply rounded-full bg-bright-blue hover:bg-navy-blue px-6 py-2 h-auto font-medium text-white;
+}
+
+.event-cancel-button {
+  @apply px-6 py-2 h-auto font-medium text-neutral-gray hover:text-bright-blue;
+}
+
 /* Badge styles */
 .badge {
   @apply px-2 py-1 rounded-full text-xs font-medium;
@@ -264,34 +348,35 @@
   @apply block text-sm font-medium text-gray-700 mb-1;
 }
 
-/* Custom utility classes */
+/* ===== Custom utility classes ===== */
 @layer utilities {
+  /* Color utilities */
   .bg-navy-blue {
-    background-color: #1C3A83; /* Navy blue from the color palette */
+    background-color: #1C3A83;
   }
   
   .bg-light-blue {
-    background-color: #AFBBDF; /* Light blue from the color palette */
+    background-color: #AFBBDF;
   }
   
   .bg-bright-blue {
-    background-color: #2261EB; /* Bright blue from the color palette */
+    background-color: #2261EB;
   }
   
   .bg-mint-green {
-    background-color: #5EEAD4; /* Mint green from the color palette */
+    background-color: #5EEAD4;
   }
   
   .bg-pale-blue {
-    background-color: #C7E6F6; /* Pale blue from the color palette */
+    background-color: #C7E6F6;
   }
   
   .bg-dark-navy {
-    background-color: #1D477E; /* Dark navy from the color palette */
+    background-color: #1D477E;
   }
   
   .bg-off-white {
-    background-color: #F4F4F4; /* Off white from the color palette */
+    background-color: #F4F4F4;
   }
   
   .text-navy-blue {
@@ -316,6 +401,10 @@
   
   .text-dark-navy {
     color: #1D477E;
+  }
+  
+  .text-neutral-gray {
+    color: #8E9196;
   }
 
   /* Responsive flex helpers */

@@ -32,7 +32,8 @@ import {
   Bot,
   MessageSquareText,
   CalendarDays,
-  ListTodo
+  ListTodo,
+  Feed
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -75,6 +76,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   ];
 
   const msmeNavItems = [
+    { title: "News Feed", icon: Feed, href: "/feed", badge: "" },
     { title: "Learning Modules", icon: GraduationCap, href: "/learning-journey", badge: "2" },
     { title: "Community Hub", icon: MessageSquare, href: "/community", badge: "5" },
     { title: "Project Overview", icon: FileText, href: "/msme/project-overview", badge: "" },
@@ -125,7 +127,18 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
         <Sidebar>
           <SidebarContent>
             <SidebarGroup>
-              <SidebarGroupLabel className="px-4 text-gray-500 text-sm">Navigation</SidebarGroupLabel>
+              {activeRole === "msme" ? (
+                <Link to="/feed" className="block px-4 py-3">
+                  {/* Placeholder Fundeo Logo - consider uploading a proper logo asset */}
+                  <img 
+                    src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" 
+                    alt="Fundeo Logo" 
+                    className="h-10 w-auto" 
+                  />
+                </Link>
+              ) : (
+                <SidebarGroupLabel className="px-4 text-gray-500 text-sm">Navigation</SidebarGroupLabel>
+              )}
               <SidebarGroupContent>
                 <SidebarMenu>
                   {getNavItems().map((item) => (
